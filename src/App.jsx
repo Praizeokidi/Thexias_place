@@ -713,12 +713,21 @@ export default function App() {
       <header>
         <div className="announcement">
           <div className="announcement-track" aria-hidden="false">
-            <span>FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL WEBSITE ORDERS.</span>
-            <span aria-hidden="true">FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL WEBSITE ORDERS.</span>
+            {/* <span>FREE DELIVERY over ₦100,000 · New pieces, twice a week·10% OFF ALL WEBSITE ORDERS.</span> */}
+            <span aria-hidden="true">
+              FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF
+              ALL WEBSITE ORDERS.
+            </span>
           </div>
         </div>
         <nav>
-          <Logo onHome={(e) => { e.preventDefault(); setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
+          <Logo
+            onHome={(e) => {
+              e.preventDefault();
+              setPage("home");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          />
           <div className="links">
             {cats.slice(1).map((c) => (
               <a href="#shop" onClick={() => setCat(c)} key={c}>
@@ -913,7 +922,13 @@ export default function App() {
         />
       )}
       <footer>
-        <Logo onHome={(e) => { e.preventDefault(); setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
+        <Logo
+          onHome={(e) => {
+            e.preventDefault();
+            setPage("home");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        />
         <p>An intentional wardrobe for the woman in motion.</p>
         <a href="https://wa.me/2347048969953">
           Chat with us on WhatsApp <ArrowRight size={15} />
