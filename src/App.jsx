@@ -77,7 +77,8 @@ const groups = {
     ["Everyday Seamless Set", 11000],
   ],
 };
-const cats = ["All", ...Object.keys(groups)],
+const categoryOrder = ["Jeans", "Bags", "Shoes", "Tops", "Gowns", "Lingerie"],
+  cats = ["All", ...categoryOrder],
   products = Object.entries(groups).flatMap(([category, items]) =>
     items.map(([name, price], i) => ({
       id: category + i,
@@ -103,6 +104,7 @@ const cats = ["All", ...Object.keys(groups)],
     Shoes: "#e2d0bf,#806a5b",
     Tops: "#e4d8c9,#a66c57",
     Gowns: "#cdb2ad,#694d4d",
+    Lingerie: "#d8c0c0,#805c66",
     "Styled Outfit": "#d6c1af,#594139",
   };
 
@@ -250,7 +252,7 @@ function PersonalShopperPage({ back }) {
   });
   const submit = (event) => {
     event.preventDefault();
-    const msg = `Hi THEXIAS_PLACE! I'm interested in personal shopping/sourcing:\nName: ${form.name}\nWhatsApp: ${form.phone}\nItem/Brand requested: ${form.request}\nBudget: ${form.budget || "Not specified"}\nPlease assist me in sourcing this.`;
+    const msg = `Hi THEXIAS PLACE! I'm interested in personal shopping/sourcing:\nName: ${form.name}\nWhatsApp: ${form.phone}\nItem/Brand requested: ${form.request}\nBudget: ${form.budget || "Not specified"}\nPlease assist me in sourcing this.`;
     window.open(
       `https://wa.me/2347048969953?text=${encodeURIComponent(msg)}`,
       "_blank",
@@ -361,10 +363,10 @@ function useReveal(key) {
     return () => observer.disconnect();
   }, [key]);
 }
-function Logo() {
+function Logo({ onHome }) {
   return (
-    <a className="logo" href="#top">
-      <b>T</b>THEXIAS<span>_PLACE</span>
+    <a className="logo" href="#top" onClick={onHome}>
+      <b>T</b>THEXIAS<span> PLACE</span>
     </a>
   );
 }
@@ -478,7 +480,7 @@ function Modal({ p, close, add }) {
 }
 function Cart({ cart, close, qty, remove }) {
   let total = cart.reduce((a, x) => a + x.price * x.quantity, 0),
-    msg = `Hi THEXIAS_PLACE! I'd like to order:\n\n${cart.map((x) => `- ${x.name} x${x.quantity} — ${money(x.price * x.quantity)}`).join("\n")}\n\nTotal: ${money(total)}`;
+    msg = `Hi THEXIAS PLACE! I'd like to order:\n\n${cart.map((x) => `- ${x.name} x${x.quantity} — ${money(x.price * x.quantity)}`).join("\n")}\n\nTotal: ${money(total)}`;
   return (
     <div
       className="overlay cart-overlay"
@@ -619,8 +621,6 @@ export default function App() {
       contact: "",
       interests: [],
     }),
-    [newsletterEmail, setNewsletterEmail] = useState(""),
-    [newsletterSubscribed, setNewsletterSubscribed] = useState(false),
     [cartBump, setCartBump] = useState(false),
     [toast, setToast] = useState("");
   useEffect(
@@ -648,7 +648,7 @@ export default function App() {
   );
   if (sort === "low") list = [...list].sort((a, b) => a.price - b.price);
   if (sort === "high") list = [...list].sort((a, b) => b.price - a.price);
-  useReveal(`${cat}-${q}-${sort}`);
+  useReveal(`${page}-${cat}-${q}-${sort}`);
   const add = (p, size = p.sizes[1]) => {
     setCart((old) => {
       let x = old.find((i) => i.id === p.id && i.size === size);
@@ -697,15 +697,7 @@ export default function App() {
     setToast("You’re on the prelaunch list");
     window.setTimeout(() => setToast(""), 2800);
   };
-  const subscribeNewsletter = (event) => {
-    event.preventDefault();
-    if (!newsletterEmail.trim()) return;
-    localStorage.setItem("thexias-newsletter-email", newsletterEmail.trim());
-    setNewsletterSubscribed(true);
-    setToast("You’re on the list");
-    window.setTimeout(() => setToast(""), 2400);
-  };
-  const preOrderMessage = `Hi THEXIAS_PLACE! I joined the prelaunch list and would like to pre-order from: ${waitlistForm.interests.join(", ")}. My name is ${waitlistForm.name}. Please notify me when payment and collection are available.`;
+  const preOrderMessage = `Hi THEXIAS PLACE! I joined the prelaunch list and would like to pre-order from: ${waitlistForm.interests.join(", ")}. My name is ${waitlistForm.name}. Please notify me when payment and collection are available.`;
   const qty = (id, d) =>
     setCart((o) =>
       o.flatMap((x) =>
@@ -719,11 +711,12 @@ export default function App() {
   return (
     <div id="top">
       <header>
-        <div className="announcement" aria-label="Store promotions">
-          <div className="announcement-track"><span>FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL WEBSITE ORDERS.</span><span aria-hidden="true">FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL WEBSITE ORDERS.</span></div>
+        <div className="announcement">
+          FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL
+          WEBSITE ORDERS.
         </div>
         <nav>
-          <Logo />
+          <Logo onHome={(e) => { e.preventDefault(); setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
           <div className="links">
             {cats.slice(1).map((c) => (
               <a href="#shop" onClick={() => setCat(c)} key={c}>
@@ -759,24 +752,22 @@ export default function App() {
               placeholder="Search the edit"
             />
           </label>
-          <div className="nav-actions">
-            <button
-              className="wishlist-button"
-              onClick={() => setWishlistOpen(true)}
-              aria-label="Open wishlist"
-            >
-              <Heart size={20} />
-              <i>{wishlist.length}</i>
-            </button>
-            <button
-              className={`bag ${cartBump ? "bump" : ""}`}
-              onClick={() => setCartOpen(true)}
-              aria-label="Open shopping bag"
-            >
-              <ShoppingBag size={20} />
-              <i>{cart.reduce((a, x) => a + x.quantity, 0)}</i>
-            </button>
-          </div>
+          <button
+            className="wishlist-button"
+            onClick={() => setWishlistOpen(true)}
+            aria-label="Open wishlist"
+          >
+            <Heart size={20} />
+            <i>{wishlist.length}</i>
+          </button>
+          <button
+            className={`bag ${cartBump ? "bump" : ""}`}
+            onClick={() => setCartOpen(true)}
+            aria-label="Open shopping bag"
+          >
+            <ShoppingBag size={20} />
+            <i>{cart.reduce((a, x) => a + x.quantity, 0)}</i>
+          </button>
         </nav>
       </header>
       {page === "home" ? (
@@ -920,22 +911,12 @@ export default function App() {
         />
       )}
       <footer>
-        <Logo />
+        <Logo onHome={(e) => { e.preventDefault(); setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
         <p>An intentional wardrobe for the woman in motion.</p>
-        <div className="newsletter">
-          <small>THE PRIVATE EDIT</small>
-          <h3>Stay close to what’s next.</h3>
-          {!newsletterSubscribed ? (
-            <form onSubmit={subscribeNewsletter}>
-              <input type="email" required value={newsletterEmail} onChange={(e) => setNewsletterEmail(e.target.value)} placeholder="Your email address" aria-label="Email address" />
-              <button type="submit" aria-label="Subscribe to newsletter"><ArrowRight size={16} /></button>
-            </form>
-          ) : <span className="newsletter-confirmed">You’re subscribed — welcome to the private edit.</span>}
-        </div>
         <a href="https://wa.me/2347048969953">
           Chat with us on WhatsApp <ArrowRight size={15} />
         </a>
-        <small>© 2024 THEXIAS_PLACE · Made for the becoming.</small>
+        <small>© 2024 THEXIAS PLACE · Made for the becoming.</small>
       </footer>
       {toast && (
         <div className="toast" role="status">
@@ -990,11 +971,11 @@ export default function App() {
             <h2>Be first to wear what’s next.</h2>
             <p>
               Tell us exactly what you’re waiting for. Your response goes
-              directly to the private THEXIAS_PLACE prelaunch form.
+              directly to the private THEXIAS PLACE prelaunch form.
             </p>
             <iframe
               className="waitlist-form-frame"
-              title="THEXIAS_PLACE prelaunch waitlist"
+              title="THEXIAS PLACE prelaunch waitlist"
               src="https://docs.google.com/forms/d/e/1FAIpQLSeLpss384XiP8kGv3tv_4ueIRhe5uCdAV-0siA-k-bJnXDg8g/viewform?embedded=true"
             >
               Loading waitlist form…
