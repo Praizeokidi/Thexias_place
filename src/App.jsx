@@ -69,6 +69,13 @@ const groups = {
     ["Lace Overlay Gown", 47500],
     ["Flowy Kaftan Maxi Gown", 30000],
   ],
+  Lingerie: [
+    ["Silk Lace Cami Set", 14000],
+    ["Satin Robe & Slip Set", 18000],
+    ["Soft Mesh Bralette Set", 12500],
+    ["Lace Trim Bodysuit", 15000],
+    ["Everyday Seamless Set", 11000],
+  ],
 };
 const cats = ["All", ...Object.keys(groups)],
   products = Object.entries(groups).flatMap(([category, items]) =>
@@ -612,6 +619,8 @@ export default function App() {
       contact: "",
       interests: [],
     }),
+    [newsletterEmail, setNewsletterEmail] = useState(""),
+    [newsletterSubscribed, setNewsletterSubscribed] = useState(false),
     [cartBump, setCartBump] = useState(false),
     [toast, setToast] = useState("");
   useEffect(
@@ -688,6 +697,14 @@ export default function App() {
     setToast("You’re on the prelaunch list");
     window.setTimeout(() => setToast(""), 2800);
   };
+  const subscribeNewsletter = (event) => {
+    event.preventDefault();
+    if (!newsletterEmail.trim()) return;
+    localStorage.setItem("thexias-newsletter-email", newsletterEmail.trim());
+    setNewsletterSubscribed(true);
+    setToast("You’re on the list");
+    window.setTimeout(() => setToast(""), 2400);
+  };
   const preOrderMessage = `Hi THEXIAS_PLACE! I joined the prelaunch list and would like to pre-order from: ${waitlistForm.interests.join(", ")}. My name is ${waitlistForm.name}. Please notify me when payment and collection are available.`;
   const qty = (id, d) =>
     setCart((o) =>
@@ -743,22 +760,24 @@ export default function App() {
               placeholder="Search the edit"
             />
           </label>
-          <button
-            className="wishlist-button"
-            onClick={() => setWishlistOpen(true)}
-            aria-label="Open wishlist"
-          >
-            <Heart size={20} />
-            <i>{wishlist.length}</i>
-          </button>
-          <button
-            className={`bag ${cartBump ? "bump" : ""}`}
-            onClick={() => setCartOpen(true)}
-            aria-label="Open shopping bag"
-          >
-            <ShoppingBag size={20} />
-            <i>{cart.reduce((a, x) => a + x.quantity, 0)}</i>
-          </button>
+          <div className="nav-actions">
+            <button
+              className="wishlist-button"
+              onClick={() => setWishlistOpen(true)}
+              aria-label="Open wishlist"
+            >
+              <Heart size={20} />
+              <i>{wishlist.length}</i>
+            </button>
+            <button
+              className={`bag ${cartBump ? "bump" : ""}`}
+              onClick={() => setCartOpen(true)}
+              aria-label="Open shopping bag"
+            >
+              <ShoppingBag size={20} />
+              <i>{cart.reduce((a, x) => a + x.quantity, 0)}</i>
+            </button>
+          </div>
         </nav>
       </header>
       {page === "home" ? (
