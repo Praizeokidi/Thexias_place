@@ -28,3 +28,9 @@ html,body,#root,#top{width:100%;max-width:100%;overflow-x:clip}body{background:v
 
 /* Keep mobile nav actions vertically centered inside the nav row, below the moving announcement. */
 .nav-actions{align-self:center;align-items:center;line-height:1;transform:translateY(2px)}.nav-actions button{align-self:center;line-height:1}@media(max-width:850px){nav{isolation:isolate;align-items:center}.nav-actions{position:relative;z-index:2;top:3px;transform:none;height:40px;align-items:center}.nav-actions .wishlist-button,.nav-actions .bag{top:0;transform:none}.nav-actions .wishlist-button:hover{transform:translateY(-2px) scale(1.06)}}
+
+/* Keep Jeans the same tile height as Bags, Shoes, Tops, Gowns, and Lingerie. */
+@media(max-width:850px){.tiles button:first-child{grid-row:span 1}.tiles button:first-child .tile{height:auto;aspect-ratio:1/1}}
+@media(max-width:520px){.tiles button:first-child{grid-row:span 1}.tiles button:first-child .tile{height:auto;aspect-ratio:1/1}}
+/* Small mobile breathing-room adjustment below the announcement bar. */
+@media(max-width:850px){nav .logo{transform:translateY(4px)}.nav-actions{top:7px}}
