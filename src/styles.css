@@ -40,3 +40,7 @@ html,body,#root,#top{width:100%;max-width:100%;overflow-x:clip}body{background:v
 
 /* Mobile-only action positioning: preserve the navbar layout while aligning the two icons to its outer edge. */
 @media(max-width:850px){nav>.wishlist-button{margin-left:auto;position:relative;top:7px;flex:none}nav>.bag{position:relative;top:7px;flex:none;margin-right:-14px;margin-left:4px}}
+
+@media(max-width:850px){nav>.wishlist-button,nav>.bag{right:5px}}
+
+@media(max-width:850px){nav>.wishlist-button,nav>.bag{right:9px}}
