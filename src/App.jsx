@@ -712,8 +712,10 @@ export default function App() {
     <div id="top">
       <header>
         <div className="announcement">
-          FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL
-          WEBSITE ORDERS.
+          <div className="announcement-track" aria-hidden="false">
+            <span>FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL WEBSITE ORDERS.</span>
+            <span aria-hidden="true">FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL WEBSITE ORDERS.</span>
+          </div>
         </div>
         <nav>
           <Logo onHome={(e) => { e.preventDefault(); setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />

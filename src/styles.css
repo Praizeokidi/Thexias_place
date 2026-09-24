@@ -34,3 +34,6 @@ html,body,#root,#top{width:100%;max-width:100%;overflow-x:clip}body{background:v
 @media(max-width:520px){.tiles button:first-child{grid-row:span 1}.tiles button:first-child .tile{height:auto;aspect-ratio:1/1}}
 /* Small mobile breathing-room adjustment below the announcement bar. */
 @media(max-width:850px){nav .logo{transform:translateY(4px)}.nav-actions{top:7px}}
+
+/* Reliable two-panel marquee: each copy is one full viewport, so the loop has a fixed travel distance. */
+.announcement-track{display:flex;width:200%;min-width:200vw;animation:promoMarquee 16s linear infinite!important;animation-play-state:running!important;transform:translate3d(0,0,0)}.announcement-track span{flex:0 0 100vw;min-width:100vw;width:100vw;text-align:center;padding:0;white-space:nowrap}@keyframes promoMarquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
