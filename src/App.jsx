@@ -462,7 +462,7 @@ export default function App() {
     <div id="top">
       <header>
         <div className="announcement">
-          Complimentary delivery over ₦50,000 · New pieces, twice a week
+          FREE DELIVERY over ₦50,000 · New pieces, twice a week
         </div>
         <nav>
           <Logo />
