@@ -719,9 +719,8 @@ export default function App() {
   return (
     <div id="top">
       <header>
-        <div className="announcement">
-          FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL
-          WEBSITE ORDERS.
+        <div className="announcement" aria-label="Store promotions">
+          <div className="announcement-track"><span>FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL WEBSITE ORDERS.</span><span aria-hidden="true">FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL WEBSITE ORDERS.</span></div>
         </div>
         <nav>
           <Logo />
@@ -923,6 +922,16 @@ export default function App() {
       <footer>
         <Logo />
         <p>An intentional wardrobe for the woman in motion.</p>
+        <div className="newsletter">
+          <small>THE PRIVATE EDIT</small>
+          <h3>Stay close to what’s next.</h3>
+          {!newsletterSubscribed ? (
+            <form onSubmit={subscribeNewsletter}>
+              <input type="email" required value={newsletterEmail} onChange={(e) => setNewsletterEmail(e.target.value)} placeholder="Your email address" aria-label="Email address" />
+              <button type="submit" aria-label="Subscribe to newsletter"><ArrowRight size={16} /></button>
+            </form>
+          ) : <span className="newsletter-confirmed">You’re subscribed — welcome to the private edit.</span>}
+        </div>
         <a href="https://wa.me/2347048969953">
           Chat with us on WhatsApp <ArrowRight size={15} />
         </a>
