@@ -46,3 +46,5 @@ html,body,#root,#top{width:100%;max-width:100%;overflow-x:clip}body{background:v
 @media(max-width:850px){nav>.wishlist-button,nav>.bag{right:9px}}
 
 @media(max-width:850px){nav>.wishlist-button,nav>.bag{right:13px}nav>.bag{margin-left:-2px}}
+
+@media(max-width:850px){nav>.wishlist-button,nav>.bag{right:17px}nav>.bag{margin-left:-6px}}
