@@ -100,11 +100,69 @@ const cats = ["All", ...Object.keys(groups)],
   };
 
 const outfits = [
-  { id: "outfit-golden-hour", name: "Golden Hour Glam", description: "Satin softness and warm accessories for evenings that linger beautifully.", items: ["Satin Evening Gown", "Strappy Stiletto Heels", "Quilted Crossbody Bag"], price: 72000 },
-  { id: "outfit-street-chic", name: "Effortless Street Chic", description: "A relaxed denim foundation sharpened with polished everyday details.", items: ["Classic Mom Jeans", "Off-Shoulder Blouse", "Chunky Platform Sneakers", "Structured Tote Bag"], price: 57000 },
-  { id: "outfit-boss-lady", name: "Boss Lady Edit", description: "Confident tailoring energy for the days when your presence says enough.", items: ["Black Stretch Skinny Jeans", "Puff-Sleeve Blouse", "Pointed-Toe Ankle Boots", "Leather Clutch Purse"], price: 70000 },
-  { id: "outfit-weekend", name: "Weekend Brunch Look", description: "Light, easy and quietly feminine, made for long lunches and soft plans.", items: ["Light Wash Straight Jeans", "Satin Cami Top", "Block Heel Sandals", "Woven Straw Beach Bag"], price: 49000 },
-  { id: "outfit-evening", name: "Evening Elegance", description: "A complete occasion look with graceful movement and a little drama.", items: ["Floral Chiffon Maxi Dress", "Square-Toe Heeled Loafers", "Classic Flap Handbag"], price: 82000 },
+  {
+    id: "outfit-golden-hour",
+    name: "Golden Hour Glam",
+    description:
+      "Satin softness and warm accessories for evenings that linger beautifully.",
+    items: [
+      "Satin Evening Gown",
+      "Strappy Stiletto Heels",
+      "Quilted Crossbody Bag",
+    ],
+    price: 72000,
+  },
+  {
+    id: "outfit-street-chic",
+    name: "Effortless Street Chic",
+    description:
+      "A relaxed denim foundation sharpened with polished everyday details.",
+    items: [
+      "Classic Mom Jeans",
+      "Off-Shoulder Blouse",
+      "Chunky Platform Sneakers",
+      "Structured Tote Bag",
+    ],
+    price: 57000,
+  },
+  {
+    id: "outfit-boss-lady",
+    name: "Boss Lady Edit",
+    description:
+      "Confident tailoring energy for the days when your presence says enough.",
+    items: [
+      "Black Stretch Skinny Jeans",
+      "Puff-Sleeve Blouse",
+      "Pointed-Toe Ankle Boots",
+      "Leather Clutch Purse",
+    ],
+    price: 70000,
+  },
+  {
+    id: "outfit-weekend",
+    name: "Weekend Brunch Look",
+    description:
+      "Light, easy and quietly feminine, made for long lunches and soft plans.",
+    items: [
+      "Light Wash Straight Jeans",
+      "Satin Cami Top",
+      "Block Heel Sandals",
+      "Woven Straw Beach Bag",
+    ],
+    price: 49000,
+  },
+  {
+    id: "outfit-evening",
+    name: "Evening Elegance",
+    description:
+      "A complete occasion look with graceful movement and a little drama.",
+    items: [
+      "Floral Chiffon Maxi Dress",
+      "Square-Toe Heeled Loafers",
+      "Classic Flap Handbag",
+    ],
+    price: 82000,
+  },
 ];
 
 function findProduct(name) {
@@ -112,19 +170,172 @@ function findProduct(name) {
 }
 
 function StyledOutfitsPage({ add, back }) {
-  return <section className="service-page outfits-page">
-    <div className="service-hero reveal is-visible"><small>THE STYLISTS’ EDIT</small><h1>Looks, already <em>lived in.</em></h1><p>Complete outfits assembled by our stylists, so getting dressed can feel as effortless as it looks.</p><button className="prelaunch-link" onClick={back}>Back to the collection <ArrowRight size={15} /></button></div>
-    <div className="outfit-grid">{outfits.map((outfit, index) => <article className="outfit-card reveal is-visible" style={{ "--delay": `${index * 60}ms` }} key={outfit.id}>
-      <div className="outfit-art"><span>LOOK {String(index + 1).padStart(2, "0")}</span><div>{outfit.items.slice(0, 3).map((name) => <Art p={findProduct(name)} key={name} />)}</div></div>
-      <div className="outfit-copy"><small>CURATED OUTFIT</small><h2>{outfit.name}</h2><p>{outfit.description}</p><div className="outfit-items">{outfit.items.map((name) => <span key={name}>{name}</span>)}</div><div className="outfit-buy"><b>{money(outfit.price)}</b><button className="cta" onClick={() => add({ id: outfit.id, name: outfit.name, category: "Styled Outfit", price: outfit.price, sizes: ["One size", "One size"] })}>Add outfit to cart <ShoppingBag size={16} /></button></div></div>
-    </article>)}</div>
-  </section>;
+  return (
+    <section className="service-page outfits-page">
+      <div className="service-hero reveal is-visible">
+        <small>THE STYLISTS’ EDIT</small>
+        <h1>
+          Looks, already <em>lived in.</em>
+        </h1>
+        <p>
+          Complete outfits assembled by our stylists, so getting dressed can
+          feel as effortless as it looks.
+        </p>
+        <button className="prelaunch-link" onClick={back}>
+          Back to the collection <ArrowRight size={15} />
+        </button>
+      </div>
+      <div className="outfit-grid">
+        {outfits.map((outfit, index) => (
+          <article
+            className="outfit-card reveal is-visible"
+            style={{ "--delay": `${index * 60}ms` }}
+            key={outfit.id}
+          >
+            <div className="outfit-art">
+              <span>LOOK {String(index + 1).padStart(2, "0")}</span>
+              <div>
+                {outfit.items.slice(0, 3).map((name) => (
+                  <Art p={findProduct(name)} key={name} />
+                ))}
+              </div>
+            </div>
+            <div className="outfit-copy">
+              <small>CURATED OUTFIT</small>
+              <h2>{outfit.name}</h2>
+              <p>{outfit.description}</p>
+              <div className="outfit-items">
+                {outfit.items.map((name) => (
+                  <span key={name}>{name}</span>
+                ))}
+              </div>
+              <div className="outfit-buy">
+                <b>{money(outfit.price)}</b>
+                <button
+                  className="cta"
+                  onClick={() =>
+                    add({
+                      id: outfit.id,
+                      name: outfit.name,
+                      category: "Styled Outfit",
+                      price: outfit.price,
+                      sizes: ["One size", "One size"],
+                    })
+                  }
+                >
+                  Add outfit to cart <ShoppingBag size={16} />
+                </button>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 function PersonalShopperPage({ back }) {
-  const [form, setForm] = useState({ name: "", phone: "", request: "", budget: "" });
-  const submit = (event) => { event.preventDefault(); const msg = `Hi THEXIAS_PLACE! I'm interested in personal shopping/sourcing:\nName: ${form.name}\nWhatsApp: ${form.phone}\nItem/Brand requested: ${form.request}\nBudget: ${form.budget || "Not specified"}\nPlease assist me in sourcing this.`; window.open(`https://wa.me/2347048969953?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer"); };
-  return <section className="service-page shopper-page"><div className="service-hero reveal is-visible"><small>THE PRIVATE CONCIERGE</small><h1>Your personal <em>luxury</em> concierge.</h1><p>Tell us the designer piece you actually want. We source authentic, high-quality bags, shoes and clothing from Gucci, Prada and similar houses on request.</p><button className="prelaunch-link" onClick={back}>Back to the collection <ArrowRight size={15} /></button></div><div className="shopper-layout"><form className="shopper-form" onSubmit={submit}><small>MAKE A REQUEST</small><h2>Let’s find your next signature piece.</h2><label>Name<input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name" /></label><label>WhatsApp number<input required value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+234 ..." /></label><label>Item or brand requested<textarea required value={form.request} onChange={(e) => setForm({ ...form, request: e.target.value })} placeholder="Gucci shoulder bag in black leather..." /></label><label>Budget range <span>(optional)</span><select value={form.budget} onChange={(e) => setForm({ ...form, budget: e.target.value })}><option value="">Select a range</option><option>₦50,000 – ₦150,000</option><option>₦150,000 – ₦300,000</option><option>₦300,000 – ₦600,000</option><option>₦600,000+</option></select></label><button className="cta" type="submit">Send request via WhatsApp <ArrowRight size={16} /></button></form><div className="concierge-cards"><div><b>01</b><strong>Designer handbags</strong><p>Quiet icons and statement pieces sourced around your brief.</p></div><div><b>02</b><strong>Luxury sneakers</strong><p>Everyday pairs with the right balance of comfort and status.</p></div><div><b>03</b><strong>Statement accessories</strong><p>The finishing details that make an entire wardrobe feel yours.</p></div></div></div></section>;
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    request: "",
+    budget: "",
+  });
+  const submit = (event) => {
+    event.preventDefault();
+    const msg = `Hi THEXIAS_PLACE! I'm interested in personal shopping/sourcing:\nName: ${form.name}\nWhatsApp: ${form.phone}\nItem/Brand requested: ${form.request}\nBudget: ${form.budget || "Not specified"}\nPlease assist me in sourcing this.`;
+    window.open(
+      `https://wa.me/2347048969953?text=${encodeURIComponent(msg)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  };
+  return (
+    <section className="service-page shopper-page">
+      <div className="service-hero reveal is-visible">
+        <small>THE PRIVATE CONCIERGE</small>
+        <h1>
+          Your personal <em>luxury</em> concierge.
+        </h1>
+        <p>
+          Tell us the designer piece you actually want. We source authentic,
+          high-quality bags, shoes and clothing from Gucci, Prada and similar
+          houses on request.
+        </p>
+        <button className="prelaunch-link" onClick={back}>
+          Back to the collection <ArrowRight size={15} />
+        </button>
+      </div>
+      <div className="shopper-layout">
+        <form className="shopper-form" onSubmit={submit}>
+          <small>MAKE A REQUEST</small>
+          <h2>Let’s find your next signature piece.</h2>
+          <label>
+            Name
+            <input
+              required
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              placeholder="Your name"
+            />
+          </label>
+          <label>
+            WhatsApp number
+            <input
+              required
+              value={form.phone}
+              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              placeholder="+234 ..."
+            />
+          </label>
+          <label>
+            Item or brand requested
+            <textarea
+              required
+              value={form.request}
+              onChange={(e) => setForm({ ...form, request: e.target.value })}
+              placeholder="Gucci shoulder bag in black leather..."
+            />
+          </label>
+          <label>
+            Budget range <span>(optional)</span>
+            <select
+              value={form.budget}
+              onChange={(e) => setForm({ ...form, budget: e.target.value })}
+            >
+              <option value="">Select a range</option>
+              <option>₦50,000 – ₦150,000</option>
+              <option>₦150,000 – ₦300,000</option>
+              <option>₦300,000 – ₦600,000</option>
+              <option>₦600,000+</option>
+            </select>
+          </label>
+          <button className="cta" type="submit">
+            Send request via WhatsApp <ArrowRight size={16} />
+          </button>
+        </form>
+        <div className="concierge-cards">
+          <div>
+            <b>01</b>
+            <strong>Designer handbags</strong>
+            <p>Quiet icons and statement pieces sourced around your brief.</p>
+          </div>
+          <div>
+            <b>02</b>
+            <strong>Luxury sneakers</strong>
+            <p>Everyday pairs with the right balance of comfort and status.</p>
+          </div>
+          <div>
+            <b>03</b>
+            <strong>Statement accessories</strong>
+            <p>
+              The finishing details that make an entire wardrobe feel yours.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 function useReveal(key) {
   useEffect(() => {
@@ -492,7 +703,8 @@ export default function App() {
     <div id="top">
       <header>
         <div className="announcement">
-          FREE DELIVERY over ₦50,000 · New pieces, twice a week
+          FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL
+          WEBSITE ORDERS.
         </div>
         <nav>
           <Logo />
@@ -502,8 +714,26 @@ export default function App() {
                 {c}
               </a>
             ))}
-            <a href="#outfits" onClick={(e) => { e.preventDefault(); setPage("outfits"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Styled Outfits</a>
-            <a href="#personal-shopper" onClick={(e) => { e.preventDefault(); setPage("shopper"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Personal Shopper</a>
+            <a
+              href="#outfits"
+              onClick={(e) => {
+                e.preventDefault();
+                setPage("outfits");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              Styled Outfits
+            </a>
+            <a
+              href="#personal-shopper"
+              onClick={(e) => {
+                e.preventDefault();
+                setPage("shopper");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              Personal Shopper
+            </a>
           </div>
           <label>
             <Search size={17} />
@@ -531,129 +761,146 @@ export default function App() {
           </button>
         </nav>
       </header>
-      {page === "home" ? <main>
-        <section className="hero reveal is-visible">
-          <div>
-            <small>✦ THE NEW SEASON EDIT</small>
-            <h1>
-              Made for <em>your</em> becoming.
-            </h1>
-            <p>Modern pieces, softly tailored for every version of you.</p>
-            <button
-              className="cta"
-              onClick={() =>
-                document
-                  .getElementById("shop")
-                  .scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              Shop new arrivals <ArrowRight size={17} />
-            </button>
-            <button
-              className="prelaunch-link"
-              onClick={() => {
-                setWaitlistOpen(true);
-                setWaitlistSent(false);
-              }}
-            >
-              Join the prelaunch list <ArrowRight size={15} />
-            </button>
-          </div>
-          <div className="hero-art">
-            <b>
-              the
-              <br />
-              new
-              <br />
-              <em>edit</em>
-            </b>
-            <span>
-              Quiet confidence
-              <br />
-              since 2024
-            </span>
-          </div>
-        </section>
-        <section className="intro reveal">
-          <small>EXPLORE THE EDIT</small>
-          <h2>
-            Find your <em>everyday</em> extraordinary.
-          </h2>
-          <div className="tiles">
-            {Object.keys(groups).map((c, i) => (
+      {page === "home" ? (
+        <main>
+          <section className="hero reveal is-visible">
+            <div>
+              <small>✦ THE NEW SEASON EDIT</small>
+              <h1>
+                Made for <em>your</em> becoming.
+              </h1>
+              <p>Modern pieces, softly tailored for every version of you.</p>
               <button
-                onClick={() => {
-                  setCat(c);
+                className="cta"
+                onClick={() =>
                   document
                     .getElementById("shop")
-                    .scrollIntoView({ behavior: "smooth" });
-                }}
-                key={c}
+                    .scrollIntoView({ behavior: "smooth" })
+                }
               >
-                <div className="tile" style={{ "--tone": tones[c] }}>
-                  <b>0{i + 1}</b>
-                </div>
-                <strong>{c}</strong>
-                <small>Thoughtfully chosen pieces</small>
+                Shop new arrivals <ArrowRight size={17} />
               </button>
-            ))}
-          </div>
-        </section>
-        <section className="shop" id="shop">
-          <div className="shop-head">
-            <div>
-              <small>THE COLLECTION</small>
-              <h2>{cat === "All" ? "All the good things." : cat}</h2>
+              <button
+                className="prelaunch-link"
+                onClick={() => {
+                  setWaitlistOpen(true);
+                  setWaitlistSent(false);
+                }}
+              >
+                Join the prelaunch list <ArrowRight size={15} />
+              </button>
             </div>
-            <div className="filters">
-              {cats.map((c) => (
+            <div className="hero-art">
+              <b>
+                the
+                <br />
+                new
+                <br />
+                <em>edit</em>
+              </b>
+              <span>
+                Quiet confidence
+                <br />
+                since 2024
+              </span>
+            </div>
+          </section>
+          <section className="intro reveal">
+            <small>EXPLORE THE EDIT</small>
+            <h2>
+              Find your <em>everyday</em> extraordinary.
+            </h2>
+            <div className="tiles">
+              {Object.keys(groups).map((c, i) => (
                 <button
-                  className={cat === c ? "on" : ""}
-                  onClick={() => setCat(c)}
+                  onClick={() => {
+                    setCat(c);
+                    document
+                      .getElementById("shop")
+                      .scrollIntoView({ behavior: "smooth" });
+                  }}
                   key={c}
                 >
-                  {c}
+                  <div className="tile" style={{ "--tone": tones[c] }}>
+                    <b>0{i + 1}</b>
+                  </div>
+                  <strong>{c}</strong>
+                  <small>Thoughtfully chosen pieces</small>
                 </button>
               ))}
-              <select value={sort} onChange={(e) => setSort(e.target.value)}>
-                <option value="featured">Featured</option>
-                <option value="low">Price: low to high</option>
-                <option value="high">Price: high to low</option>
-              </select>
             </div>
-          </div>
-          <div className="grid">
-            {list.map((p, index) => (
-              <Card
-                p={p}
-                index={index}
-                open={setSelected}
-                add={add}
-                wishlisted={wishlist.includes(p.id)}
-                toggleWishlist={toggleWishlist}
-                key={p.id}
-              />
-            ))}
-          </div>
-        </section>
-        <section className="services">
-          <div>
-            <b>01</b>
-            <strong>Easy ordering</strong>
-            <p>Browse, choose, WhatsApp.</p>
-          </div>
-          <div>
-            <b>02</b>
-            <strong>Thoughtful delivery</strong>
-            <p>Carefully packed to your door.</p>
-          </div>
-          <div>
-            <b>03</b>
-            <strong>Need a hand?</strong>
-            <p>Our stylists are one message away.</p>
-          </div>
-        </section>
-      </main> : page === "outfits" ? <StyledOutfitsPage add={add} back={() => { setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} /> : <PersonalShopperPage back={() => { setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />}
+          </section>
+          <section className="shop" id="shop">
+            <div className="shop-head">
+              <div>
+                <small>THE COLLECTION</small>
+                <h2>{cat === "All" ? "All the good things." : cat}</h2>
+              </div>
+              <div className="filters">
+                {cats.map((c) => (
+                  <button
+                    className={cat === c ? "on" : ""}
+                    onClick={() => setCat(c)}
+                    key={c}
+                  >
+                    {c}
+                  </button>
+                ))}
+                <select value={sort} onChange={(e) => setSort(e.target.value)}>
+                  <option value="featured">Featured</option>
+                  <option value="low">Price: low to high</option>
+                  <option value="high">Price: high to low</option>
+                </select>
+              </div>
+            </div>
+            <div className="grid">
+              {list.map((p, index) => (
+                <Card
+                  p={p}
+                  index={index}
+                  open={setSelected}
+                  add={add}
+                  wishlisted={wishlist.includes(p.id)}
+                  toggleWishlist={toggleWishlist}
+                  key={p.id}
+                />
+              ))}
+            </div>
+          </section>
+          <section className="services">
+            <div>
+              <b>01</b>
+              <strong>Easy ordering</strong>
+              <p>Browse, choose, WhatsApp.</p>
+            </div>
+            <div>
+              <b>02</b>
+              <strong>Thoughtful delivery</strong>
+              <p>Carefully packed to your door.</p>
+            </div>
+            <div>
+              <b>03</b>
+              <strong>Need a hand?</strong>
+              <p>Our stylists are one message away.</p>
+            </div>
+          </section>
+        </main>
+      ) : page === "outfits" ? (
+        <StyledOutfitsPage
+          add={add}
+          back={() => {
+            setPage("home");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        />
+      ) : (
+        <PersonalShopperPage
+          back={() => {
+            setPage("home");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        />
+      )}
       <footer>
         <Logo />
         <p>An intentional wardrobe for the woman in motion.</p>
