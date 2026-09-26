@@ -9,7 +9,7 @@ import {
   X,
 } from "lucide-react";
 const groups = {
-  Jeans: [
+  Denims: [
     ["High-Waist Skinny Jeans", 18500],
     ["Classic Mom Jeans", 20000],
     ["Distressed Straight-Leg Jeans", 22000],
@@ -20,18 +20,6 @@ const groups = {
     ["Cargo Pocket Jeans", 24500],
     ["Light Wash Straight Jeans", 18000],
     ["Black Stretch Skinny Jeans", 19000],
-  ],
-  Bags: [
-    ["Quilted Crossbody Bag", 15000],
-    ["Structured Tote Bag", 17500],
-    ["Mini Chain Shoulder Bag", 13000],
-    ["Leather Clutch Purse", 12000],
-    ["Woven Straw Beach Bag", 11500],
-    ["Quilted Bucket Bag", 16000],
-    ["Classic Flap Handbag", 18500],
-    ["Mini Backpack Purse", 14000],
-    ["Oversized Shopper Tote", 19000],
-    ["Envelope Clutch Bag", 10500],
   ],
   Shoes: [
     ["Strappy Stiletto Heels", 16000],
@@ -77,14 +65,48 @@ const groups = {
     ["Everyday Seamless Set", 11000],
   ],
 };
-const categoryOrder = ["Jeans", "Bags", "Shoes", "Tops", "Gowns", "Lingerie"],
+groups.Denims.push(
+  ["Pleated Denim Mini Skirt", 16500, "Skirts"],
+  ["Asymmetric Denim Midi Skirt", 19500, "Skirts"],
+  ["Relaxed Blue Denim Jorts", 15500, "Jorts"],
+  ["Raw-Edge Bermuda Jorts", 17500, "Jorts"],
+  ["Tailored Wide-Leg Denim Pants", 22500, "Pants"],
+  ["High-Rise Utility Denim Pants", 23500, "Pants"],
+);
+groups.Shoes.push(
+  ["Crystal Strap Heel Sandals", 18500, "Heel"],
+  ["Sculptural Kitten Heel Pumps", 20500, "Heel"],
+  ["Retro Court Sneakers", 17500, "Sneakers"],
+  ["Minimal Leather Sneakers", 19000, "Sneakers"],
+);
+groups.Gowns.push(
+  ["Curated Draped Silk Gown", 47000, "Curated"],
+  ["Curated Velvet Column Gown", 49500, "Curated"],
+  ["Casual Cotton Maxi Gown", 27000, "Casual"],
+  ["Casual Tiered Day Gown", 28500, "Casual"],
+  ["Dinner Satin Cowl Gown", 43000, "Dinner"],
+  ["Dinner Embellished Gown", 51000, "Dinner"],
+);
+const subcategoryMap = {
+  Denims: {
+    "High-Waist Skinny Jeans": "Pants", "Classic Mom Jeans": "Pants", "Distressed Straight-Leg Jeans": "Pants", "Flare Bootcut Denim": "Pants", "Baggy Wide-Leg Jeans": "Pants", "Ripped Boyfriend Jeans": "Pants", "Bell-Bottom Denim": "Pants", "Cargo Pocket Jeans": "Pants", "Light Wash Straight Jeans": "Pants", "Black Stretch Skinny Jeans": "Pants",
+  },
+  Shoes: {
+    "Strappy Stiletto Heels": "Heel", "Pointed-Toe Ankle Boots": "Heel", "Block Heel Sandals": "Heel", "Slip-On Mule Flats": "Heel", "Knee-High Suede Boots": "Heel", "Espadrille Wedge Sandals": "Heel", "Square-Toe Heeled Loafers": "Heel", "Strappy Gladiator Sandals": "Heel", "Chunky Platform Sneakers": "Sneakers", "Classic White Sneakers": "Sneakers",
+  },
+  Gowns: {
+    "Satin Evening Gown": "Dinner", "Floral Chiffon Maxi Dress": "Casual", "Bodycon Cocktail Gown": "Dinner", "Off-Shoulder Ball Gown": "Curated", "Sequin Party Gown": "Dinner", "Wrap Maxi Dress": "Casual", "Corset-Style Prom Gown": "Curated", "High-Slit Evening Dress": "Dinner", "Lace Overlay Gown": "Curated", "Flowy Kaftan Maxi Gown": "Casual",
+  },
+};
+const categoryOrder = ["Denims", "Shoes", "Tops", "Gowns", "Lingerie"],
   cats = ["All", ...categoryOrder],
   products = Object.entries(groups).flatMap(([category, items]) =>
-    items.map(([name, price], i) => ({
+    items.map(([name, price, subcategory], i) => ({
       id: category + i,
       name,
       price,
       category,
+      subcategory: subcategory || subcategoryMap[category]?.[name] || "",
       image: `placeholder-${category.toLowerCase()}-${i + 1}`,
       sizes:
         category === "Shoes"
@@ -99,8 +121,7 @@ const categoryOrder = ["Jeans", "Bags", "Shoes", "Tops", "Gowns", "Lingerie"],
       maximumFractionDigits: 0,
     }).format(n),
   tones = {
-    Jeans: "#b7a89c,#3e4c52",
-    Bags: "#cdbba4,#806653",
+    Denims: "#b7a89c,#3e4c52",
     Shoes: "#e2d0bf,#806a5b",
     Tops: "#e4d8c9,#a66c57",
     Gowns: "#cdb2ad,#694d4d",
@@ -117,9 +138,8 @@ const outfits = [
     items: [
       "Satin Evening Gown",
       "Strappy Stiletto Heels",
-      "Quilted Crossbody Bag",
     ],
-    price: 72000,
+    price: 60000,
   },
   {
     id: "outfit-street-chic",
@@ -130,9 +150,8 @@ const outfits = [
       "Classic Mom Jeans",
       "Off-Shoulder Blouse",
       "Chunky Platform Sneakers",
-      "Structured Tote Bag",
     ],
-    price: 57000,
+    price: 43000,
   },
   {
     id: "outfit-boss-lady",
@@ -143,9 +162,8 @@ const outfits = [
       "Black Stretch Skinny Jeans",
       "Puff-Sleeve Blouse",
       "Pointed-Toe Ankle Boots",
-      "Leather Clutch Purse",
     ],
-    price: 70000,
+    price: 58000,
   },
   {
     id: "outfit-weekend",
@@ -168,9 +186,8 @@ const outfits = [
     items: [
       "Floral Chiffon Maxi Dress",
       "Square-Toe Heeled Loafers",
-      "Classic Flap Handbag",
     ],
-    price: 82000,
+    price: 65000,
   },
 ];
 
@@ -261,6 +278,12 @@ function PersonalShopperPage({ back }) {
   };
   return (
     <section className="service-page shopper-page">
+      <div className="luxury-showcase reveal is-visible">
+        <small>THE LUXURY SHORTLIST</small>
+        <div className="luxury-showcase-grid">
+          {["Designer Handbags", "Italian Leather Heels", "Signature Silk", "Luxury Sneakers"].map((item, index) => <div className="luxury-card" key={item}><span>0{index + 1}</span><b>{item}</b><i>{index % 2 ? "THEXIAS" : "PRIVATE EDIT"}</i></div>)}
+        </div>
+      </div>
       <div className="service-hero reveal is-visible">
         <small>THE PRIVATE CONCIERGE</small>
         <h1>
@@ -345,6 +368,15 @@ function PersonalShopperPage({ back }) {
       </div>
     </section>
   );
+}
+
+function AboutPage({ back }) {
+  return <section className="service-page about-page"><div className="service-hero reveal is-visible"><small>THE HOUSE</small><h1>Clothes for every version of <em>becoming.</em></h1><p>THEXIAS_PLACE is an intentional wardrobe for the woman in motion — a considered edit of pieces that meet your real life with ease, confidence and a little delight.</p><button className="prelaunch-link" onClick={back}>Back to the collection <ArrowRight size={15} /></button></div><div className="about-story"><div><b>01</b><h2>Less, but more like you.</h2><p>We believe style is not about filling a wardrobe. It is about finding the pieces that return your gaze in the mirror and feel unmistakably yours.</p></div><div><b>02</b><h2>Thoughtfully chosen.</h2><p>From everyday denim to occasion dressing, every edit is shaped around softness, movement and the quiet confidence of getting dressed well.</p></div><div><b>03</b><h2>Always becoming.</h2><p>Our work follows your life as it changes — with styling, sourcing and wardrobe guidance that makes room for who you are next.</p></div></div></section>;
+}
+
+function ServicesPage({ back, openShopper }) {
+  const services = [{ number: "01", title: "Personal styling", text: "A considered styling session to help you understand your shape, rhythm and signature point of view." }, { number: "02", title: "Full outfit shopping", text: "A complete look sourced and assembled for the occasion, from first idea to final finishing detail." }, { number: "03", title: "Wardrobe change", text: "A fresh direction for a new season of life — edit what stays, discover what is missing, and make dressing easy again." }, { number: "04", title: "Wardrobe curation list", text: "A personalized list of pieces to build toward, so every future purchase earns its place." }];
+  return <section className="service-page services-page"><div className="service-hero reveal is-visible"><small>THE SERVICES</small><h1>More than clothes. A clearer way to <em>dress.</em></h1><p>Private, practical and personal — choose the kind of support your wardrobe needs next.</p><button className="prelaunch-link" onClick={back}>Back to the collection <ArrowRight size={15} /></button></div><div className="service-list">{services.map((service) => <article key={service.number}><b>{service.number}</b><div><h2>{service.title}</h2><p>{service.text}</p></div><ArrowRight size={20} /></article>)}</div><button className="cta services-cta" onClick={openShopper}>Request a private consultation <ArrowRight size={16} /></button></section>;
 }
 function useReveal(key) {
   useEffect(() => {
@@ -601,10 +633,11 @@ function WishlistDrawer({ items, close, remove, add }) {
 
 export default function App() {
   const [cat, setCat] = useState("All"),
+    [subcategory, setSubcategory] = useState(""),
     [q, setQ] = useState(""),
     [sort, setSort] = useState("featured"),
     [cart, setCart] = useState(() =>
-      JSON.parse(localStorage.getItem("thexias-cart") || "[]"),
+      JSON.parse(localStorage.getItem("thexias-cart") || "[]").filter((item) => item.category !== "Bags"),
     ),
     [wishlist, setWishlist] = useState(() =>
       JSON.parse(localStorage.getItem("thexias-wishlist") || "[]"),
@@ -621,6 +654,8 @@ export default function App() {
       contact: "",
       interests: [],
     }),
+    [newsletterEmail, setNewsletterEmail] = useState(""),
+    [newsletterSubscribed, setNewsletterSubscribed] = useState(false),
     [cartBump, setCartBump] = useState(false),
     [toast, setToast] = useState("");
   useEffect(
@@ -638,17 +673,18 @@ export default function App() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   let list = useMemo(
-    () =>
-      products.filter(
-        (p) =>
-          (cat === "All" || p.category === cat) &&
-          p.name.toLowerCase().includes(q.toLowerCase()),
-      ),
-    [cat, q],
+    () => {
+      const terms = q.toLowerCase().trim().split(/\s+/).filter(Boolean);
+      return products.filter((p) => {
+        const searchable = [p.name, p.category, p.subcategory, p.id, p.image, ...(p.sizes || [])].join(" ").toLowerCase();
+        return (cat === "All" || p.category === cat) && (!subcategory || p.subcategory === subcategory) && terms.every((term) => searchable.includes(term));
+      });
+    },
+    [cat, subcategory, q],
   );
   if (sort === "low") list = [...list].sort((a, b) => a.price - b.price);
   if (sort === "high") list = [...list].sort((a, b) => b.price - a.price);
-  useReveal(`${page}-${cat}-${q}-${sort}`);
+  useReveal(`${page}-${cat}-${subcategory}-${q}-${sort}`);
   const add = (p, size = p.sizes[1]) => {
     setCart((old) => {
       let x = old.find((i) => i.id === p.id && i.size === size);
@@ -697,6 +733,14 @@ export default function App() {
     setToast("You’re on the prelaunch list");
     window.setTimeout(() => setToast(""), 2800);
   };
+  const subscribeNewsletter = (event) => {
+    event.preventDefault();
+    if (!newsletterEmail.trim()) return;
+    localStorage.setItem("thexias-newsletter-email", newsletterEmail.trim());
+    setNewsletterSubscribed(true);
+    setToast("Welcome to the private edit");
+    window.setTimeout(() => setToast(""), 2800);
+  };
   const preOrderMessage = `Hi THEXIAS PLACE! I joined the prelaunch list and would like to pre-order from: ${waitlistForm.interests.join(", ")}. My name is ${waitlistForm.name}. Please notify me when payment and collection are available.`;
   const qty = (id, d) =>
     setCart((o) =>
@@ -706,8 +750,12 @@ export default function App() {
           : x.id === id
             ? [{ ...x, quantity: x.quantity + d }]
             : [x],
-      ),
-    );
+        ),
+      );
+  const goToCollection = () => {
+    setPage("home");
+    window.setTimeout(() => document.getElementById("shop")?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
+  };
   return (
     <div id="top">
       <header>
@@ -729,11 +777,19 @@ export default function App() {
             }}
           />
           <div className="links">
-            {cats.slice(1).map((c) => (
-              <a href="#shop" onClick={() => setCat(c)} key={c}>
-                {c}
-              </a>
-            ))}
+            {cats.slice(1).map((c) => {
+              const submenus = { Denims: ["Skirts", "Jorts", "Pants"], Shoes: ["Heel", "Sneakers"], Gowns: ["Curated", "Casual", "Dinner"] };
+              return submenus[c] ? (
+                <div className="nav-dropdown" key={c}>
+                  <a href="#shop" onClick={() => { setCat(c); setSubcategory(""); setQ(""); goToCollection(); }}>{c}</a>
+                  <div className="nav-dropdown-menu">
+                    {submenus[c].map((item) => <button key={item} onClick={(e) => { setCat(c); setSubcategory(item); setQ(""); goToCollection(); e.currentTarget.blur(); }}>{item}</button>)}
+                  </div>
+                </div>
+              ) : (
+                <a href="#shop" onClick={() => { setCat(c); setSubcategory(""); setQ(""); goToCollection(); }} key={c}>{c}</a>
+              );
+            })}
             <a
               href="#outfits"
               onClick={(e) => {
@@ -754,8 +810,14 @@ export default function App() {
             >
               Personal Shopper
             </a>
+            <div className="nav-dropdown">
+              <a href="#services" onClick={(e) => { e.preventDefault(); setPage("services"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Services</a>
+              <div className="nav-dropdown-menu">
+                <button onClick={(e) => { setPage("about"); window.scrollTo({ top: 0, behavior: "smooth" }); e.currentTarget.blur(); }}>About</button>
+              </div>
+            </div>
           </div>
-          <label>
+          <label className="search-field">
             <Search size={17} />
             <input
               value={q}
@@ -835,6 +897,8 @@ export default function App() {
                 <button
                   onClick={() => {
                     setCat(c);
+                    setSubcategory("");
+                    setQ("");
                     document
                       .getElementById("shop")
                       .scrollIntoView({ behavior: "smooth" });
@@ -860,7 +924,7 @@ export default function App() {
                 {cats.map((c) => (
                   <button
                     className={cat === c ? "on" : ""}
-                    onClick={() => setCat(c)}
+                    onClick={() => { setCat(c); setSubcategory(""); setQ(""); }}
                     key={c}
                   >
                     {c}
@@ -913,13 +977,17 @@ export default function App() {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         />
-      ) : (
+      ) : page === "shopper" ? (
         <PersonalShopperPage
           back={() => {
             setPage("home");
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         />
+      ) : page === "about" ? (
+        <AboutPage back={() => { setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
+      ) : (
+        <ServicesPage back={() => { setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} openShopper={() => { setPage("shopper"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
       )}
       <footer>
         <Logo
@@ -930,6 +998,18 @@ export default function App() {
           }}
         />
         <p>An intentional wardrobe for the woman in motion.</p>
+        <section className="newsletter" aria-labelledby="newsletter-title">
+          <small>THE PRIVATE EDIT</small>
+          <h3 id="newsletter-title">A little closer to what’s next.</h3>
+          <p>Receive first access to new arrivals, private edits and considered styling notes — only when there is something worth opening.</p>
+          {!newsletterSubscribed ? (
+            <form onSubmit={subscribeNewsletter}>
+              <input type="email" required value={newsletterEmail} onChange={(e) => setNewsletterEmail(e.target.value)} placeholder="Your email address" aria-label="Email address" />
+              <button type="submit" aria-label="Subscribe to the private edit"><ArrowRight size={17} /></button>
+            </form>
+          ) : <span className="newsletter-confirmed">You’re on the list. Welcome to the private edit.</span>}
+          <small className="newsletter-note">No noise. Just the pieces and stories we think you’ll love.</small>
+        </section>
         <a href="https://wa.me/2347048969953">
           Chat with us on WhatsApp <ArrowRight size={15} />
         </a>
