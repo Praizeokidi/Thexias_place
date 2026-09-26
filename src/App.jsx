@@ -8,6 +8,7 @@ import {
   ShoppingBag,
   X,
 } from "lucide-react";
+import AdminDashboard from "./AdminDashboard.jsx";
 const groups = {
   Denims: [
     ["High-Waist Skinny Jeans", 18500],
@@ -643,7 +644,7 @@ export default function App() {
       JSON.parse(localStorage.getItem("thexias-wishlist") || "[]"),
     ),
     [selected, setSelected] = useState(null),
-    [page, setPage] = useState("home"),
+    [page, setPage] = useState(() => window.location.hash === "#admin" ? "admin" : "home"),
     [cartOpen, setCartOpen] = useState(false),
     [wishlistOpen, setWishlistOpen] = useState(false),
     [showTop, setShowTop] = useState(false),
@@ -761,7 +762,10 @@ export default function App() {
       <header>
         <div className="announcement">
           <div className="announcement-track" aria-hidden="false">
-            {/* <span>FREE DELIVERY over ₦100,000 · New pieces, twice a week·10% OFF ALL WEBSITE ORDERS.</span> */}
+            <span>
+              FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF
+              ALL WEBSITE ORDERS.
+            </span>
             <span aria-hidden="true">
               FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF
               ALL WEBSITE ORDERS.
@@ -777,13 +781,13 @@ export default function App() {
             }}
           />
           <div className="links">
-            {cats.slice(1).map((c) => {
-              const submenus = { Denims: ["Skirts", "Jorts", "Pants"], Shoes: ["Heel", "Sneakers"], Gowns: ["Curated", "Casual", "Dinner"] };
+            {cats.slice(1).filter((c) => c !== "Lingerie").map((c) => {
+              const submenus = { Denims: ["Skirts", "Jorts", "Pants"], Shoes: ["Heel", "Sneakers"], Gowns: ["Curated", "Casual", "Dinner", "Lingerie"] };
               return submenus[c] ? (
                 <div className="nav-dropdown" key={c}>
                   <a href="#shop" onClick={() => { setCat(c); setSubcategory(""); setQ(""); goToCollection(); }}>{c}</a>
                   <div className="nav-dropdown-menu">
-                    {submenus[c].map((item) => <button key={item} onClick={(e) => { setCat(c); setSubcategory(item); setQ(""); goToCollection(); e.currentTarget.blur(); }}>{item}</button>)}
+                    {submenus[c].map((item) => <button key={item} onClick={(e) => { setCat(item === "Lingerie" ? "Lingerie" : c); setSubcategory(item === "Lingerie" ? "" : item); setQ(""); goToCollection(); e.currentTarget.blur(); }}>{item}</button>)}
                   </div>
                 </div>
               ) : (
@@ -843,7 +847,9 @@ export default function App() {
           </button>
         </nav>
       </header>
-      {page === "home" ? (
+      {page === "admin" ? (
+        <AdminDashboard back={() => { setPage("home"); window.history.replaceState(null, "", "#top"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
+      ) : page === "home" ? (
         <main>
           <section className="hero reveal is-visible">
             <div>

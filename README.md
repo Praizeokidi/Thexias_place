@@ -1,18 +1,14 @@
-# THEXIAS_PLACE
 
-Portable React/Vite fashion storefront. It uses standard npm packages and has no Manus runtime dependency.
+## Private submissions dashboard
 
-## Run locally
+The waitlist spreadsheet now includes a simplified `Dashboard Data` tab with these columns:
 
-```bash
-npm install
-npm run dev
-```
+`Submitted | Name | Contact | Interest | Exact item | Status | Notes`
 
-## Production
+The custom JSX dashboard is available at `/#admin`. It is intentionally not linked in the public navbar. To connect live rows without exposing Google credentials, configure a private read-only JSON endpoint in `.env`:
 
 ```bash
-npm run build
+VITE_ADMIN_DATA_URL=https://your-private-endpoint.example/data
 ```
 
-Deploy the generated `dist/` folder to Vercel, Netlify, GitHub Pages, a VPS, or shared hosting. Product data is structured in `src/App.jsx`. The cart persists with localStorage and checkout creates a pre-filled WhatsApp message to +234 704 896 9953.
+The endpoint should return either an array of rows or `{ "rows": [...] }`, using fields such as `submitted`, `name`, `contact`, `interest`, `item`, and `status`. Do not put OAuth tokens or service-account keys in frontend environment variables.
