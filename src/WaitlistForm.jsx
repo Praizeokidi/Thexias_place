@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 
 const ENDPOINT = import.meta.env.VITE_WAITLIST_ENDPOINT || "";
-const interestOptions = ["Denims", "Shoes", "Tops", "Gowns", "Lingerie"];
+const interestOptions = ["Denim", "Shoes", "Tops", "Gowns", "Lingerie"];
 
 export default function WaitlistForm({ onSubmitted }) {
   const [form, setForm] = useState({ name: "", contact: "", interests: [], item: "", size: "", colour: "", notes: "" });
