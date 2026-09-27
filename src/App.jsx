@@ -3,6 +3,7 @@ import {
   ArrowRight,
   Building2,
   BriefcaseBusiness,
+  ChevronDown,
   Heart,
   Minus,
   Palmtree,
@@ -760,14 +761,18 @@ export default function App() {
     [cartBump, setCartBump] = useState(false),
     [toast, setToast] = useState(""),
     [searchOpen, setSearchOpen] = useState(false),
-    [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const searchButtonRef = useRef(null);
+    [searchTop, setSearchTop] = useState(144),
+    [mobileMenuOpen, setMobileMenuOpen] = useState(false),
+    [categoriesOpen, setCategoriesOpen] = useState(false),
+    [mobileCategoriesOpen, setMobileCategoriesOpen] = useState(false);
   const searchPopoverRef = useRef(null);
+  const categoriesMenuRef = useRef(null);
+  const categoriesTriggerRef = useRef(null);
   useEffect(() => {
     if (!searchOpen) return undefined;
     const onPointerDown = (event) => {
       if (
-        searchButtonRef.current?.contains(event.target) ||
+        event.target.closest?.(".search-icon-button") ||
         searchPopoverRef.current?.contains(event.target)
       ) {
         return;
@@ -784,6 +789,53 @@ export default function App() {
       document.removeEventListener("keydown", onKeyDown);
     };
   }, [searchOpen]);
+  useEffect(() => {
+    if (!searchOpen) return undefined;
+    const updateSearchPosition = () => {
+      const nav = document.querySelector(".primary-nav");
+      if (!nav) return;
+      const navBottom = nav.getBoundingClientRect().bottom;
+      setSearchTop(Math.max(12, Math.min(Math.round(navBottom + 10), window.innerHeight - 78)));
+    };
+    updateSearchPosition();
+    window.addEventListener("scroll", updateSearchPosition, { passive: true });
+    window.addEventListener("resize", updateSearchPosition);
+    return () => {
+      window.removeEventListener("scroll", updateSearchPosition);
+      window.removeEventListener("resize", updateSearchPosition);
+    };
+  }, [searchOpen]);
+  useEffect(() => {
+    if (!categoriesOpen) return undefined;
+    const onPointerDown = (event) => {
+      if (!categoriesMenuRef.current?.contains(event.target)) {
+        setCategoriesOpen(false);
+      }
+    };
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setCategoriesOpen(false);
+        categoriesTriggerRef.current?.focus();
+      }
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [categoriesOpen]);
+  useEffect(() => {
+    if (!mobileMenuOpen) return undefined;
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setMobileMenuOpen(false);
+        setMobileCategoriesOpen(false);
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [mobileMenuOpen]);
   useEffect(
     () => localStorage.setItem("thexias-cart", JSON.stringify(cart)),
     [cart],
@@ -880,46 +932,180 @@ export default function App() {
     setPage("home");
     window.setTimeout(() => document.getElementById("shop")?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
   };
+  const navCategories = [
+    { label: "Jeans", category: "Denim", description: "Everyday denim essentials" },
+    { label: "Tops", category: "Tops", description: "Easy layers and statement pieces" },
+    { label: "Gowns", category: "Gowns", description: "Occasion dressing, thoughtfully chosen" },
+    { label: "Bags", category: "Bags", description: "Considered finishing touches" },
+    { label: "Shoes", category: "Shoes", description: "From everyday to occasion" },
+  ];
+  const whatsappUrl = "https://wa.me/2347048969953";
+  const contactUrl = `${whatsappUrl}?text=${encodeURIComponent("Hi THEXIAS_PLACE, I have a question about the edit.")}`;
+  const styleSessionUrl = `${whatsappUrl}?text=${encodeURIComponent("Hi THEXIAS_PLACE, I’d like to enquire about booking a style session.")}`;
+  const closeNavigation = () => {
+    setCategoriesOpen(false);
+    setMobileMenuOpen(false);
+    setMobileCategoriesOpen(false);
+  };
+  const goHomeTop = () => {
+    closeNavigation();
+    setPage("home");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const goHomeSection = (id) => {
+    closeNavigation();
+    setPage("home");
+    window.setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
+  };
+  const openShop = (category = "All") => {
+    closeNavigation();
+    setCat(category);
+    setSubcategory("");
+    setQ("");
+    setPage("shop");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const openOutfits = () => {
+    closeNavigation();
+    setPage("outfits");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const openPersonalShopper = () => {
+    closeNavigation();
+    setPage("shopper");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const openJournalNotice = () => {
+    closeNavigation();
+    setToast("The THEXIAS journal is being curated.");
+    window.setTimeout(() => setToast(""), 2600);
+  };
   return (
     <div id="top">
-      <header>
-        <div className="announcement">
-          <div className="announcement-track" aria-hidden="false">
-            <span>
-              FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF
-              ALL WEBSITE ORDERS.
-            </span>
-            <span aria-hidden="true">
-              FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF
-              ALL WEBSITE ORDERS.
-            </span>
+      <header className="site-header">
+        <div className="utility-bar">
+          <div className="utility-bar-inner">
+            <Logo onHome={(e) => { e.preventDefault(); goHomeTop(); }} />
+            <div className="utility-contact-list" aria-label="THEXIAS_PLACE contact details">
+              <a className="utility-contact" href={contactUrl} target="_blank" rel="noopener noreferrer">
+                <span className="utility-contact-label">WhatsApp</span>
+                <strong>+234 704 896 9953</strong>
+                <small>Chat with us</small>
+              </a>
+              <a className="utility-contact utility-contact--secondary" href={styleSessionUrl} target="_blank" rel="noopener noreferrer">
+                <span className="utility-contact-label">Personal Shopper</span>
+                <strong>Sourcing &amp; styling</strong>
+                <small>Enquire on WhatsApp</small>
+              </a>
+            </div>
+            <div className="utility-actions">
+              <a className="utility-outline-pill" href={contactUrl} target="_blank" rel="noopener noreferrer">Contact</a>
+              <a className="utility-outline-pill" href={styleSessionUrl} target="_blank" rel="noopener noreferrer">Book a Style Session</a>
+              <button className="search-icon-button search-icon-button--round" type="button" onClick={() => setSearchOpen((value) => !value)} aria-label={searchOpen ? "Close search" : "Open search"} aria-expanded={searchOpen} aria-controls="site-search">
+                <Search size={16} />
+              </button>
+            </div>
           </div>
         </div>
-        <nav>
-          <Logo
-            onHome={(e) => {
-              e.preventDefault();
-              setPage("home");
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-          />
-          <div className="links">
-            <a href="#top" onClick={(e) => { e.preventDefault(); setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Home</a>
-            <a href="#edit" onClick={(e) => { e.preventDefault(); setPage("home"); document.getElementById("edit")?.scrollIntoView({ behavior: "smooth" }); }}>The Edit</a>
-            <a href="#shop" onClick={(e) => { e.preventDefault(); setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Shop</a>
-            <a href="#about" onClick={(e) => { e.preventDefault(); setPage("about"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Our Story</a>
-            <a href="#services" onClick={(e) => { e.preventDefault(); setPage("services"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Services</a>
-          </div>
-          <button className="mobile-menu-button" onClick={() => setMobileMenuOpen((v) => !v)} aria-label="Toggle menu"><span /> <span /> <span /></button>
-          <div className="nav-actions">
-            <button ref={searchButtonRef} className="search-icon-button" onClick={() => setSearchOpen((v) => !v)} aria-label={searchOpen ? "Close search" : "Open search"} aria-expanded={searchOpen} aria-controls="site-search"><Search size={18} /></button>
-            <button className="wishlist-button" onClick={() => setWishlistOpen(true)} aria-label="Open wishlist"><Heart size={20} /><i>{wishlist.length}</i></button>
-            <button className={`bag ${cartBump ? "bump" : ""}`} onClick={() => setCartOpen(true)} aria-label="Open shopping bag"><ShoppingBag size={20} /><i>{cart.reduce((a, x) => a + x.quantity, 0)}</i></button>
-          </div>
-        </nav>
       </header>
-      {mobileMenuOpen && <div className="mobile-menu-panel"><a href="#top" onClick={() => { setMobileMenuOpen(false); setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Home</a><a href="#edit" onClick={() => { setMobileMenuOpen(false); setPage("home"); setTimeout(() => document.getElementById("edit")?.scrollIntoView({ behavior: "smooth" }), 60); }}>The Edit</a><a href="#shop" onClick={() => { setMobileMenuOpen(false); setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Shop</a><a href="#about" onClick={() => { setMobileMenuOpen(false); setPage("about"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Our Story</a><a href="#services" onClick={() => { setMobileMenuOpen(false); setPage("services"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Services</a></div>}
-      {searchOpen && <form ref={searchPopoverRef} id="site-search" className="search-popover" role="search" onSubmit={(e) => { e.preventDefault(); setSearchOpen(false); setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}><Search size={17} /><input autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search the edit" /><button type="submit">Search</button></form>}
+      <nav className="primary-nav" aria-label="Primary navigation">
+          <div className="primary-nav-inner">
+            <button className="mobile-menu-button" type="button" onClick={() => { setMobileMenuOpen((value) => !value); setMobileCategoriesOpen(false); }} aria-label={mobileMenuOpen ? "Close menu" : "Open menu"} aria-expanded={mobileMenuOpen} aria-controls="mobile-nav-panel">
+              <span /><span /><span /><small>{mobileMenuOpen ? "Close" : "Menu"}</small>
+            </button>
+            <div className="primary-links">
+              <a className="primary-nav-link" href="#top" onClick={(e) => { e.preventDefault(); goHomeTop(); }}>Home</a>
+              <div
+                className={`primary-nav-item primary-nav-item--dropdown${categoriesOpen ? " is-open" : ""}`}
+                ref={categoriesMenuRef}
+                onMouseEnter={() => setCategoriesOpen(true)}
+                onMouseLeave={() => { if (!categoriesMenuRef.current?.contains(document.activeElement)) setCategoriesOpen(false); }}
+                onFocusCapture={() => setCategoriesOpen(true)}
+                onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setCategoriesOpen(false); }}
+              >
+                <button ref={categoriesTriggerRef} className="primary-nav-link primary-nav-link--trigger" type="button" onClick={() => setCategoriesOpen(true)} aria-haspopup="true" aria-expanded={categoriesOpen} aria-controls="desktop-category-menu">
+                  Categories <ChevronDown size={14} aria-hidden="true" />
+                </button>
+                <div className="mega-menu" id="desktop-category-menu" aria-label="Shop categories" aria-hidden={!categoriesOpen}>
+                  <div className="mega-menu-columns">
+                    <div className="mega-menu-column">
+                      <span className="mega-menu-eyebrow">Shop by category</span>
+                      {navCategories.slice(0, 3).map((item) => (
+                        <button className="mega-menu-item" type="button" key={item.category} onClick={() => openShop(item.category)}>
+                          <span><strong>{item.label}</strong><small>{item.description}</small></span><ArrowRight size={15} aria-hidden="true" />
+                        </button>
+                      ))}
+                    </div>
+                    <div className="mega-menu-column">
+                      <span className="mega-menu-eyebrow">The finishing touches</span>
+                      {navCategories.slice(3).map((item) => (
+                        <button className="mega-menu-item" type="button" key={item.category} onClick={() => openShop(item.category)}>
+                          <span><strong>{item.label}</strong><small>{item.description}</small></span><ArrowRight size={15} aria-hidden="true" />
+                        </button>
+                      ))}
+                      <div className="mega-menu-featured">
+                        <button type="button" onClick={openOutfits}>
+                          <span><strong>Styled Outfits</strong><small>Complete looks, thoughtfully paired</small></span><ArrowRight size={15} aria-hidden="true" />
+                        </button>
+                        <button type="button" onClick={openPersonalShopper}>
+                          <span><strong>Personal Shopper</strong><small>Personal sourcing, guided by your brief</small></span><ArrowRight size={15} aria-hidden="true" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mega-menu-footer">
+                    <button type="button" onClick={() => openShop("All")}>View all categories <ArrowRight size={14} aria-hidden="true" /></button>
+                    <button type="button" onClick={() => goHomeSection("edit")}>Shop the Full Edit <ArrowRight size={14} aria-hidden="true" /></button>
+                  </div>
+                </div>
+              </div>
+              <button className="primary-nav-link" type="button" onClick={openOutfits}>Styled Outfits</button>
+              <button className="primary-nav-link" type="button" onClick={openPersonalShopper}>Personal Shopper</button>
+              <button className="primary-nav-link" type="button" onClick={openJournalNotice}>Blog</button>
+            </div>
+            <div className="primary-nav-actions">
+              <button className="search-icon-button search-icon-button--nav" type="button" onClick={() => setSearchOpen((value) => !value)} aria-label={searchOpen ? "Close search" : "Open search"} aria-expanded={searchOpen} aria-controls="site-search"><Search size={17} /></button>
+              <button className="wishlist-button" type="button" onClick={() => setWishlistOpen(true)} aria-label="Open wishlist"><Heart size={19} /><i>{wishlist.length}</i></button>
+              <button className={`bag ${cartBump ? "bump" : ""}`} type="button" onClick={() => setCartOpen(true)} aria-label="Open shopping bag"><ShoppingBag size={19} /><i>{cart.reduce((a, x) => a + x.quantity, 0)}</i></button>
+              <button className="primary-shop-cta" type="button" onClick={() => openShop("All")}>Shop Now <ArrowRight size={15} aria-hidden="true" /></button>
+            </div>
+          </div>
+          {mobileMenuOpen && (
+            <div className="mobile-nav-panel" id="mobile-nav-panel" aria-label="Mobile navigation">
+              <button className="mobile-nav-link" type="button" onClick={goHomeTop}>Home</button>
+              <button className="mobile-nav-link mobile-nav-accordion" type="button" onClick={() => setMobileCategoriesOpen((value) => !value)} aria-expanded={mobileCategoriesOpen} aria-controls="mobile-category-list">
+                <span>Categories</span><ChevronDown size={15} aria-hidden="true" />
+              </button>
+              {mobileCategoriesOpen && (
+                <div className="mobile-category-panel" id="mobile-category-list">
+                  <div className="mobile-category-grid">
+                    {navCategories.map((item) => (
+                      <button className="mobile-category-item" type="button" key={item.category} onClick={() => openShop(item.category)}>
+                        <strong>{item.label}</strong><small>{item.description}</small>
+                      </button>
+                    ))}
+                  </div>
+                  <div className="mobile-featured-links">
+                    <button type="button" onClick={openOutfits}><strong>Styled Outfits</strong><small>Complete looks, thoughtfully paired</small></button>
+                    <button type="button" onClick={openPersonalShopper}><strong>Personal Shopper</strong><small>Personal sourcing, guided by your brief</small></button>
+                  </div>
+                  <div className="mobile-menu-footer">
+                    <button type="button" onClick={() => openShop("All")}>View all categories <ArrowRight size={14} aria-hidden="true" /></button>
+                    <button type="button" onClick={() => goHomeSection("edit")}>Shop the Full Edit <ArrowRight size={14} aria-hidden="true" /></button>
+                  </div>
+                </div>
+              )}
+              <button className="mobile-nav-link" type="button" onClick={openOutfits}>Styled Outfits</button>
+              <button className="mobile-nav-link" type="button" onClick={openPersonalShopper}>Personal Shopper</button>
+              <button className="mobile-nav-link" type="button" onClick={openJournalNotice}>Blog</button>
+              <div className="mobile-nav-contact">
+                <a className="utility-outline-pill" href={contactUrl} target="_blank" rel="noopener noreferrer">Contact</a>
+                <a className="utility-outline-pill" href={styleSessionUrl} target="_blank" rel="noopener noreferrer">Book a Style Session</a>
+              </div>
+            </div>
+          )}
+      </nav>
+      {searchOpen && <form ref={searchPopoverRef} id="site-search" className="search-popover" style={{ top: `${searchTop}px` }} role="search" onSubmit={(e) => { e.preventDefault(); setSearchOpen(false); setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}><Search size={17} /><input autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search the edit" /><button type="submit">Search</button></form>}
       {page === "admin" ? (
         <AdminDashboard back={() => { setPage("home"); window.history.replaceState(null, "", "#top"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
       ) : page === "home" ? (
