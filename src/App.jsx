@@ -90,13 +90,40 @@ groups.Gowns.push(
 );
 const subcategoryMap = {
   Denims: {
-    "High-Waist Skinny Jeans": "Pants", "Classic Mom Jeans": "Pants", "Distressed Straight-Leg Jeans": "Pants", "Flare Bootcut Denim": "Pants", "Baggy Wide-Leg Jeans": "Pants", "Ripped Boyfriend Jeans": "Pants", "Bell-Bottom Denim": "Pants", "Cargo Pocket Jeans": "Pants", "Light Wash Straight Jeans": "Pants", "Black Stretch Skinny Jeans": "Pants",
+    "High-Waist Skinny Jeans": "Pants",
+    "Classic Mom Jeans": "Pants",
+    "Distressed Straight-Leg Jeans": "Pants",
+    "Flare Bootcut Denim": "Pants",
+    "Baggy Wide-Leg Jeans": "Pants",
+    "Ripped Boyfriend Jeans": "Pants",
+    "Bell-Bottom Denim": "Pants",
+    "Cargo Pocket Jeans": "Pants",
+    "Light Wash Straight Jeans": "Pants",
+    "Black Stretch Skinny Jeans": "Pants",
   },
   Shoes: {
-    "Strappy Stiletto Heels": "Heel", "Pointed-Toe Ankle Boots": "Heel", "Block Heel Sandals": "Heel", "Slip-On Mule Flats": "Heel", "Knee-High Suede Boots": "Heel", "Espadrille Wedge Sandals": "Heel", "Square-Toe Heeled Loafers": "Heel", "Strappy Gladiator Sandals": "Heel", "Chunky Platform Sneakers": "Sneakers", "Classic White Sneakers": "Sneakers",
+    "Strappy Stiletto Heels": "Heel",
+    "Pointed-Toe Ankle Boots": "Heel",
+    "Block Heel Sandals": "Heel",
+    "Slip-On Mule Flats": "Heel",
+    "Knee-High Suede Boots": "Heel",
+    "Espadrille Wedge Sandals": "Heel",
+    "Square-Toe Heeled Loafers": "Heel",
+    "Strappy Gladiator Sandals": "Heel",
+    "Chunky Platform Sneakers": "Sneakers",
+    "Classic White Sneakers": "Sneakers",
   },
   Gowns: {
-    "Satin Evening Gown": "Dinner", "Floral Chiffon Maxi Dress": "Casual", "Bodycon Cocktail Gown": "Dinner", "Off-Shoulder Ball Gown": "Curated", "Sequin Party Gown": "Dinner", "Wrap Maxi Dress": "Casual", "Corset-Style Prom Gown": "Curated", "High-Slit Evening Dress": "Dinner", "Lace Overlay Gown": "Curated", "Flowy Kaftan Maxi Gown": "Casual",
+    "Satin Evening Gown": "Dinner",
+    "Floral Chiffon Maxi Dress": "Casual",
+    "Bodycon Cocktail Gown": "Dinner",
+    "Off-Shoulder Ball Gown": "Curated",
+    "Sequin Party Gown": "Dinner",
+    "Wrap Maxi Dress": "Casual",
+    "Corset-Style Prom Gown": "Curated",
+    "High-Slit Evening Dress": "Dinner",
+    "Lace Overlay Gown": "Curated",
+    "Flowy Kaftan Maxi Gown": "Casual",
   },
 };
 const categoryOrder = ["Denims", "Shoes", "Tops", "Gowns", "Lingerie"],
@@ -136,10 +163,7 @@ const outfits = [
     name: "Golden Hour Glam",
     description:
       "Satin softness and warm accessories for evenings that linger beautifully.",
-    items: [
-      "Satin Evening Gown",
-      "Strappy Stiletto Heels",
-    ],
+    items: ["Satin Evening Gown", "Strappy Stiletto Heels"],
     price: 60000,
   },
   {
@@ -184,10 +208,7 @@ const outfits = [
     name: "Evening Elegance",
     description:
       "A complete occasion look with graceful movement and a little drama.",
-    items: [
-      "Floral Chiffon Maxi Dress",
-      "Square-Toe Heeled Loafers",
-    ],
+    items: ["Floral Chiffon Maxi Dress", "Square-Toe Heeled Loafers"],
     price: 65000,
   },
 ];
@@ -282,7 +303,18 @@ function PersonalShopperPage({ back }) {
       <div className="luxury-showcase reveal is-visible">
         <small>THE LUXURY SHORTLIST</small>
         <div className="luxury-showcase-grid">
-          {["Designer Handbags", "Italian Leather Heels", "Signature Silk", "Luxury Sneakers"].map((item, index) => <div className="luxury-card" key={item}><span>0{index + 1}</span><b>{item}</b><i>{index % 2 ? "THEXIAS" : "PRIVATE EDIT"}</i></div>)}
+          {[
+            "Designer Handbags",
+            "Italian Leather Heels",
+            "Signature Silk",
+            "Luxury Sneakers",
+          ].map((item, index) => (
+            <div className="luxury-card" key={item}>
+              <span>0{index + 1}</span>
+              <b>{item}</b>
+              <i>{index % 2 ? "THEXIAS" : "PRIVATE EDIT"}</i>
+            </div>
+          ))}
         </div>
       </div>
       <div className="service-hero reveal is-visible">
@@ -372,12 +404,109 @@ function PersonalShopperPage({ back }) {
 }
 
 function AboutPage({ back }) {
-  return <section className="service-page about-page"><div className="service-hero reveal is-visible"><small>THE HOUSE</small><h1>Clothes for every version of <em>becoming.</em></h1><p>THEXIAS_PLACE is an intentional wardrobe for the woman in motion — a considered edit of pieces that meet your real life with ease, confidence and a little delight.</p><button className="prelaunch-link" onClick={back}>Back to the collection <ArrowRight size={15} /></button></div><div className="about-story"><div><b>01</b><h2>Less, but more like you.</h2><p>We believe style is not about filling a wardrobe. It is about finding the pieces that return your gaze in the mirror and feel unmistakably yours.</p></div><div><b>02</b><h2>Thoughtfully chosen.</h2><p>From everyday denim to occasion dressing, every edit is shaped around softness, movement and the quiet confidence of getting dressed well.</p></div><div><b>03</b><h2>Always becoming.</h2><p>Our work follows your life as it changes — with styling, sourcing and wardrobe guidance that makes room for who you are next.</p></div></div></section>;
+  return (
+    <section className="service-page about-page">
+      <div className="service-hero reveal is-visible">
+        <small>THE HOUSE</small>
+        <h1>
+          Clothes for every version of <em>becoming.</em>
+        </h1>
+        <p>
+          THEXIAS_PLACE is an intentional wardrobe for the woman in motion — a
+          considered edit of pieces that meet your real life with ease,
+          confidence and a little delight.
+        </p>
+        <button className="prelaunch-link" onClick={back}>
+          Back to the collection <ArrowRight size={15} />
+        </button>
+      </div>
+      <div className="about-story">
+        <div>
+          <b>01</b>
+          <h2>Less, but more like you.</h2>
+          <p>
+            We believe style is not about filling a wardrobe. It is about
+            finding the pieces that return your gaze in the mirror and feel
+            unmistakably yours.
+          </p>
+        </div>
+        <div>
+          <b>02</b>
+          <h2>Thoughtfully chosen.</h2>
+          <p>
+            From everyday denim to occasion dressing, every edit is shaped
+            around softness, movement and the quiet confidence of getting
+            dressed well.
+          </p>
+        </div>
+        <div>
+          <b>03</b>
+          <h2>Always becoming.</h2>
+          <p>
+            Our work follows your life as it changes — with styling, sourcing
+            and wardrobe guidance that makes room for who you are next.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function ServicesPage({ back, openShopper }) {
-  const services = [{ number: "01", title: "Personal styling", text: "A considered styling session to help you understand your shape, rhythm and signature point of view." }, { number: "02", title: "Full outfit shopping", text: "A complete look sourced and assembled for the occasion, from first idea to final finishing detail." }, { number: "03", title: "Wardrobe change", text: "A fresh direction for a new season of life — edit what stays, discover what is missing, and make dressing easy again." }, { number: "04", title: "Wardrobe curation list", text: "A personalized list of pieces to build toward, so every future purchase earns its place." }];
-  return <section className="service-page services-page"><div className="service-hero reveal is-visible"><small>THE SERVICES</small><h1>More than clothes. A clearer way to <em>dress.</em></h1><p>Private, practical and personal — choose the kind of support your wardrobe needs next.</p><button className="prelaunch-link" onClick={back}>Back to the collection <ArrowRight size={15} /></button></div><div className="service-list">{services.map((service) => <article key={service.number}><b>{service.number}</b><div><h2>{service.title}</h2><p>{service.text}</p></div><ArrowRight size={20} /></article>)}</div><button className="cta services-cta" onClick={openShopper}>Request a private consultation <ArrowRight size={16} /></button></section>;
+  const services = [
+    {
+      number: "01",
+      title: "Personal styling",
+      text: "A considered styling session to help you understand your shape, rhythm and signature point of view.",
+    },
+    {
+      number: "02",
+      title: "Full outfit shopping",
+      text: "A complete look sourced and assembled for the occasion, from first idea to final finishing detail.",
+    },
+    {
+      number: "03",
+      title: "Wardrobe change",
+      text: "A fresh direction for a new season of life — edit what stays, discover what is missing, and make dressing easy again.",
+    },
+    {
+      number: "04",
+      title: "Wardrobe curation list",
+      text: "A personalized list of pieces to build toward, so every future purchase earns its place.",
+    },
+  ];
+  return (
+    <section className="service-page services-page">
+      <div className="service-hero reveal is-visible">
+        <small>THE SERVICES</small>
+        <h1>
+          More than clothes. A clearer way to <em>dress.</em>
+        </h1>
+        <p>
+          Private, practical and personal — choose the kind of support your
+          wardrobe needs next.
+        </p>
+        <button className="prelaunch-link" onClick={back}>
+          Back to the collection <ArrowRight size={15} />
+        </button>
+      </div>
+      <div className="service-list">
+        {services.map((service) => (
+          <article key={service.number}>
+            <b>{service.number}</b>
+            <div>
+              <h2>{service.title}</h2>
+              <p>{service.text}</p>
+            </div>
+            <ArrowRight size={20} />
+          </article>
+        ))}
+      </div>
+      <button className="cta services-cta" onClick={openShopper}>
+        Request a private consultation <ArrowRight size={16} />
+      </button>
+    </section>
+  );
 }
 function useReveal(key) {
   useEffect(() => {
@@ -632,8 +761,67 @@ function WishlistDrawer({ items, close, remove, add }) {
   );
 }
 
-function ShopPage({ list, cat, setCat, setSubcategory, setQ, sort, setSort, setSelected, add, wishlist, toggleWishlist }) {
-  return <main className="standalone-shop-page"><section className="shop" id="shop"><div className="shop-head"><div><small>THE COLLECTION</small><h1>Shop the edit.</h1><p className="shop-intro">Considered pieces for every version of you.</p></div><div className="filters">{cats.map((c) => <button className={cat === c ? "on" : ""} onClick={() => { setCat(c); setSubcategory(""); setQ(""); }} key={c}>{c}</button>)}<select value={sort} onChange={(e) => setSort(e.target.value)}><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div></div><div className="grid">{list.map((p, index) => <Card p={p} index={index} open={setSelected} add={add} wishlisted={wishlist.includes(p.id)} toggleWishlist={toggleWishlist} key={p.id} />)}</div></section></main>;
+function ShopPage({
+  list,
+  cat,
+  setCat,
+  setSubcategory,
+  setQ,
+  sort,
+  setSort,
+  setSelected,
+  add,
+  wishlist,
+  toggleWishlist,
+}) {
+  return (
+    <main className="standalone-shop-page">
+      <section className="shop" id="shop">
+        <div className="shop-head">
+          <div>
+            <small>THE COLLECTION</small>
+            <h1>Shop the edit.</h1>
+            <p className="shop-intro">
+              Considered pieces for every version of you.
+            </p>
+          </div>
+          <div className="filters">
+            {cats.map((c) => (
+              <button
+                className={cat === c ? "on" : ""}
+                onClick={() => {
+                  setCat(c);
+                  setSubcategory("");
+                  setQ("");
+                }}
+                key={c}
+              >
+                {c}
+              </button>
+            ))}
+            <select value={sort} onChange={(e) => setSort(e.target.value)}>
+              <option value="featured">Featured</option>
+              <option value="low">Price: low to high</option>
+              <option value="high">Price: high to low</option>
+            </select>
+          </div>
+        </div>
+        <div className="grid">
+          {list.map((p, index) => (
+            <Card
+              p={p}
+              index={index}
+              open={setSelected}
+              add={add}
+              wishlisted={wishlist.includes(p.id)}
+              toggleWishlist={toggleWishlist}
+              key={p.id}
+            />
+          ))}
+        </div>
+      </section>
+    </main>
+  );
 }
 
 export default function App() {
@@ -642,13 +830,17 @@ export default function App() {
     [q, setQ] = useState(""),
     [sort, setSort] = useState("featured"),
     [cart, setCart] = useState(() =>
-      JSON.parse(localStorage.getItem("thexias-cart") || "[]").filter((item) => item.category !== "Bags"),
+      JSON.parse(localStorage.getItem("thexias-cart") || "[]").filter(
+        (item) => item.category !== "Bags",
+      ),
     ),
     [wishlist, setWishlist] = useState(() =>
       JSON.parse(localStorage.getItem("thexias-wishlist") || "[]"),
     ),
     [selected, setSelected] = useState(null),
-    [page, setPage] = useState(() => window.location.hash === "#admin" ? "admin" : "home"),
+    [page, setPage] = useState(() =>
+      window.location.hash === "#admin" ? "admin" : "home",
+    ),
     [cartOpen, setCartOpen] = useState(false),
     [wishlistOpen, setWishlistOpen] = useState(false),
     [showTop, setShowTop] = useState(false),
@@ -679,16 +871,26 @@ export default function App() {
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  let list = useMemo(
-    () => {
-      const terms = q.toLowerCase().trim().split(/\s+/).filter(Boolean);
-      return products.filter((p) => {
-        const searchable = [p.name, p.category, p.subcategory, p.id, p.image, ...(p.sizes || [])].join(" ").toLowerCase();
-        return (cat === "All" || p.category === cat) && (!subcategory || p.subcategory === subcategory) && terms.every((term) => searchable.includes(term));
-      });
-    },
-    [cat, subcategory, q],
-  );
+  let list = useMemo(() => {
+    const terms = q.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    return products.filter((p) => {
+      const searchable = [
+        p.name,
+        p.category,
+        p.subcategory,
+        p.id,
+        p.image,
+        ...(p.sizes || []),
+      ]
+        .join(" ")
+        .toLowerCase();
+      return (
+        (cat === "All" || p.category === cat) &&
+        (!subcategory || p.subcategory === subcategory) &&
+        terms.every((term) => searchable.includes(term))
+      );
+    });
+  }, [cat, subcategory, q]);
   if (sort === "low") list = [...list].sort((a, b) => a.price - b.price);
   if (sort === "high") list = [...list].sort((a, b) => b.price - a.price);
   useReveal(`${page}-${cat}-${subcategory}-${q}-${sort}`);
@@ -757,21 +959,23 @@ export default function App() {
           : x.id === id
             ? [{ ...x, quantity: x.quantity + d }]
             : [x],
-        ),
-      );
+      ),
+    );
   const goToCollection = () => {
     setPage("home");
-    window.setTimeout(() => document.getElementById("shop")?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
+    window.setTimeout(
+      () =>
+        document
+          .getElementById("shop")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" }),
+      60,
+    );
   };
   return (
     <div id="top">
       <header>
         <div className="announcement">
           <div className="announcement-track" aria-hidden="false">
-            <span>
-              FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF
-              ALL WEBSITE ORDERS.
-            </span>
             <span aria-hidden="true">
               FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF
               ALL WEBSITE ORDERS.
@@ -787,22 +991,179 @@ export default function App() {
             }}
           />
           <div className="links">
-            <a href="#top" onClick={(e) => { e.preventDefault(); setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Home</a>
-            <a href="#edit" onClick={(e) => { e.preventDefault(); setPage("home"); document.getElementById("edit")?.scrollIntoView({ behavior: "smooth" }); }}>The Edit</a>
-            <a href="#shop" onClick={(e) => { e.preventDefault(); setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Shop</a>
-            <a href="#about" onClick={(e) => { e.preventDefault(); setPage("about"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Our Story</a>
-            <a href="#services" onClick={(e) => { e.preventDefault(); setPage("services"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Services</a>
+            <a
+              href="#top"
+              onClick={(e) => {
+                e.preventDefault();
+                setPage("home");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              Home
+            </a>
+            <a
+              href="#edit"
+              onClick={(e) => {
+                e.preventDefault();
+                setPage("home");
+                document
+                  .getElementById("edit")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              The Edit
+            </a>
+            <a
+              href="#shop"
+              onClick={(e) => {
+                e.preventDefault();
+                setPage("shop");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              Shop
+            </a>
+            <a
+              href="#about"
+              onClick={(e) => {
+                e.preventDefault();
+                setPage("about");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              Our Story
+            </a>
+            <a
+              href="#services"
+              onClick={(e) => {
+                e.preventDefault();
+                setPage("services");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              Services
+            </a>
           </div>
-          <button className="mobile-menu-button" onClick={() => setMobileMenuOpen((v) => !v)} aria-label="Toggle menu"><span /> <span /> <span /></button>
-          <button className="search-icon-button" onClick={() => setSearchOpen((v) => !v)} aria-label="Open search"><Search size={18} /></button>
-          <button className="wishlist-button" onClick={() => setWishlistOpen(true)} aria-label="Open wishlist"><Heart size={20} /><i>{wishlist.length}</i></button>
-          <button className={`bag ${cartBump ? "bump" : ""}`} onClick={() => setCartOpen(true)} aria-label="Open shopping bag"><ShoppingBag size={20} /><i>{cart.reduce((a, x) => a + x.quantity, 0)}</i></button>
+          <button
+            className="mobile-menu-button"
+            onClick={() => setMobileMenuOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            <span /> <span /> <span />
+          </button>
+          <button
+            className="search-icon-button"
+            onClick={() => setSearchOpen((v) => !v)}
+            aria-label="Open search"
+          >
+            <Search size={18} />
+          </button>
+          <button
+            className="wishlist-button"
+            onClick={() => setWishlistOpen(true)}
+            aria-label="Open wishlist"
+          >
+            <Heart size={20} />
+            <i>{wishlist.length}</i>
+          </button>
+          <button
+            className={`bag ${cartBump ? "bump" : ""}`}
+            onClick={() => setCartOpen(true)}
+            aria-label="Open shopping bag"
+          >
+            <ShoppingBag size={20} />
+            <i>{cart.reduce((a, x) => a + x.quantity, 0)}</i>
+          </button>
         </nav>
       </header>
-      {mobileMenuOpen && <div className="mobile-menu-panel"><a href="#top" onClick={() => { setMobileMenuOpen(false); setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Home</a><a href="#edit" onClick={() => { setMobileMenuOpen(false); setPage("home"); setTimeout(() => document.getElementById("edit")?.scrollIntoView({ behavior: "smooth" }), 60); }}>The Edit</a><a href="#shop" onClick={() => { setMobileMenuOpen(false); setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Shop</a><a href="#about" onClick={() => { setMobileMenuOpen(false); setPage("about"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Our Story</a><a href="#services" onClick={() => { setMobileMenuOpen(false); setPage("services"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Services</a></div>}
-      {searchOpen && <form className="search-popover" onSubmit={(e) => { e.preventDefault(); setSearchOpen(false); setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}><Search size={17} /><input autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search the edit" /><button type="submit">Search</button></form>}
+      {mobileMenuOpen && (
+        <div className="mobile-menu-panel">
+          <a
+            href="#top"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setPage("home");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            Home
+          </a>
+          <a
+            href="#edit"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setPage("home");
+              setTimeout(
+                () =>
+                  document
+                    .getElementById("edit")
+                    ?.scrollIntoView({ behavior: "smooth" }),
+                60,
+              );
+            }}
+          >
+            The Edit
+          </a>
+          <a
+            href="#shop"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setPage("shop");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            Shop
+          </a>
+          <a
+            href="#about"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setPage("about");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            Our Story
+          </a>
+          <a
+            href="#services"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setPage("services");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            Services
+          </a>
+        </div>
+      )}
+      {searchOpen && (
+        <form
+          className="search-popover"
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSearchOpen(false);
+            setPage("shop");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
+          <Search size={17} />
+          <input
+            autoFocus
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Search the edit"
+          />
+          <button type="submit">Search</button>
+        </form>
+      )}
       {page === "admin" ? (
-        <AdminDashboard back={() => { setPage("home"); window.history.replaceState(null, "", "#top"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
+        <AdminDashboard
+          back={() => {
+            setPage("home");
+            window.history.replaceState(null, "", "#top");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        />
       ) : page === "home" ? (
         <main>
           <section className="hero reveal is-visible">
@@ -812,7 +1173,13 @@ export default function App() {
                 Made for <em>your</em> becoming.
               </h1>
               <p>Modern pieces, softly tailored for every version of you.</p>
-              <button className="cta" onClick={() => { setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
+              <button
+                className="cta"
+                onClick={() => {
+                  setPage("shop");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
                 Shop new arrivals <ArrowRight size={17} />
               </button>
               <button
@@ -825,7 +1192,10 @@ export default function App() {
                 Join the prelaunch list <ArrowRight size={15} />
               </button>
             </div>
-            <div className="hero-art hero-photo" aria-label="THEXIAS PLACE hero fashion photograph" />
+            <div
+              className="hero-art hero-photo"
+              aria-label="THEXIAS PLACE hero fashion photograph"
+            />
           </section>
           <section className="intro reveal" id="edit">
             <small>EXPLORE THE EDIT</small>
@@ -872,7 +1242,19 @@ export default function App() {
           </section>
         </main>
       ) : page === "shop" ? (
-        <ShopPage list={list} cat={cat} setCat={setCat} setSubcategory={setSubcategory} setQ={setQ} sort={sort} setSort={setSort} setSelected={setSelected} add={add} wishlist={wishlist} toggleWishlist={toggleWishlist} />
+        <ShopPage
+          list={list}
+          cat={cat}
+          setCat={setCat}
+          setSubcategory={setSubcategory}
+          setQ={setQ}
+          sort={sort}
+          setSort={setSort}
+          setSelected={setSelected}
+          add={add}
+          wishlist={wishlist}
+          toggleWishlist={toggleWishlist}
+        />
       ) : page === "outfits" ? (
         <StyledOutfitsPage
           add={add}
@@ -889,9 +1271,23 @@ export default function App() {
           }}
         />
       ) : page === "about" ? (
-        <AboutPage back={() => { setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
+        <AboutPage
+          back={() => {
+            setPage("home");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        />
       ) : (
-        <ServicesPage back={() => { setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} openShopper={() => { setPage("shopper"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
+        <ServicesPage
+          back={() => {
+            setPage("home");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          openShopper={() => {
+            setPage("shopper");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        />
       )}
       <footer>
         <Logo
@@ -905,14 +1301,32 @@ export default function App() {
         <section className="newsletter" aria-labelledby="newsletter-title">
           <small>THE PRIVATE EDIT</small>
           <h3 id="newsletter-title">A little closer to what’s next.</h3>
-          <p>Receive first access to new arrivals, private edits and considered styling notes — only when there is something worth opening.</p>
+          <p>
+            Receive first access to new arrivals, private edits and considered
+            styling notes — only when there is something worth opening.
+          </p>
           {!newsletterSubscribed ? (
             <form onSubmit={subscribeNewsletter}>
-              <input type="email" required value={newsletterEmail} onChange={(e) => setNewsletterEmail(e.target.value)} placeholder="Your email address" aria-label="Email address" />
-              <button type="submit" aria-label="Subscribe to the private edit"><ArrowRight size={17} /></button>
+              <input
+                type="email"
+                required
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                placeholder="Your email address"
+                aria-label="Email address"
+              />
+              <button type="submit" aria-label="Subscribe to the private edit">
+                <ArrowRight size={17} />
+              </button>
             </form>
-          ) : <span className="newsletter-confirmed">You’re on the list. Welcome to the private edit.</span>}
-          <small className="newsletter-note">No noise. Just the pieces and stories we think you’ll love.</small>
+          ) : (
+            <span className="newsletter-confirmed">
+              You’re on the list. Welcome to the private edit.
+            </span>
+          )}
+          <small className="newsletter-note">
+            No noise. Just the pieces and stories we think you’ll love.
+          </small>
         </section>
         <a href="https://wa.me/2347048969953">
           Chat with us on WhatsApp <ArrowRight size={15} />
