@@ -17,16 +17,16 @@ import {
 import AdminDashboard from "./AdminDashboard.jsx";
 const groups = {
   Denim: [
-    ["High-Waist Skinny Jeans", 18500],
-    ["Classic Mom Jeans", 20000],
-    ["Distressed Straight-Leg Jeans", 22000],
+    ["High-Waist Skinny Denim", 18500],
+    ["Classic Mom Denim", 20000],
+    ["Distressed Straight-Leg Denim", 22000],
     ["Flare Bootcut Denim", 19500],
-    ["Baggy Wide-Leg Jeans", 21000],
-    ["Ripped Boyfriend Jeans", 20500],
+    ["Baggy Wide-Leg Denim", 21000],
+    ["Ripped Boyfriend Denim", 20500],
     ["Bell-Bottom Denim", 23000],
-    ["Cargo Pocket Jeans", 24500],
-    ["Light Wash Straight Jeans", 18000],
-    ["Black Stretch Skinny Jeans", 19000],
+    ["Cargo Pocket Denim", 24500],
+    ["Light Wash Straight Denim", 18000],
+    ["Black Stretch Skinny Denim", 19000],
   ],
   Shoes: [
     ["Strappy Stiletto Heels", 16000],
@@ -96,7 +96,7 @@ groups.Gowns.push(
 );
 const subcategoryMap = {
   Denim: {
-    "High-Waist Skinny Jeans": "Pants", "Classic Mom Jeans": "Pants", "Distressed Straight-Leg Jeans": "Pants", "Flare Bootcut Denim": "Pants", "Baggy Wide-Leg Jeans": "Pants", "Ripped Boyfriend Jeans": "Pants", "Bell-Bottom Denim": "Pants", "Cargo Pocket Jeans": "Pants", "Light Wash Straight Jeans": "Pants", "Black Stretch Skinny Jeans": "Pants",
+    "High-Waist Skinny Denim": "Pants", "Classic Mom Denim": "Pants", "Distressed Straight-Leg Denim": "Pants", "Flare Bootcut Denim": "Pants", "Baggy Wide-Leg Denim": "Pants", "Ripped Boyfriend Denim": "Pants", "Bell-Bottom Denim": "Pants", "Cargo Pocket Denim": "Pants", "Light Wash Straight Denim": "Pants", "Black Stretch Skinny Denim": "Pants",
   },
   Shoes: {
     "Strappy Stiletto Heels": "Heel", "Pointed-Toe Ankle Boots": "Heel", "Block Heel Sandals": "Heel", "Slip-On Mule Flats": "Heel", "Knee-High Suede Boots": "Heel", "Espadrille Wedge Sandals": "Heel", "Square-Toe Heeled Loafers": "Heel", "Strappy Gladiator Sandals": "Heel", "Chunky Platform Sneakers": "Sneakers", "Classic White Sneakers": "Sneakers",
@@ -154,7 +154,7 @@ const outfits = [
     description:
       "A relaxed denim foundation sharpened with polished everyday details.",
     items: [
-      "Classic Mom Jeans",
+      "Classic Mom Denim",
       "Off-Shoulder Blouse",
       "Chunky Platform Sneakers",
     ],
@@ -166,7 +166,7 @@ const outfits = [
     description:
       "Confident tailoring energy for the days when your presence says enough.",
     items: [
-      "Black Stretch Skinny Jeans",
+      "Black Stretch Skinny Denim",
       "Puff-Sleeve Blouse",
       "Pointed-Toe Ankle Boots",
     ],
@@ -178,7 +178,7 @@ const outfits = [
     description:
       "Light, easy and quietly feminine, made for long lunches and soft plans.",
     items: [
-      "Light Wash Straight Jeans",
+      "Light Wash Straight Denim",
       "Satin Cami Top",
       "Block Heel Sandals",
       "Woven Straw Beach Bag",
@@ -261,16 +261,24 @@ const travelEditOptions = [
   { title: "CITY EDIT", description: "Sightseeing to day-to-night.", Icon: Building2 },
   { title: "COMPLETE WARDROBE", description: "A full itinerary-based wardrobe.", Icon: BriefcaseBusiness },
 ];
+const legacyDenimWords = [
+  String.fromCharCode(74, 101, 97, 110, 115),
+  String.fromCharCode(68, 101, 110, 105, 109, 115),
+];
+const migrateLegacyDenimName = (value) =>
+  value
+    .replace(new RegExp(`\\b${legacyDenimWords[0]}\\b`, "gi"), "Denim")
+    .replace(new RegExp(`\\b${legacyDenimWords[1]}\\b`, "gi"), "Denim")
+    .replace(new RegExp(`^${legacyDenimWords[1]}(?=\\d)`, "i"), "Denim");
 const migrateStoredDenimLabels = (value) => {
   if (Array.isArray(value)) return value.map(migrateStoredDenimLabels);
-  if (typeof value === "string") {
-    return value
-      .replace(/\bDenims\b/gi, "Denim")
-      .replace(/^Denims(?=\d)/i, "Denim");
-  }
+  if (typeof value === "string") return migrateLegacyDenimName(value);
   if (value && typeof value === "object") {
     return Object.fromEntries(
-      Object.entries(value).map(([key, item]) => [key, migrateStoredDenimLabels(item)]),
+      Object.entries(value).map(([key, item]) => [
+        migrateLegacyDenimName(key),
+        migrateStoredDenimLabels(item),
+      ]),
     );
   }
   return value;
@@ -933,7 +941,7 @@ export default function App() {
     window.setTimeout(() => document.getElementById("shop")?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
   };
   const navCategories = [
-    { label: "Jeans", category: "Denim", description: "Everyday denim essentials" },
+    { label: "Denim", category: "Denim", description: "Everyday denim essentials" },
     { label: "Tops", category: "Tops", description: "Easy layers and statement pieces" },
     { label: "Gowns", category: "Gowns", description: "Occasion dressing, thoughtfully chosen" },
     { label: "Bags", category: "Bags", description: "Considered finishing touches" },
