@@ -113,3 +113,8 @@ nav{position:relative}nav>.logo{position:absolute;left:50%;transform:translateX(
 @media(max-width:600px){.travel-edit-section{margin-bottom:42px}.travel-edit-photo{aspect-ratio:1.42}.travel-edit-panel{grid-template-columns:1fr;gap:22px;padding:26px 22px}.travel-edit-intro h2{font-size:31px}.travel-edit-options{grid-template-columns:repeat(2,minmax(0,1fr));border-left:0;border-top:1px solid var(--line);padding:20px 0 0;gap:16px 14px}.travel-edit-option{grid-template-columns:19px minmax(0,1fr);gap:8px}.travel-edit-option>svg{width:18px;height:18px}.travel-edit-option strong{font-size:7px;letter-spacing:.12em}.travel-edit-option small{font-size:8px}.travel-edit-option:last-child{grid-column:1/-1}}
 @media(max-width:380px){.travel-edit-options{grid-template-columns:1fr}.travel-edit-option:last-child{grid-column:auto}}
 @media(prefers-reduced-motion:reduce){.travel-edit-photo img{transition:none!important}.travel-edit-photo:hover img{transform:none!important}}
+
+@media(max-width:850px){.hero{background-position:70% center}}
+
+.logo{flex-direction:column;align-items:center;justify-content:center;gap:1px;font-family:'Bodoni Moda','Playfair Display',serif;font-weight:400;font-size:20px;line-height:.9;letter-spacing:.14em}.logo .logo-wordmark{display:block;color:var(--ink);font-family:'Bodoni Moda','Playfair Display',serif;font-weight:400;font-size:22px;line-height:.9;letter-spacing:.14em}.logo .logo-place{display:block;color:var(--muted);font-family:'Bodoni Moda','Playfair Display',serif;font-weight:400;font-size:8px;line-height:1;letter-spacing:.36em;margin-left:.36em}
+@media(max-width:850px){nav>.logo{font-size:16px;gap:1px}.logo .logo-wordmark{font-size:18px}.logo .logo-place{font-size:7px}}

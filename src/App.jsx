@@ -493,8 +493,9 @@ function useReveal(key) {
 }
 function Logo({ onHome }) {
   return (
-    <a className="logo" href="#top" onClick={onHome}>
-      <b>T</b>THEXIAS<span> PLACE</span>
+    <a className="logo" href="#top" onClick={onHome} aria-label="THEXIAS PLACE home">
+      <strong className="logo-wordmark">THEXIAS</strong>
+      <small className="logo-place">PLACE</small>
     </a>
   );
 }
