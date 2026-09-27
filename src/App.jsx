@@ -192,6 +192,13 @@ const outfits = [
   },
 ];
 
+const homeEditCards = [
+  { title: "THE EDIT", description: "Curated pieces for every occasion.", action: "EXPLORE THE EDIT", image: "/category-cards/the_edit.jpg", destination: "shop" },
+  { title: "STYLED OUTFITS", description: "Effortless looks, curated for you.", action: "SHOP THE LOOKS", image: "/category-cards/styled_outfits.jpg", destination: "outfits" },
+  { title: "PERSONAL SHOPPER", description: "Tell us what you need. We’ll find it for you.", action: "REQUEST A PRIVATE EDIT", image: "/category-cards/personal_shopper.jpg", destination: "shopper" },
+  { title: "THE TRAVEL EDIT", description: "Considered looks for wherever you’re going.", action: "EXPLORE", image: "/category-cards/the_travel_edit.jpg", destination: "shop" },
+  { title: "SERVICES", description: "Styling, sourcing and more.", action: "LEARN MORE", image: "/category-cards/services.jpg", destination: "services" },
+];
 function findProduct(name) {
   return products.find((p) => p.name === name) || products[0];
 }
@@ -817,9 +824,11 @@ export default function App() {
             <a href="#services" onClick={(e) => { e.preventDefault(); setPage("services"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Services</a>
           </div>
           <button className="mobile-menu-button" onClick={() => setMobileMenuOpen((v) => !v)} aria-label="Toggle menu"><span /> <span /> <span /></button>
-          <button ref={searchButtonRef} className="search-icon-button" onClick={() => setSearchOpen((v) => !v)} aria-label={searchOpen ? "Close search" : "Open search"} aria-expanded={searchOpen} aria-controls="site-search"><Search size={18} /></button>
-          <button className="wishlist-button" onClick={() => setWishlistOpen(true)} aria-label="Open wishlist"><Heart size={20} /><i>{wishlist.length}</i></button>
-          <button className={`bag ${cartBump ? "bump" : ""}`} onClick={() => setCartOpen(true)} aria-label="Open shopping bag"><ShoppingBag size={20} /><i>{cart.reduce((a, x) => a + x.quantity, 0)}</i></button>
+          <div className="nav-actions">
+            <button ref={searchButtonRef} className="search-icon-button" onClick={() => setSearchOpen((v) => !v)} aria-label={searchOpen ? "Close search" : "Open search"} aria-expanded={searchOpen} aria-controls="site-search"><Search size={18} /></button>
+            <button className="wishlist-button" onClick={() => setWishlistOpen(true)} aria-label="Open wishlist"><Heart size={20} /><i>{wishlist.length}</i></button>
+            <button className={`bag ${cartBump ? "bump" : ""}`} onClick={() => setCartOpen(true)} aria-label="Open shopping bag"><ShoppingBag size={20} /><i>{cart.reduce((a, x) => a + x.quantity, 0)}</i></button>
+          </div>
         </nav>
       </header>
       {mobileMenuOpen && <div className="mobile-menu-panel"><a href="#top" onClick={() => { setMobileMenuOpen(false); setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Home</a><a href="#edit" onClick={() => { setMobileMenuOpen(false); setPage("home"); setTimeout(() => document.getElementById("edit")?.scrollIntoView({ behavior: "smooth" }), 60); }}>The Edit</a><a href="#shop" onClick={() => { setMobileMenuOpen(false); setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Shop</a><a href="#about" onClick={() => { setMobileMenuOpen(false); setPage("about"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Our Story</a><a href="#services" onClick={() => { setMobileMenuOpen(false); setPage("services"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Services</a></div>}
@@ -850,28 +859,35 @@ export default function App() {
             </div>
             <div className="hero-art hero-photo" aria-label="THEXIAS PLACE hero fashion photograph" />
           </section>
-          <section className="intro reveal" id="edit">
-            <small>EXPLORE THE EDIT</small>
-            <h2>
-              Find your <em>everyday</em> extraordinary.
-            </h2>
-            <div className="tiles">
-              {Object.keys(groups).map((c, i) => (
+          <section className="editorial-categories reveal" id="edit" aria-label="Explore THEXIAS PLACE">
+            <div className="editorial-category-grid">
+              {homeEditCards.map((card) => (
                 <button
+                  type="button"
+                  className="editorial-category-card"
+                  key={card.title}
+                  aria-label={`${card.title}: ${card.description} ${card.action}`}
                   onClick={() => {
-                    setCat(c);
                     setSubcategory("");
                     setQ("");
-                    setPage("shop");
+                    if (card.destination === "outfits") setPage("outfits");
+                    else if (card.destination === "shopper") setPage("shopper");
+                    else if (card.destination === "services") setPage("services");
+                    else {
+                      setCat("All");
+                      setPage("shop");
+                    }
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
-                  key={c}
                 >
-                  <div className="tile" style={{ "--tone": tones[c] }}>
-                    <b>0{i + 1}</b>
-                  </div>
-                  <strong>{c}</strong>
-                  <small>Thoughtfully chosen pieces</small>
+                  <img src={card.image} alt="" loading="lazy" decoding="async" />
+                  <span className="editorial-category-copy">
+                    <small>{card.title}</small>
+                    <strong>{card.description}</strong>
+                    <span className="editorial-category-cta">
+                      {card.action} <ArrowRight size={13} />
+                    </span>
+                  </span>
                 </button>
               ))}
             </div>
