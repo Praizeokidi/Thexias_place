@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight,
   Heart,
@@ -665,6 +665,29 @@ export default function App() {
     [toast, setToast] = useState(""),
     [searchOpen, setSearchOpen] = useState(false),
     [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const searchButtonRef = useRef(null);
+  const searchPopoverRef = useRef(null);
+  useEffect(() => {
+    if (!searchOpen) return undefined;
+    const onPointerDown = (event) => {
+      if (
+        searchButtonRef.current?.contains(event.target) ||
+        searchPopoverRef.current?.contains(event.target)
+      ) {
+        return;
+      }
+      setSearchOpen(false);
+    };
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setSearchOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [searchOpen]);
   useEffect(
     () => localStorage.setItem("thexias-cart", JSON.stringify(cart)),
     [cart],
@@ -794,13 +817,13 @@ export default function App() {
             <a href="#services" onClick={(e) => { e.preventDefault(); setPage("services"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Services</a>
           </div>
           <button className="mobile-menu-button" onClick={() => setMobileMenuOpen((v) => !v)} aria-label="Toggle menu"><span /> <span /> <span /></button>
-          <button className="search-icon-button" onClick={() => setSearchOpen((v) => !v)} aria-label="Open search"><Search size={18} /></button>
+          <button ref={searchButtonRef} className="search-icon-button" onClick={() => setSearchOpen((v) => !v)} aria-label={searchOpen ? "Close search" : "Open search"} aria-expanded={searchOpen} aria-controls="site-search"><Search size={18} /></button>
           <button className="wishlist-button" onClick={() => setWishlistOpen(true)} aria-label="Open wishlist"><Heart size={20} /><i>{wishlist.length}</i></button>
           <button className={`bag ${cartBump ? "bump" : ""}`} onClick={() => setCartOpen(true)} aria-label="Open shopping bag"><ShoppingBag size={20} /><i>{cart.reduce((a, x) => a + x.quantity, 0)}</i></button>
         </nav>
       </header>
       {mobileMenuOpen && <div className="mobile-menu-panel"><a href="#top" onClick={() => { setMobileMenuOpen(false); setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Home</a><a href="#edit" onClick={() => { setMobileMenuOpen(false); setPage("home"); setTimeout(() => document.getElementById("edit")?.scrollIntoView({ behavior: "smooth" }), 60); }}>The Edit</a><a href="#shop" onClick={() => { setMobileMenuOpen(false); setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Shop</a><a href="#about" onClick={() => { setMobileMenuOpen(false); setPage("about"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Our Story</a><a href="#services" onClick={() => { setMobileMenuOpen(false); setPage("services"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Services</a></div>}
-      {searchOpen && <form className="search-popover" onSubmit={(e) => { e.preventDefault(); setSearchOpen(false); setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}><Search size={17} /><input autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search the edit" /><button type="submit">Search</button></form>}
+      {searchOpen && <form ref={searchPopoverRef} id="site-search" className="search-popover" role="search" onSubmit={(e) => { e.preventDefault(); setSearchOpen(false); setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}><Search size={17} /><input autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search the edit" /><button type="submit">Search</button></form>}
       {page === "admin" ? (
         <AdminDashboard back={() => { setPage("home"); window.history.replaceState(null, "", "#top"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
       ) : page === "home" ? (
