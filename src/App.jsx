@@ -192,12 +192,61 @@ const outfits = [
   },
 ];
 
+const categoryCardSizes =
+  "(max-width: 850px) calc(50vw - 23px), (max-width: 1050px) calc((100vw - 74px) / 3), (max-width: 1240px) calc((100vw - 98px) / 5), 228px";
+const servicesCardSizes =
+  "(max-width: 850px) calc(100vw - 36px), (max-width: 1050px) calc((100vw - 74px) / 3), (max-width: 1240px) calc((100vw - 98px) / 5), 228px";
 const homeEditCards = [
-  { title: "THE EDIT", description: "Curated pieces for every occasion.", action: "EXPLORE THE EDIT", image: "/category-cards/the_edit.jpg", destination: "shop" },
-  { title: "STYLED OUTFITS", description: "Effortless looks, curated for you.", action: "SHOP THE LOOKS", image: "/category-cards/styled_outfits.jpg", destination: "outfits" },
-  { title: "PERSONAL SHOPPER", description: "Tell us what you need. We’ll find it for you.", action: "REQUEST A PRIVATE EDIT", image: "/category-cards/personal_shopper.jpg", destination: "shopper" },
-  { title: "THE TRAVEL EDIT", description: "Considered looks for wherever you’re going.", action: "EXPLORE", image: "/category-cards/the_travel_edit.jpg", destination: "shop" },
-  { title: "SERVICES", description: "Styling, sourcing and more.", action: "LEARN MORE", image: "/category-cards/services.jpg", destination: "services" },
+  {
+    title: "THE EDIT",
+    description: "Curated pieces for every occasion.",
+    action: "EXPLORE THE EDIT",
+    image: "/category-cards/the_edit",
+    width: 1632,
+    height: 2592,
+    sizes: categoryCardSizes,
+    destination: "shop",
+  },
+  {
+    title: "STYLED OUTFITS",
+    description: "Effortless looks, curated for you.",
+    action: "SHOP THE LOOKS",
+    image: "/category-cards/styled_outfits",
+    width: 1600,
+    height: 2656,
+    sizes: categoryCardSizes,
+    destination: "outfits",
+  },
+  {
+    title: "PERSONAL SHOPPER",
+    description: "Tell us what you need. We’ll find it for you.",
+    action: "REQUEST A PRIVATE EDIT",
+    image: "/category-cards/personal_shopper",
+    width: 1632,
+    height: 2592,
+    sizes: categoryCardSizes,
+    destination: "shopper",
+  },
+  {
+    title: "THE TRAVEL EDIT",
+    description: "Considered looks for wherever you’re going.",
+    action: "EXPLORE",
+    image: "/category-cards/the_travel_edit",
+    width: 1504,
+    height: 2848,
+    sizes: categoryCardSizes,
+    destination: "shop",
+  },
+  {
+    title: "SERVICES",
+    description: "Styling, sourcing and more.",
+    action: "LEARN MORE",
+    image: "/category-cards/services",
+    width: 1504,
+    height: 2848,
+    sizes: servicesCardSizes,
+    destination: "services",
+  },
 ];
 function findProduct(name) {
   return products.find((p) => p.name === name) || products[0];
@@ -880,7 +929,22 @@ export default function App() {
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
                 >
-                  <img src={card.image} alt="" loading="lazy" decoding="async" />
+                  <picture className="editorial-category-media">
+                    <source
+                      type="image/webp"
+                      srcSet={`${card.image}-480.webp 480w, ${card.image}-960.webp 960w`}
+                      sizes={card.sizes}
+                    />
+                    <img
+                      src={`${card.image}.jpg`}
+                      alt=""
+                      width={card.width}
+                      height={card.height}
+                      loading="lazy"
+                      decoding="async"
+                      fetchPriority="low"
+                    />
+                  </picture>
                   <span className="editorial-category-copy">
                     <small>{card.title}</small>
                     <strong>{card.description}</strong>
