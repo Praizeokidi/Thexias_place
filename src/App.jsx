@@ -1,16 +1,21 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight,
+  Building2,
+  BriefcaseBusiness,
   Heart,
   Minus,
+  Palmtree,
+  Plane,
   Plus,
   Search,
   ShoppingBag,
+  Utensils,
   X,
 } from "lucide-react";
 import AdminDashboard from "./AdminDashboard.jsx";
 const groups = {
-  Denims: [
+  Denim: [
     ["High-Waist Skinny Jeans", 18500],
     ["Classic Mom Jeans", 20000],
     ["Distressed Straight-Leg Jeans", 22000],
@@ -66,7 +71,7 @@ const groups = {
     ["Everyday Seamless Set", 11000],
   ],
 };
-groups.Denims.push(
+groups.Denim.push(
   ["Pleated Denim Mini Skirt", 16500, "Skirts"],
   ["Asymmetric Denim Midi Skirt", 19500, "Skirts"],
   ["Relaxed Blue Denim Jorts", 15500, "Jorts"],
@@ -89,7 +94,7 @@ groups.Gowns.push(
   ["Dinner Embellished Gown", 51000, "Dinner"],
 );
 const subcategoryMap = {
-  Denims: {
+  Denim: {
     "High-Waist Skinny Jeans": "Pants", "Classic Mom Jeans": "Pants", "Distressed Straight-Leg Jeans": "Pants", "Flare Bootcut Denim": "Pants", "Baggy Wide-Leg Jeans": "Pants", "Ripped Boyfriend Jeans": "Pants", "Bell-Bottom Denim": "Pants", "Cargo Pocket Jeans": "Pants", "Light Wash Straight Jeans": "Pants", "Black Stretch Skinny Jeans": "Pants",
   },
   Shoes: {
@@ -99,7 +104,7 @@ const subcategoryMap = {
     "Satin Evening Gown": "Dinner", "Floral Chiffon Maxi Dress": "Casual", "Bodycon Cocktail Gown": "Dinner", "Off-Shoulder Ball Gown": "Curated", "Sequin Party Gown": "Dinner", "Wrap Maxi Dress": "Casual", "Corset-Style Prom Gown": "Curated", "High-Slit Evening Dress": "Dinner", "Lace Overlay Gown": "Curated", "Flowy Kaftan Maxi Gown": "Casual",
   },
 };
-const categoryOrder = ["Denims", "Shoes", "Tops", "Gowns", "Lingerie"],
+const categoryOrder = ["Denim", "Shoes", "Tops", "Gowns", "Lingerie"],
   cats = ["All", ...categoryOrder],
   products = Object.entries(groups).flatMap(([category, items]) =>
     items.map(([name, price, subcategory], i) => ({
@@ -122,7 +127,7 @@ const categoryOrder = ["Denims", "Shoes", "Tops", "Gowns", "Lingerie"],
       maximumFractionDigits: 0,
     }).format(n),
   tones = {
-    Denims: "#b7a89c,#3e4c52",
+    Denim: "#b7a89c,#3e4c52",
     Shoes: "#e2d0bf,#806a5b",
     Tops: "#e4d8c9,#a66c57",
     Gowns: "#cdb2ad,#694d4d",
@@ -248,6 +253,40 @@ const homeEditCards = [
     destination: "services",
   },
 ];
+const travelEditOptions = [
+  { title: "AIRPORT EDIT", description: "Elevated travel-day looks.", Icon: Plane },
+  { title: "RESORT EDIT", description: "Vacation and beachwear.", Icon: Palmtree },
+  { title: "DINNER EDIT", description: "Evenings and date-night looks.", Icon: Utensils },
+  { title: "CITY EDIT", description: "Sightseeing to day-to-night.", Icon: Building2 },
+  { title: "COMPLETE WARDROBE", description: "A full itinerary-based wardrobe.", Icon: BriefcaseBusiness },
+];
+const migrateStoredDenimLabels = (value) => {
+  if (Array.isArray(value)) return value.map(migrateStoredDenimLabels);
+  if (typeof value === "string") {
+    return value
+      .replace(/\bDenims\b/gi, "Denim")
+      .replace(/^Denims(?=\d)/i, "Denim");
+  }
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, item]) => [key, migrateStoredDenimLabels(item)]),
+    );
+  }
+  return value;
+};
+const readStoredList = (key) => {
+  try {
+    const raw = localStorage.getItem(key);
+    const parsed = JSON.parse(raw || "[]");
+    const migrated = migrateStoredDenimLabels(parsed);
+    if (raw && JSON.stringify(parsed) !== JSON.stringify(migrated)) {
+      localStorage.setItem(key, JSON.stringify(migrated));
+    }
+    return Array.isArray(migrated) ? migrated : [];
+  } catch {
+    return [];
+  }
+};
 function findProduct(name) {
   return products.find((p) => p.name === name) || products[0];
 }
@@ -698,10 +737,10 @@ export default function App() {
     [q, setQ] = useState(""),
     [sort, setSort] = useState("featured"),
     [cart, setCart] = useState(() =>
-      JSON.parse(localStorage.getItem("thexias-cart") || "[]").filter((item) => item.category !== "Bags"),
+      readStoredList("thexias-cart").filter((item) => item.category !== "Bags"),
     ),
     [wishlist, setWishlist] = useState(() =>
-      JSON.parse(localStorage.getItem("thexias-wishlist") || "[]"),
+      readStoredList("thexias-wishlist"),
     ),
     [selected, setSelected] = useState(null),
     [page, setPage] = useState(() => window.location.hash === "#admin" ? "admin" : "home"),
@@ -805,9 +844,7 @@ export default function App() {
       !waitlistForm.interests.length
     )
       return;
-    const existing = JSON.parse(
-      localStorage.getItem("thexias-waitlist") || "[]",
-    );
+    const existing = readStoredList("thexias-waitlist");
     localStorage.setItem(
       "thexias-waitlist",
       JSON.stringify([
@@ -954,6 +991,58 @@ export default function App() {
                   </span>
                 </button>
               ))}
+            </div>
+          </section>
+          <section className="travel-edit-section reveal" aria-labelledby="travel-edit-title">
+            <div className="travel-edit-photo">
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet="/category-cards/the_edit-480.webp 480w, /category-cards/the_edit-960.webp 960w"
+                  sizes="(max-width: 850px) calc(100vw - 36px), (max-width: 1240px) 42vw, 500px"
+                />
+                <img
+                  src="/category-cards/the_edit.jpg"
+                  alt="A woman in a cream tailored suit carrying a dark handbag in a warm interior."
+                  width={1632}
+                  height={2592}
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                />
+              </picture>
+            </div>
+            <div className="travel-edit-panel">
+              <div className="travel-edit-intro">
+                <small>THE TRAVEL EDIT</small>
+                <h2 id="travel-edit-title">
+                  Curated for where <em>you’re going.</em>
+                </h2>
+                <p>
+                  Tell us your destination, itinerary and how you want to feel.
+                  We’ll curate looks for the journey—from airport arrivals to
+                  dinners, beach days and everything in between.
+                </p>
+                <a
+                  className="cta travel-edit-cta"
+                  href={`https://wa.me/2347048969953?text=${encodeURIComponent("Hi THEXIAS_PLACE, I’d love help curating a travel wardrobe for my trip.")}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Curate my trip <ArrowRight size={16} />
+                </a>
+              </div>
+              <ul className="travel-edit-options" aria-label="Travel Edit collections">
+                {travelEditOptions.map(({ title, description, Icon }) => (
+                  <li className="travel-edit-option" key={title}>
+                    <Icon size={20} strokeWidth={1.4} aria-hidden="true" />
+                    <span>
+                      <strong>{title}</strong>
+                      <small>{description}</small>
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </section>
           <section className="services">
