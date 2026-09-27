@@ -1,14 +1,17 @@
 
-## Private submissions dashboard
+## Custom waitlist form backend
 
-The waitlist spreadsheet now includes a simplified `Dashboard Data` tab with these columns:
+The prelaunch modal now uses `src/WaitlistForm.jsx` instead of an embedded Google Form. The corresponding Apps Script source is in `backend/Code.gs`.
 
-`Submitted | Name | Contact | Interest | Exact item | Status | Notes`
-
-The custom JSX dashboard is available at `/#admin`. It is intentionally not linked in the public navbar. To connect live rows without exposing Google credentials, configure a private read-only JSON endpoint in `.env`:
+1. Open the private waitlist spreadsheet and create/open an Apps Script project.
+2. Paste the contents of `backend/Code.gs` into `Code.gs`.
+3. Deploy it as **Web app** with **Execute as: Me** and access set to **Anyone with the link**.
+4. Copy the deployed Web App URL into the deployment environment as:
 
 ```bash
-VITE_ADMIN_DATA_URL=https://your-private-endpoint.example/data
+VITE_WAITLIST_ENDPOINT=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
 ```
 
-The endpoint should return either an array of rows or `{ "rows": [...] }`, using fields such as `submitted`, `name`, `contact`, `interest`, `item`, and `status`. Do not put OAuth tokens or service-account keys in frontend environment variables.
+5. Redeploy the storefront.
+
+The endpoint writes to the private `Dashboard Data` tab and validates name, contact, interests, and exact item. It never exposes the spreadsheet to the browser. Keep the spreadsheet itself private and do not place OAuth credentials in frontend environment variables.

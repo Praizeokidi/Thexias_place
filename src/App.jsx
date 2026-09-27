@@ -632,6 +632,10 @@ function WishlistDrawer({ items, close, remove, add }) {
   );
 }
 
+function ShopPage({ list, cat, setCat, setSubcategory, setQ, sort, setSort, setSelected, add, wishlist, toggleWishlist }) {
+  return <main className="standalone-shop-page"><section className="shop" id="shop"><div className="shop-head"><div><small>THE COLLECTION</small><h1>Shop the edit.</h1><p className="shop-intro">Considered pieces for every version of you.</p></div><div className="filters">{cats.map((c) => <button className={cat === c ? "on" : ""} onClick={() => { setCat(c); setSubcategory(""); setQ(""); }} key={c}>{c}</button>)}<select value={sort} onChange={(e) => setSort(e.target.value)}><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div></div><div className="grid">{list.map((p, index) => <Card p={p} index={index} open={setSelected} add={add} wishlisted={wishlist.includes(p.id)} toggleWishlist={toggleWishlist} key={p.id} />)}</div></section></main>;
+}
+
 export default function App() {
   const [cat, setCat] = useState("All"),
     [subcategory, setSubcategory] = useState(""),
@@ -658,7 +662,9 @@ export default function App() {
     [newsletterEmail, setNewsletterEmail] = useState(""),
     [newsletterSubscribed, setNewsletterSubscribed] = useState(false),
     [cartBump, setCartBump] = useState(false),
-    [toast, setToast] = useState("");
+    [toast, setToast] = useState(""),
+    [searchOpen, setSearchOpen] = useState(false),
+    [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   useEffect(
     () => localStorage.setItem("thexias-cart", JSON.stringify(cart)),
     [cart],
@@ -781,72 +787,20 @@ export default function App() {
             }}
           />
           <div className="links">
-            {cats.slice(1).filter((c) => c !== "Lingerie").map((c) => {
-              const submenus = { Denims: ["Skirts", "Jorts", "Pants"], Shoes: ["Heel", "Sneakers"], Gowns: ["Curated", "Casual", "Dinner", "Lingerie"] };
-              return submenus[c] ? (
-                <div className="nav-dropdown" key={c}>
-                  <a href="#shop" onClick={() => { setCat(c); setSubcategory(""); setQ(""); goToCollection(); }}>{c}</a>
-                  <div className="nav-dropdown-menu">
-                    {submenus[c].map((item) => <button key={item} onClick={(e) => { setCat(item === "Lingerie" ? "Lingerie" : c); setSubcategory(item === "Lingerie" ? "" : item); setQ(""); goToCollection(); e.currentTarget.blur(); }}>{item}</button>)}
-                  </div>
-                </div>
-              ) : (
-                <a href="#shop" onClick={() => { setCat(c); setSubcategory(""); setQ(""); goToCollection(); }} key={c}>{c}</a>
-              );
-            })}
-            <a
-              href="#outfits"
-              onClick={(e) => {
-                e.preventDefault();
-                setPage("outfits");
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
-            >
-              Styled Outfits
-            </a>
-            <a
-              href="#personal-shopper"
-              onClick={(e) => {
-                e.preventDefault();
-                setPage("shopper");
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
-            >
-              Personal Shopper
-            </a>
-            <div className="nav-dropdown">
-              <a href="#services" onClick={(e) => { e.preventDefault(); setPage("services"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Services</a>
-              <div className="nav-dropdown-menu">
-                <button onClick={(e) => { setPage("about"); window.scrollTo({ top: 0, behavior: "smooth" }); e.currentTarget.blur(); }}>About</button>
-              </div>
-            </div>
+            <a href="#top" onClick={(e) => { e.preventDefault(); setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Home</a>
+            <a href="#edit" onClick={(e) => { e.preventDefault(); setPage("home"); document.getElementById("edit")?.scrollIntoView({ behavior: "smooth" }); }}>The Edit</a>
+            <a href="#shop" onClick={(e) => { e.preventDefault(); setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Shop</a>
+            <a href="#about" onClick={(e) => { e.preventDefault(); setPage("about"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Our Story</a>
+            <a href="#services" onClick={(e) => { e.preventDefault(); setPage("services"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Services</a>
           </div>
-          <label className="search-field">
-            <Search size={17} />
-            <input
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="Search the edit"
-            />
-          </label>
-          <button
-            className="wishlist-button"
-            onClick={() => setWishlistOpen(true)}
-            aria-label="Open wishlist"
-          >
-            <Heart size={20} />
-            <i>{wishlist.length}</i>
-          </button>
-          <button
-            className={`bag ${cartBump ? "bump" : ""}`}
-            onClick={() => setCartOpen(true)}
-            aria-label="Open shopping bag"
-          >
-            <ShoppingBag size={20} />
-            <i>{cart.reduce((a, x) => a + x.quantity, 0)}</i>
-          </button>
+          <button className="mobile-menu-button" onClick={() => setMobileMenuOpen((v) => !v)} aria-label="Toggle menu"><span /> <span /> <span /></button>
+          <button className="search-icon-button" onClick={() => setSearchOpen((v) => !v)} aria-label="Open search"><Search size={18} /></button>
+          <button className="wishlist-button" onClick={() => setWishlistOpen(true)} aria-label="Open wishlist"><Heart size={20} /><i>{wishlist.length}</i></button>
+          <button className={`bag ${cartBump ? "bump" : ""}`} onClick={() => setCartOpen(true)} aria-label="Open shopping bag"><ShoppingBag size={20} /><i>{cart.reduce((a, x) => a + x.quantity, 0)}</i></button>
         </nav>
       </header>
+      {mobileMenuOpen && <div className="mobile-menu-panel"><a href="#top" onClick={() => { setMobileMenuOpen(false); setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Home</a><a href="#edit" onClick={() => { setMobileMenuOpen(false); setPage("home"); setTimeout(() => document.getElementById("edit")?.scrollIntoView({ behavior: "smooth" }), 60); }}>The Edit</a><a href="#shop" onClick={() => { setMobileMenuOpen(false); setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Shop</a><a href="#about" onClick={() => { setMobileMenuOpen(false); setPage("about"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Our Story</a><a href="#services" onClick={() => { setMobileMenuOpen(false); setPage("services"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Services</a></div>}
+      {searchOpen && <form className="search-popover" onSubmit={(e) => { e.preventDefault(); setSearchOpen(false); setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}><Search size={17} /><input autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search the edit" /><button type="submit">Search</button></form>}
       {page === "admin" ? (
         <AdminDashboard back={() => { setPage("home"); window.history.replaceState(null, "", "#top"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
       ) : page === "home" ? (
@@ -858,14 +812,7 @@ export default function App() {
                 Made for <em>your</em> becoming.
               </h1>
               <p>Modern pieces, softly tailored for every version of you.</p>
-              <button
-                className="cta"
-                onClick={() =>
-                  document
-                    .getElementById("shop")
-                    .scrollIntoView({ behavior: "smooth" })
-                }
-              >
+              <button className="cta" onClick={() => { setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
                 Shop new arrivals <ArrowRight size={17} />
               </button>
               <button
@@ -878,22 +825,9 @@ export default function App() {
                 Join the prelaunch list <ArrowRight size={15} />
               </button>
             </div>
-            <div className="hero-art">
-              <b>
-                the
-                <br />
-                new
-                <br />
-                <em>edit</em>
-              </b>
-              <span>
-                Quiet confidence
-                <br />
-                since 2024
-              </span>
-            </div>
+            <div className="hero-art hero-photo" aria-label="THEXIAS PLACE hero fashion photograph" />
           </section>
-          <section className="intro reveal">
+          <section className="intro reveal" id="edit">
             <small>EXPLORE THE EDIT</small>
             <h2>
               Find your <em>everyday</em> extraordinary.
@@ -905,9 +839,8 @@ export default function App() {
                     setCat(c);
                     setSubcategory("");
                     setQ("");
-                    document
-                      .getElementById("shop")
-                      .scrollIntoView({ behavior: "smooth" });
+                    setPage("shop");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
                   key={c}
                 >
@@ -917,43 +850,6 @@ export default function App() {
                   <strong>{c}</strong>
                   <small>Thoughtfully chosen pieces</small>
                 </button>
-              ))}
-            </div>
-          </section>
-          <section className="shop" id="shop">
-            <div className="shop-head">
-              <div>
-                <small>THE COLLECTION</small>
-                <h2>{cat === "All" ? "All the good things." : cat}</h2>
-              </div>
-              <div className="filters">
-                {cats.map((c) => (
-                  <button
-                    className={cat === c ? "on" : ""}
-                    onClick={() => { setCat(c); setSubcategory(""); setQ(""); }}
-                    key={c}
-                  >
-                    {c}
-                  </button>
-                ))}
-                <select value={sort} onChange={(e) => setSort(e.target.value)}>
-                  <option value="featured">Featured</option>
-                  <option value="low">Price: low to high</option>
-                  <option value="high">Price: high to low</option>
-                </select>
-              </div>
-            </div>
-            <div className="grid">
-              {list.map((p, index) => (
-                <Card
-                  p={p}
-                  index={index}
-                  open={setSelected}
-                  add={add}
-                  wishlisted={wishlist.includes(p.id)}
-                  toggleWishlist={toggleWishlist}
-                  key={p.id}
-                />
               ))}
             </div>
           </section>
@@ -975,6 +871,8 @@ export default function App() {
             </div>
           </section>
         </main>
+      ) : page === "shop" ? (
+        <ShopPage list={list} cat={cat} setCat={setCat} setSubcategory={setSubcategory} setQ={setQ} sort={sort} setSort={setSort} setSelected={setSelected} add={add} wishlist={wishlist} toggleWishlist={toggleWishlist} />
       ) : page === "outfits" ? (
         <StyledOutfitsPage
           add={add}
