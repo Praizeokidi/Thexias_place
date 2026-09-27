@@ -243,3 +243,23 @@ nav{position:relative}nav>.logo{position:absolute;left:50%;transform:translateX(
 .primary-shop-cta:hover{background:var(--brown)}
 .utility-contact-label,.utility-contact strong{color:var(--brown)}
 .utility-contact small{color:var(--muted)}
+
+
+/* Center the wordmark within the existing top navbar row */
+.utility-bar-inner{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
+.utility-bar .logo{grid-column:2;grid-row:1;justify-self:center}
+.utility-contact-list{grid-column:1;justify-self:start}
+.utility-actions{grid-column:3;justify-self:end}
+@media(min-width:851px) and (max-width:1050px){
+  .utility-bar-inner{gap:16px;padding-right:18px;padding-left:18px}
+  .utility-contact--secondary{display:none}
+  .utility-contact{min-width:0;padding-right:0;padding-left:0}
+  .utility-actions{gap:5px}
+  .utility-outline-pill{padding-right:10px;padding-left:10px;font-size:7px}
+}
+@media(max-width:850px){
+  .utility-bar-inner{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px}
+  .utility-bar .logo{grid-column:2;grid-row:1;justify-self:center}
+  .utility-contact-list{grid-column:1;justify-self:start}
+  .utility-actions{grid-column:3;justify-self:end}
+}
