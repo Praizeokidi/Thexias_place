@@ -276,3 +276,11 @@ nav{position:relative}nav>.logo{position:absolute;left:50%;transform:translateX(
 .utility-bar .utility-outline-pill:hover{border-color:#e0b99e;background:#594139;color:#fff}
 .utility-bar .search-icon-button--round{border-color:#8b7c73;background:transparent;color:#f4ebe3}
 .utility-bar .search-icon-button--round:hover{border-color:#e0b99e;background:#594139;color:#fff}
+
+/* Restore the announcement ticker between the utility bar and main navigation. */
+.announcement{text-transform:none;letter-spacing:.05em}
+@media(prefers-reduced-motion:reduce){
+  .announcement-track{width:100%;min-width:0;animation:none!important;transform:none!important}
+  .announcement-track span{width:auto;min-width:0;flex:1 1 auto;white-space:normal}
+  .announcement-track span[aria-hidden="true"]{display:none}
+}

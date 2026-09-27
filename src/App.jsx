@@ -1008,6 +1008,12 @@ export default function App() {
           </div>
         </div>
       </header>
+      <div className="announcement" role="note" aria-label="Store announcement">
+        <div className="announcement-track">
+          <span>FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL WEBSITE ORDERS.</span>
+          <span aria-hidden="true">FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL WEBSITE ORDERS.</span>
+        </div>
+      </div>
       <nav className="primary-nav" aria-label="Primary navigation">
           <div className="primary-nav-inner">
             <button className="mobile-menu-button" type="button" onClick={() => { setMobileMenuOpen((value) => !value); setMobileCategoriesOpen(false); }} aria-label={mobileMenuOpen ? "Close menu" : "Open menu"} aria-expanded={mobileMenuOpen} aria-controls="mobile-nav-panel">
