@@ -263,3 +263,16 @@ nav{position:relative}nav>.logo{position:absolute;left:50%;transform:translateX(
   .utility-contact-list{grid-column:1;justify-self:start}
   .utility-actions{grid-column:3;justify-self:end}
 }
+
+/* Match the utility bar to the deep-brown footer palette */
+.utility-bar{background:#3d302a;border-bottom-color:#6b5b52}
+.utility-contact{color:#f4ebe3;border-left-color:#6b5b52}
+.utility-contact-label{color:#e0b99e}
+.utility-contact strong{color:#f4ebe3}
+.utility-contact small{color:#bfafa5}
+.utility-bar .logo .logo-wordmark{color:#f4ebe3}
+.utility-bar .logo .logo-place{color:#bfafa5}
+.utility-bar .utility-outline-pill{border-color:#8b7c73;background:transparent;color:#f4ebe3}
+.utility-bar .utility-outline-pill:hover{border-color:#e0b99e;background:#594139;color:#fff}
+.utility-bar .search-icon-button--round{border-color:#8b7c73;background:transparent;color:#f4ebe3}
+.utility-bar .search-icon-button--round:hover{border-color:#e0b99e;background:#594139;color:#fff}
