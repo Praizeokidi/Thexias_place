@@ -174,6 +174,7 @@ nav{position:relative}nav>.logo{position:absolute;left:50%;transform:translateX(
 .search-popover{top:140px;right:clamp(14px,4vw,40px);z-index:60;border-radius:4px}
 #edit,#shop,#about,#services{scroll-margin-top:92px}
 @media(max-width:1100px){.utility-bar-inner{grid-template-columns:max-content minmax(230px,1fr) max-content;gap:18px;padding-right:20px;padding-left:20px}.utility-contact{min-width:132px;padding-right:14px;padding-left:14px}.primary-nav{padding-right:16px;padding-left:16px}.primary-nav-inner{gap:14px;padding-right:17px;padding-left:17px}.primary-links{gap:clamp(12px,1.6vw,20px)}.primary-nav-link{font-size:8px}.primary-shop-cta{padding-right:13px;padding-left:13px}}
+@media(max-width:1100px){.primary-nav-inner{width:100%}}
 @media(max-width:850px){
   .utility-bar-inner{min-height:62px;padding:8px 16px;grid-template-columns:max-content minmax(0,1fr) max-content;gap:11px}
   .utility-contact-list{display:block;justify-self:end}
