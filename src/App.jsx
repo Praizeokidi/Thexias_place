@@ -1078,7 +1078,6 @@ export default function App() {
               <button className="primary-nav-link" type="button" onClick={openJournalNotice}>Blog</button>
             </div>
             <div className="primary-nav-actions">
-              <button className="search-icon-button search-icon-button--nav" type="button" onClick={() => setSearchOpen((value) => !value)} aria-label={searchOpen ? "Close search" : "Open search"} aria-expanded={searchOpen} aria-controls="site-search"><Search size={17} /></button>
               <button className="wishlist-button" type="button" onClick={() => setWishlistOpen(true)} aria-label="Open wishlist"><Heart size={19} /><i>{wishlist.length}</i></button>
               <button className={`bag ${cartBump ? "bump" : ""}`} type="button" onClick={() => setCartOpen(true)} aria-label="Open shopping bag"><ShoppingBag size={19} /><i>{cart.reduce((a, x) => a + x.quantity, 0)}</i></button>
               <button className="primary-shop-cta" type="button" onClick={() => openShop("All")}>Shop Now <ArrowRight size={15} aria-hidden="true" /></button>
