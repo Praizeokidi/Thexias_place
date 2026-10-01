@@ -1341,6 +1341,7 @@ export default function App() {
             <span />
             <span />
             <span />
+            <small>{mobileMenuOpen ? "Close" : "Menu"}</small>
           </button>
           <div className="primary-links">
             <a
@@ -1476,11 +1477,14 @@ export default function App() {
           </div>
           <div className="primary-nav-actions">
             <button
-              className="primary-shop-cta"
+              className="search-icon-button search-icon-button--nav"
               type="button"
-              onClick={() => openShop("All")}
+              onClick={() => setSearchOpen((value) => !value)}
+              aria-label={searchOpen ? "Close search" : "Open search"}
+              aria-expanded={searchOpen}
+              aria-controls="site-search"
             >
-              Shop Now <ArrowRight size={15} aria-hidden="true" />
+              <Search size={17} />
             </button>
             <button
               className="wishlist-button"
@@ -1499,6 +1503,13 @@ export default function App() {
             >
               <ShoppingBag size={19} />
               <i>{cart.reduce((a, x) => a + x.quantity, 0)}</i>
+            </button>
+            <button
+              className="primary-shop-cta"
+              type="button"
+              onClick={() => openShop("All")}
+            >
+              Shop Now <ArrowRight size={15} aria-hidden="true" />
             </button>
           </div>
         </div>
