@@ -96,13 +96,40 @@ groups.Gowns.push(
 );
 const subcategoryMap = {
   Denim: {
-    "High-Waist Skinny Denim": "Pants", "Classic Mom Denim": "Pants", "Distressed Straight-Leg Denim": "Pants", "Flare Bootcut Denim": "Pants", "Baggy Wide-Leg Denim": "Pants", "Ripped Boyfriend Denim": "Pants", "Bell-Bottom Denim": "Pants", "Cargo Pocket Denim": "Pants", "Light Wash Straight Denim": "Pants", "Black Stretch Skinny Denim": "Pants",
+    "High-Waist Skinny Denim": "Pants",
+    "Classic Mom Denim": "Pants",
+    "Distressed Straight-Leg Denim": "Pants",
+    "Flare Bootcut Denim": "Pants",
+    "Baggy Wide-Leg Denim": "Pants",
+    "Ripped Boyfriend Denim": "Pants",
+    "Bell-Bottom Denim": "Pants",
+    "Cargo Pocket Denim": "Pants",
+    "Light Wash Straight Denim": "Pants",
+    "Black Stretch Skinny Denim": "Pants",
   },
   Shoes: {
-    "Strappy Stiletto Heels": "Heel", "Pointed-Toe Ankle Boots": "Heel", "Block Heel Sandals": "Heel", "Slip-On Mule Flats": "Heel", "Knee-High Suede Boots": "Heel", "Espadrille Wedge Sandals": "Heel", "Square-Toe Heeled Loafers": "Heel", "Strappy Gladiator Sandals": "Heel", "Chunky Platform Sneakers": "Sneakers", "Classic White Sneakers": "Sneakers",
+    "Strappy Stiletto Heels": "Heel",
+    "Pointed-Toe Ankle Boots": "Heel",
+    "Block Heel Sandals": "Heel",
+    "Slip-On Mule Flats": "Heel",
+    "Knee-High Suede Boots": "Heel",
+    "Espadrille Wedge Sandals": "Heel",
+    "Square-Toe Heeled Loafers": "Heel",
+    "Strappy Gladiator Sandals": "Heel",
+    "Chunky Platform Sneakers": "Sneakers",
+    "Classic White Sneakers": "Sneakers",
   },
   Gowns: {
-    "Satin Evening Gown": "Dinner", "Floral Chiffon Maxi Dress": "Casual", "Bodycon Cocktail Gown": "Dinner", "Off-Shoulder Ball Gown": "Curated", "Sequin Party Gown": "Dinner", "Wrap Maxi Dress": "Casual", "Corset-Style Prom Gown": "Curated", "High-Slit Evening Dress": "Dinner", "Lace Overlay Gown": "Curated", "Flowy Kaftan Maxi Gown": "Casual",
+    "Satin Evening Gown": "Dinner",
+    "Floral Chiffon Maxi Dress": "Casual",
+    "Bodycon Cocktail Gown": "Dinner",
+    "Off-Shoulder Ball Gown": "Curated",
+    "Sequin Party Gown": "Dinner",
+    "Wrap Maxi Dress": "Casual",
+    "Corset-Style Prom Gown": "Curated",
+    "High-Slit Evening Dress": "Dinner",
+    "Lace Overlay Gown": "Curated",
+    "Flowy Kaftan Maxi Gown": "Casual",
   },
 };
 const categoryOrder = ["Denim", "Shoes", "Tops", "Gowns", "Lingerie"],
@@ -142,10 +169,7 @@ const outfits = [
     name: "Golden Hour Glam",
     description:
       "Satin softness and warm accessories for evenings that linger beautifully.",
-    items: [
-      "Satin Evening Gown",
-      "Strappy Stiletto Heels",
-    ],
+    items: ["Satin Evening Gown", "Strappy Stiletto Heels"],
     price: 60000,
   },
   {
@@ -190,10 +214,7 @@ const outfits = [
     name: "Evening Elegance",
     description:
       "A complete occasion look with graceful movement and a little drama.",
-    items: [
-      "Floral Chiffon Maxi Dress",
-      "Square-Toe Heeled Loafers",
-    ],
+    items: ["Floral Chiffon Maxi Dress", "Square-Toe Heeled Loafers"],
     price: 65000,
   },
 ];
@@ -255,11 +276,31 @@ const homeEditCards = [
   },
 ];
 const travelEditOptions = [
-  { title: "AIRPORT EDIT", description: "Elevated travel-day looks.", Icon: Plane },
-  { title: "RESORT EDIT", description: "Vacation and beachwear.", Icon: Palmtree },
-  { title: "DINNER EDIT", description: "Evenings and date-night looks.", Icon: Utensils },
-  { title: "CITY EDIT", description: "Sightseeing to day-to-night.", Icon: Building2 },
-  { title: "COMPLETE WARDROBE", description: "A full itinerary-based wardrobe.", Icon: BriefcaseBusiness },
+  {
+    title: "AIRPORT EDIT",
+    description: "Elevated travel-day looks.",
+    Icon: Plane,
+  },
+  {
+    title: "RESORT EDIT",
+    description: "Vacation and beachwear.",
+    Icon: Palmtree,
+  },
+  {
+    title: "DINNER EDIT",
+    description: "Evenings and date-night looks.",
+    Icon: Utensils,
+  },
+  {
+    title: "CITY EDIT",
+    description: "Sightseeing to day-to-night.",
+    Icon: Building2,
+  },
+  {
+    title: "COMPLETE WARDROBE",
+    description: "A full itinerary-based wardrobe.",
+    Icon: BriefcaseBusiness,
+  },
 ];
 const legacyDenimWords = [
   String.fromCharCode(74, 101, 97, 110, 115),
@@ -386,7 +427,18 @@ function PersonalShopperPage({ back }) {
       <div className="luxury-showcase reveal is-visible">
         <small>THE LUXURY SHORTLIST</small>
         <div className="luxury-showcase-grid">
-          {["Designer Handbags", "Italian Leather Heels", "Signature Silk", "Luxury Sneakers"].map((item, index) => <div className="luxury-card" key={item}><span>0{index + 1}</span><b>{item}</b><i>{index % 2 ? "THEXIAS" : "PRIVATE EDIT"}</i></div>)}
+          {[
+            "Designer Handbags",
+            "Italian Leather Heels",
+            "Signature Silk",
+            "Luxury Sneakers",
+          ].map((item, index) => (
+            <div className="luxury-card" key={item}>
+              <span>0{index + 1}</span>
+              <b>{item}</b>
+              <i>{index % 2 ? "THEXIAS" : "PRIVATE EDIT"}</i>
+            </div>
+          ))}
         </div>
       </div>
       <div className="service-hero reveal is-visible">
@@ -476,12 +528,109 @@ function PersonalShopperPage({ back }) {
 }
 
 function AboutPage({ back }) {
-  return <section className="service-page about-page"><div className="service-hero reveal is-visible"><small>THE HOUSE</small><h1>Clothes for every version of <em>becoming.</em></h1><p>THEXIAS_PLACE is an intentional wardrobe for the woman in motion — a considered edit of pieces that meet your real life with ease, confidence and a little delight.</p><button className="prelaunch-link" onClick={back}>Back to the collection <ArrowRight size={15} /></button></div><div className="about-story"><div><b>01</b><h2>Less, but more like you.</h2><p>We believe style is not about filling a wardrobe. It is about finding the pieces that return your gaze in the mirror and feel unmistakably yours.</p></div><div><b>02</b><h2>Thoughtfully chosen.</h2><p>From everyday denim to occasion dressing, every edit is shaped around softness, movement and the quiet confidence of getting dressed well.</p></div><div><b>03</b><h2>Always becoming.</h2><p>Our work follows your life as it changes — with styling, sourcing and wardrobe guidance that makes room for who you are next.</p></div></div></section>;
+  return (
+    <section className="service-page about-page">
+      <div className="service-hero reveal is-visible">
+        <small>THE HOUSE</small>
+        <h1>
+          Clothes for every version of <em>becoming.</em>
+        </h1>
+        <p>
+          THEXIAS_PLACE is an intentional wardrobe for the woman in motion — a
+          considered edit of pieces that meet your real life with ease,
+          confidence and a little delight.
+        </p>
+        <button className="prelaunch-link" onClick={back}>
+          Back to the collection <ArrowRight size={15} />
+        </button>
+      </div>
+      <div className="about-story">
+        <div>
+          <b>01</b>
+          <h2>Less, but more like you.</h2>
+          <p>
+            We believe style is not about filling a wardrobe. It is about
+            finding the pieces that return your gaze in the mirror and feel
+            unmistakably yours.
+          </p>
+        </div>
+        <div>
+          <b>02</b>
+          <h2>Thoughtfully chosen.</h2>
+          <p>
+            From everyday denim to occasion dressing, every edit is shaped
+            around softness, movement and the quiet confidence of getting
+            dressed well.
+          </p>
+        </div>
+        <div>
+          <b>03</b>
+          <h2>Always becoming.</h2>
+          <p>
+            Our work follows your life as it changes — with styling, sourcing
+            and wardrobe guidance that makes room for who you are next.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function ServicesPage({ back, openShopper }) {
-  const services = [{ number: "01", title: "Personal styling", text: "A considered styling session to help you understand your shape, rhythm and signature point of view." }, { number: "02", title: "Full outfit shopping", text: "A complete look sourced and assembled for the occasion, from first idea to final finishing detail." }, { number: "03", title: "Wardrobe change", text: "A fresh direction for a new season of life — edit what stays, discover what is missing, and make dressing easy again." }, { number: "04", title: "Wardrobe curation list", text: "A personalized list of pieces to build toward, so every future purchase earns its place." }];
-  return <section className="service-page services-page"><div className="service-hero reveal is-visible"><small>THE SERVICES</small><h1>More than clothes. A clearer way to <em>dress.</em></h1><p>Private, practical and personal — choose the kind of support your wardrobe needs next.</p><button className="prelaunch-link" onClick={back}>Back to the collection <ArrowRight size={15} /></button></div><div className="service-list">{services.map((service) => <article key={service.number}><b>{service.number}</b><div><h2>{service.title}</h2><p>{service.text}</p></div><ArrowRight size={20} /></article>)}</div><button className="cta services-cta" onClick={openShopper}>Request a private consultation <ArrowRight size={16} /></button></section>;
+  const services = [
+    {
+      number: "01",
+      title: "Personal styling",
+      text: "A considered styling session to help you understand your shape, rhythm and signature point of view.",
+    },
+    {
+      number: "02",
+      title: "Full outfit shopping",
+      text: "A complete look sourced and assembled for the occasion, from first idea to final finishing detail.",
+    },
+    {
+      number: "03",
+      title: "Wardrobe change",
+      text: "A fresh direction for a new season of life — edit what stays, discover what is missing, and make dressing easy again.",
+    },
+    {
+      number: "04",
+      title: "Wardrobe curation list",
+      text: "A personalized list of pieces to build toward, so every future purchase earns its place.",
+    },
+  ];
+  return (
+    <section className="service-page services-page">
+      <div className="service-hero reveal is-visible">
+        <small>THE SERVICES</small>
+        <h1>
+          More than clothes. A clearer way to <em>dress.</em>
+        </h1>
+        <p>
+          Private, practical and personal — choose the kind of support your
+          wardrobe needs next.
+        </p>
+        <button className="prelaunch-link" onClick={back}>
+          Back to the collection <ArrowRight size={15} />
+        </button>
+      </div>
+      <div className="service-list">
+        {services.map((service) => (
+          <article key={service.number}>
+            <b>{service.number}</b>
+            <div>
+              <h2>{service.title}</h2>
+              <p>{service.text}</p>
+            </div>
+            <ArrowRight size={20} />
+          </article>
+        ))}
+      </div>
+      <button className="cta services-cta" onClick={openShopper}>
+        Request a private consultation <ArrowRight size={16} />
+      </button>
+    </section>
+  );
 }
 function useReveal(key) {
   useEffect(() => {
@@ -502,7 +651,12 @@ function useReveal(key) {
 }
 function Logo({ onHome }) {
   return (
-    <a className="logo" href="#top" onClick={onHome} aria-label="THEXIAS PLACE home">
+    <a
+      className="logo"
+      href="#top"
+      onClick={onHome}
+      aria-label="THEXIAS PLACE home"
+    >
       <strong className="logo-wordmark">THEXIAS</strong>
       <small className="logo-place">PLACE</small>
     </a>
@@ -737,8 +891,67 @@ function WishlistDrawer({ items, close, remove, add }) {
   );
 }
 
-function ShopPage({ list, cat, setCat, setSubcategory, setQ, sort, setSort, setSelected, add, wishlist, toggleWishlist }) {
-  return <main className="standalone-shop-page"><section className="shop" id="shop"><div className="shop-head"><div><small>THE COLLECTION</small><h1>Shop the edit.</h1><p className="shop-intro">Considered pieces for every version of you.</p></div><div className="filters">{cats.map((c) => <button className={cat === c ? "on" : ""} onClick={() => { setCat(c); setSubcategory(""); setQ(""); }} key={c}>{c}</button>)}<select value={sort} onChange={(e) => setSort(e.target.value)}><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div></div><div className="grid">{list.map((p, index) => <Card p={p} index={index} open={setSelected} add={add} wishlisted={wishlist.includes(p.id)} toggleWishlist={toggleWishlist} key={p.id} />)}</div></section></main>;
+function ShopPage({
+  list,
+  cat,
+  setCat,
+  setSubcategory,
+  setQ,
+  sort,
+  setSort,
+  setSelected,
+  add,
+  wishlist,
+  toggleWishlist,
+}) {
+  return (
+    <main className="standalone-shop-page">
+      <section className="shop" id="shop">
+        <div className="shop-head">
+          <div>
+            <small>THE COLLECTION</small>
+            <h1>Shop the edit.</h1>
+            <p className="shop-intro">
+              Considered pieces for every version of you.
+            </p>
+          </div>
+          <div className="filters">
+            {cats.map((c) => (
+              <button
+                className={cat === c ? "on" : ""}
+                onClick={() => {
+                  setCat(c);
+                  setSubcategory("");
+                  setQ("");
+                }}
+                key={c}
+              >
+                {c}
+              </button>
+            ))}
+            <select value={sort} onChange={(e) => setSort(e.target.value)}>
+              <option value="featured">Featured</option>
+              <option value="low">Price: low to high</option>
+              <option value="high">Price: high to low</option>
+            </select>
+          </div>
+        </div>
+        <div className="grid">
+          {list.map((p, index) => (
+            <Card
+              p={p}
+              index={index}
+              open={setSelected}
+              add={add}
+              wishlisted={wishlist.includes(p.id)}
+              toggleWishlist={toggleWishlist}
+              key={p.id}
+            />
+          ))}
+        </div>
+      </section>
+    </main>
+  );
 }
 
 export default function App() {
@@ -753,7 +966,9 @@ export default function App() {
       readStoredList("thexias-wishlist"),
     ),
     [selected, setSelected] = useState(null),
-    [page, setPage] = useState(() => window.location.hash === "#admin" ? "admin" : "home"),
+    [page, setPage] = useState(() =>
+      window.location.hash === "#admin" ? "admin" : "home",
+    ),
     [cartOpen, setCartOpen] = useState(false),
     [wishlistOpen, setWishlistOpen] = useState(false),
     [showTop, setShowTop] = useState(false),
@@ -803,7 +1018,12 @@ export default function App() {
       const nav = document.querySelector(".primary-nav");
       if (!nav) return;
       const navBottom = nav.getBoundingClientRect().bottom;
-      setSearchTop(Math.max(12, Math.min(Math.round(navBottom + 10), window.innerHeight - 78)));
+      setSearchTop(
+        Math.max(
+          12,
+          Math.min(Math.round(navBottom + 10), window.innerHeight - 78),
+        ),
+      );
     };
     updateSearchPosition();
     window.addEventListener("scroll", updateSearchPosition, { passive: true });
@@ -858,16 +1078,26 @@ export default function App() {
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  let list = useMemo(
-    () => {
-      const terms = q.toLowerCase().trim().split(/\s+/).filter(Boolean);
-      return products.filter((p) => {
-        const searchable = [p.name, p.category, p.subcategory, p.id, p.image, ...(p.sizes || [])].join(" ").toLowerCase();
-        return (cat === "All" || p.category === cat) && (!subcategory || p.subcategory === subcategory) && terms.every((term) => searchable.includes(term));
-      });
-    },
-    [cat, subcategory, q],
-  );
+  let list = useMemo(() => {
+    const terms = q.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    return products.filter((p) => {
+      const searchable = [
+        p.name,
+        p.category,
+        p.subcategory,
+        p.id,
+        p.image,
+        ...(p.sizes || []),
+      ]
+        .join(" ")
+        .toLowerCase();
+      return (
+        (cat === "All" || p.category === cat) &&
+        (!subcategory || p.subcategory === subcategory) &&
+        terms.every((term) => searchable.includes(term))
+      );
+    });
+  }, [cat, subcategory, q]);
   if (sort === "low") list = [...list].sort((a, b) => a.price - b.price);
   if (sort === "high") list = [...list].sort((a, b) => b.price - a.price);
   useReveal(`${page}-${cat}-${subcategory}-${q}-${sort}`);
@@ -934,18 +1164,44 @@ export default function App() {
           : x.id === id
             ? [{ ...x, quantity: x.quantity + d }]
             : [x],
-        ),
-      );
+      ),
+    );
   const goToCollection = () => {
     setPage("home");
-    window.setTimeout(() => document.getElementById("shop")?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
+    window.setTimeout(
+      () =>
+        document
+          .getElementById("shop")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" }),
+      60,
+    );
   };
   const navCategories = [
-    { label: "Denim", category: "Denim", description: "Everyday denim essentials" },
-    { label: "Tops", category: "Tops", description: "Easy layers and statement pieces" },
-    { label: "Gowns", category: "Gowns", description: "Occasion dressing, thoughtfully chosen" },
-    { label: "Bags", category: "Bags", description: "Considered finishing touches" },
-    { label: "Shoes", category: "Shoes", description: "From everyday to occasion" },
+    {
+      label: "Denim",
+      category: "Denim",
+      description: "Everyday denim essentials",
+    },
+    {
+      label: "Tops",
+      category: "Tops",
+      description: "Easy layers and statement pieces",
+    },
+    {
+      label: "Gowns",
+      category: "Gowns",
+      description: "Occasion dressing, thoughtfully chosen",
+    },
+    {
+      label: "Bags",
+      category: "Bags",
+      description: "Considered finishing touches",
+    },
+    {
+      label: "Shoes",
+      category: "Shoes",
+      description: "From everyday to occasion",
+    },
   ];
   const whatsappUrl = "https://wa.me/2347048969953";
   const contactUrl = `${whatsappUrl}?text=${encodeURIComponent("Hi THEXIAS_PLACE, I have a question about the edit.")}`;
@@ -963,7 +1219,13 @@ export default function App() {
   const goHomeSection = (id) => {
     closeNavigation();
     setPage("home");
-    window.setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
+    window.setTimeout(
+      () =>
+        document
+          .getElementById(id)
+          ?.scrollIntoView({ behavior: "smooth", block: "start" }),
+      60,
+    );
   };
   const openShop = (category = "All") => {
     closeNavigation();
@@ -993,23 +1255,62 @@ export default function App() {
       <header className="site-header">
         <div className="utility-bar">
           <div className="utility-bar-inner">
-            <Logo onHome={(e) => { e.preventDefault(); goHomeTop(); }} />
-            <div className="utility-contact-list" aria-label="THEXIAS_PLACE contact details">
-              <a className="utility-contact" href={contactUrl} target="_blank" rel="noopener noreferrer">
+            <Logo
+              onHome={(e) => {
+                e.preventDefault();
+                goHomeTop();
+              }}
+            />
+            <div
+              className="utility-contact-list"
+              aria-label="THEXIAS_PLACE contact details"
+            >
+              <a
+                className="utility-contact"
+                href={contactUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span className="utility-contact-label">WhatsApp</span>
                 <strong>+234 704 896 9953</strong>
                 <small>Chat with us</small>
               </a>
-              <a className="utility-contact utility-contact--secondary" href={styleSessionUrl} target="_blank" rel="noopener noreferrer">
+              <a
+                className="utility-contact utility-contact--secondary"
+                href={styleSessionUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span className="utility-contact-label">Personal Shopper</span>
                 <strong>Sourcing &amp; styling</strong>
                 <small>Enquire on WhatsApp</small>
               </a>
             </div>
             <div className="utility-actions">
-              <a className="utility-outline-pill" href={contactUrl} target="_blank" rel="noopener noreferrer">Contact</a>
-              <a className="utility-outline-pill" href={styleSessionUrl} target="_blank" rel="noopener noreferrer">Book a Style Session</a>
-              <button className="search-icon-button search-icon-button--round" type="button" onClick={() => setSearchOpen((value) => !value)} aria-label={searchOpen ? "Close search" : "Open search"} aria-expanded={searchOpen} aria-controls="site-search">
+              <a
+                className="utility-outline-pill"
+                href={contactUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Contact
+              </a>
+              <a
+                className="utility-outline-pill"
+                href={styleSessionUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Book a Style Session
+              </a>
+              <button
+                className="search-icon-button search-icon-button--round"
+                type="button"
+                onClick={() => setSearchOpen((value) => !value)}
+                aria-label={searchOpen ? "Close search" : "Open search"}
+                aria-expanded={searchOpen}
+                aria-controls="site-search"
+              >
                 <Search size={16} />
               </button>
             </div>
@@ -1018,110 +1319,334 @@ export default function App() {
       </header>
       <div className="announcement" role="note" aria-label="Store announcement">
         <div className="announcement-track">
-          <span>FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL WEBSITE ORDERS.</span>
-          <span aria-hidden="true">FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL WEBSITE ORDERS.</span>
+          <span aria-hidden="true">
+            FREE DELIVERY over ₦100,000 · New pieces, twice a week · 10% OFF ALL
+            WEBSITE ORDERS.
+          </span>
         </div>
       </div>
       <nav className="primary-nav" aria-label="Primary navigation">
-          <div className="primary-nav-inner">
-            <button className="mobile-menu-button" type="button" onClick={() => { setMobileMenuOpen((value) => !value); setMobileCategoriesOpen(false); }} aria-label={mobileMenuOpen ? "Close menu" : "Open menu"} aria-expanded={mobileMenuOpen} aria-controls="mobile-nav-panel">
-              <span /><span /><span /><small>{mobileMenuOpen ? "Close" : "Menu"}</small>
-            </button>
-            <div className="primary-links">
-              <a className="primary-nav-link" href="#top" onClick={(e) => { e.preventDefault(); goHomeTop(); }}>Home</a>
-              <div
-                className={`primary-nav-item primary-nav-item--dropdown${categoriesOpen ? " is-open" : ""}`}
-                ref={categoriesMenuRef}
-                onMouseEnter={() => setCategoriesOpen(true)}
-                onMouseLeave={() => { if (!categoriesMenuRef.current?.contains(document.activeElement)) setCategoriesOpen(false); }}
-                onFocusCapture={() => setCategoriesOpen(true)}
-                onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setCategoriesOpen(false); }}
+        <div className="primary-nav-inner">
+          <button
+            className="mobile-menu-button"
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen((value) => !value);
+              setMobileCategoriesOpen(false);
+            }}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-panel"
+          >
+            <span />
+            <span />
+            <span />
+            <small>{mobileMenuOpen ? "Close" : "Menu"}</small>
+          </button>
+          <div className="primary-links">
+            <a
+              className="primary-nav-link"
+              href="#top"
+              onClick={(e) => {
+                e.preventDefault();
+                goHomeTop();
+              }}
+            >
+              Home
+            </a>
+            <div
+              className={`primary-nav-item primary-nav-item--dropdown${categoriesOpen ? " is-open" : ""}`}
+              ref={categoriesMenuRef}
+              onMouseEnter={() => setCategoriesOpen(true)}
+              onMouseLeave={() => {
+                if (
+                  !categoriesMenuRef.current?.contains(document.activeElement)
+                )
+                  setCategoriesOpen(false);
+              }}
+              onFocusCapture={() => setCategoriesOpen(true)}
+              onBlur={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget))
+                  setCategoriesOpen(false);
+              }}
+            >
+              <button
+                ref={categoriesTriggerRef}
+                className="primary-nav-link primary-nav-link--trigger"
+                type="button"
+                onClick={() => setCategoriesOpen(true)}
+                aria-haspopup="true"
+                aria-expanded={categoriesOpen}
+                aria-controls="desktop-category-menu"
               >
-                <button ref={categoriesTriggerRef} className="primary-nav-link primary-nav-link--trigger" type="button" onClick={() => setCategoriesOpen(true)} aria-haspopup="true" aria-expanded={categoriesOpen} aria-controls="desktop-category-menu">
-                  Categories <ChevronDown size={14} aria-hidden="true" />
-                </button>
-                <div className="mega-menu" id="desktop-category-menu" aria-label="Shop categories" aria-hidden={!categoriesOpen}>
-                  <div className="mega-menu-columns">
-                    <div className="mega-menu-column">
-                      <span className="mega-menu-eyebrow">Shop by category</span>
-                      {navCategories.slice(0, 3).map((item) => (
-                        <button className="mega-menu-item" type="button" key={item.category} onClick={() => openShop(item.category)}>
-                          <span><strong>{item.label}</strong><small>{item.description}</small></span><ArrowRight size={15} aria-hidden="true" />
-                        </button>
-                      ))}
-                    </div>
-                    <div className="mega-menu-column">
-                      <span className="mega-menu-eyebrow">The finishing touches</span>
-                      {navCategories.slice(3).map((item) => (
-                        <button className="mega-menu-item" type="button" key={item.category} onClick={() => openShop(item.category)}>
-                          <span><strong>{item.label}</strong><small>{item.description}</small></span><ArrowRight size={15} aria-hidden="true" />
-                        </button>
-                      ))}
-                      <div className="mega-menu-featured">
-                        <button type="button" onClick={openOutfits}>
-                          <span><strong>Styled Outfits</strong><small>Complete looks, thoughtfully paired</small></span><ArrowRight size={15} aria-hidden="true" />
-                        </button>
-                        <button type="button" onClick={openPersonalShopper}>
-                          <span><strong>Personal Shopper</strong><small>Personal sourcing, guided by your brief</small></span><ArrowRight size={15} aria-hidden="true" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mega-menu-footer">
-                    <button type="button" onClick={() => openShop("All")}>View all categories <ArrowRight size={14} aria-hidden="true" /></button>
-                    <button type="button" onClick={() => goHomeSection("edit")}>Shop the Full Edit <ArrowRight size={14} aria-hidden="true" /></button>
-                  </div>
-                </div>
-              </div>
-              <button className="primary-nav-link" type="button" onClick={openOutfits}>Styled Outfits</button>
-              <button className="primary-nav-link" type="button" onClick={openPersonalShopper}>Personal Shopper</button>
-              <button className="primary-nav-link" type="button" onClick={openJournalNotice}>Blog</button>
-            </div>
-            <div className="primary-nav-actions">
-              <button className="search-icon-button search-icon-button--nav" type="button" onClick={() => setSearchOpen((value) => !value)} aria-label={searchOpen ? "Close search" : "Open search"} aria-expanded={searchOpen} aria-controls="site-search"><Search size={17} /></button>
-              <button className="wishlist-button" type="button" onClick={() => setWishlistOpen(true)} aria-label="Open wishlist"><Heart size={19} /><i>{wishlist.length}</i></button>
-              <button className={`bag ${cartBump ? "bump" : ""}`} type="button" onClick={() => setCartOpen(true)} aria-label="Open shopping bag"><ShoppingBag size={19} /><i>{cart.reduce((a, x) => a + x.quantity, 0)}</i></button>
-              <button className="primary-shop-cta" type="button" onClick={() => openShop("All")}>Shop Now <ArrowRight size={15} aria-hidden="true" /></button>
-            </div>
-          </div>
-          {mobileMenuOpen && (
-            <div className="mobile-nav-panel" id="mobile-nav-panel" aria-label="Mobile navigation">
-              <button className="mobile-nav-link" type="button" onClick={goHomeTop}>Home</button>
-              <button className="mobile-nav-link mobile-nav-accordion" type="button" onClick={() => setMobileCategoriesOpen((value) => !value)} aria-expanded={mobileCategoriesOpen} aria-controls="mobile-category-list">
-                <span>Categories</span><ChevronDown size={15} aria-hidden="true" />
+                Categories <ChevronDown size={14} aria-hidden="true" />
               </button>
-              {mobileCategoriesOpen && (
-                <div className="mobile-category-panel" id="mobile-category-list">
-                  <div className="mobile-category-grid">
-                    {navCategories.map((item) => (
-                      <button className="mobile-category-item" type="button" key={item.category} onClick={() => openShop(item.category)}>
-                        <strong>{item.label}</strong><small>{item.description}</small>
+              <div
+                className="mega-menu"
+                id="desktop-category-menu"
+                aria-label="Shop categories"
+                aria-hidden={!categoriesOpen}
+              >
+                <div className="mega-menu-columns">
+                  <div className="mega-menu-column">
+                    <span className="mega-menu-eyebrow">Shop by category</span>
+                    {navCategories.slice(0, 3).map((item) => (
+                      <button
+                        className="mega-menu-item"
+                        type="button"
+                        key={item.category}
+                        onClick={() => openShop(item.category)}
+                      >
+                        <span>
+                          <strong>{item.label}</strong>
+                          <small>{item.description}</small>
+                        </span>
+                        <ArrowRight size={15} aria-hidden="true" />
                       </button>
                     ))}
                   </div>
-                  <div className="mobile-featured-links">
-                    <button type="button" onClick={openOutfits}><strong>Styled Outfits</strong><small>Complete looks, thoughtfully paired</small></button>
-                    <button type="button" onClick={openPersonalShopper}><strong>Personal Shopper</strong><small>Personal sourcing, guided by your brief</small></button>
-                  </div>
-                  <div className="mobile-menu-footer">
-                    <button type="button" onClick={() => openShop("All")}>View all categories <ArrowRight size={14} aria-hidden="true" /></button>
-                    <button type="button" onClick={() => goHomeSection("edit")}>Shop the Full Edit <ArrowRight size={14} aria-hidden="true" /></button>
+                  <div className="mega-menu-column">
+                    <span className="mega-menu-eyebrow">
+                      The finishing touches
+                    </span>
+                    {navCategories.slice(3).map((item) => (
+                      <button
+                        className="mega-menu-item"
+                        type="button"
+                        key={item.category}
+                        onClick={() => openShop(item.category)}
+                      >
+                        <span>
+                          <strong>{item.label}</strong>
+                          <small>{item.description}</small>
+                        </span>
+                        <ArrowRight size={15} aria-hidden="true" />
+                      </button>
+                    ))}
+                    <div className="mega-menu-featured">
+                      <button type="button" onClick={openOutfits}>
+                        <span>
+                          <strong>Styled Outfits</strong>
+                          <small>Complete looks, thoughtfully paired</small>
+                        </span>
+                        <ArrowRight size={15} aria-hidden="true" />
+                      </button>
+                      <button type="button" onClick={openPersonalShopper}>
+                        <span>
+                          <strong>Personal Shopper</strong>
+                          <small>Personal sourcing, guided by your brief</small>
+                        </span>
+                        <ArrowRight size={15} aria-hidden="true" />
+                      </button>
+                    </div>
                   </div>
                 </div>
-              )}
-              <button className="mobile-nav-link" type="button" onClick={openOutfits}>Styled Outfits</button>
-              <button className="mobile-nav-link" type="button" onClick={openPersonalShopper}>Personal Shopper</button>
-              <button className="mobile-nav-link" type="button" onClick={openJournalNotice}>Blog</button>
-              <div className="mobile-nav-contact">
-                <a className="utility-outline-pill" href={contactUrl} target="_blank" rel="noopener noreferrer">Contact</a>
-                <a className="utility-outline-pill" href={styleSessionUrl} target="_blank" rel="noopener noreferrer">Book a Style Session</a>
+                <div className="mega-menu-footer">
+                  <button type="button" onClick={() => openShop("All")}>
+                    View all categories{" "}
+                    <ArrowRight size={14} aria-hidden="true" />
+                  </button>
+                  <button type="button" onClick={() => goHomeSection("edit")}>
+                    Shop the Full Edit{" "}
+                    <ArrowRight size={14} aria-hidden="true" />
+                  </button>
+                </div>
               </div>
             </div>
-          )}
+            <button
+              className="primary-nav-link"
+              type="button"
+              onClick={openOutfits}
+            >
+              Styled Outfits
+            </button>
+            <button
+              className="primary-nav-link"
+              type="button"
+              onClick={openPersonalShopper}
+            >
+              Personal Shopper
+            </button>
+            <button
+              className="primary-nav-link"
+              type="button"
+              onClick={openJournalNotice}
+            >
+              Blog
+            </button>
+          </div>
+          <div className="primary-nav-actions">
+            <button
+              className="search-icon-button search-icon-button--nav"
+              type="button"
+              onClick={() => setSearchOpen((value) => !value)}
+              aria-label={searchOpen ? "Close search" : "Open search"}
+              aria-expanded={searchOpen}
+              aria-controls="site-search"
+            >
+              <Search size={17} />
+            </button>
+            <button
+              className="wishlist-button"
+              type="button"
+              onClick={() => setWishlistOpen(true)}
+              aria-label="Open wishlist"
+            >
+              <Heart size={19} />
+              <i>{wishlist.length}</i>
+            </button>
+            <button
+              className={`bag ${cartBump ? "bump" : ""}`}
+              type="button"
+              onClick={() => setCartOpen(true)}
+              aria-label="Open shopping bag"
+            >
+              <ShoppingBag size={19} />
+              <i>{cart.reduce((a, x) => a + x.quantity, 0)}</i>
+            </button>
+            <button
+              className="primary-shop-cta"
+              type="button"
+              onClick={() => openShop("All")}
+            >
+              Shop Now <ArrowRight size={15} aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+        {mobileMenuOpen && (
+          <div
+            className="mobile-nav-panel"
+            id="mobile-nav-panel"
+            aria-label="Mobile navigation"
+          >
+            <button
+              className="mobile-nav-link"
+              type="button"
+              onClick={goHomeTop}
+            >
+              Home
+            </button>
+            <button
+              className="mobile-nav-link mobile-nav-accordion"
+              type="button"
+              onClick={() => setMobileCategoriesOpen((value) => !value)}
+              aria-expanded={mobileCategoriesOpen}
+              aria-controls="mobile-category-list"
+            >
+              <span>Categories</span>
+              <ChevronDown size={15} aria-hidden="true" />
+            </button>
+            {mobileCategoriesOpen && (
+              <div className="mobile-category-panel" id="mobile-category-list">
+                <div className="mobile-category-grid">
+                  {navCategories.map((item) => (
+                    <button
+                      className="mobile-category-item"
+                      type="button"
+                      key={item.category}
+                      onClick={() => openShop(item.category)}
+                    >
+                      <strong>{item.label}</strong>
+                      <small>{item.description}</small>
+                    </button>
+                  ))}
+                </div>
+                <div className="mobile-featured-links">
+                  <button type="button" onClick={openOutfits}>
+                    <strong>Styled Outfits</strong>
+                    <small>Complete looks, thoughtfully paired</small>
+                  </button>
+                  <button type="button" onClick={openPersonalShopper}>
+                    <strong>Personal Shopper</strong>
+                    <small>Personal sourcing, guided by your brief</small>
+                  </button>
+                </div>
+                <div className="mobile-menu-footer">
+                  <button type="button" onClick={() => openShop("All")}>
+                    View all categories{" "}
+                    <ArrowRight size={14} aria-hidden="true" />
+                  </button>
+                  <button type="button" onClick={() => goHomeSection("edit")}>
+                    Shop the Full Edit{" "}
+                    <ArrowRight size={14} aria-hidden="true" />
+                  </button>
+                </div>
+              </div>
+            )}
+            <button
+              className="mobile-nav-link"
+              type="button"
+              onClick={openOutfits}
+            >
+              Styled Outfits
+            </button>
+            <button
+              className="mobile-nav-link"
+              type="button"
+              onClick={openPersonalShopper}
+            >
+              Personal Shopper
+            </button>
+            <button
+              className="mobile-nav-link"
+              type="button"
+              onClick={openJournalNotice}
+            >
+              Blog
+            </button>
+            <div className="mobile-nav-contact">
+              <a
+                className="utility-outline-pill"
+                href={contactUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Contact
+              </a>
+              <a
+                className="utility-outline-pill"
+                href={styleSessionUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Book a Style Session
+              </a>
+            </div>
+          </div>
+        )}
       </nav>
-      {searchOpen && <form ref={searchPopoverRef} id="site-search" className="search-popover" style={{ top: `${searchTop}px` }} role="search" onSubmit={(e) => { e.preventDefault(); setSearchOpen(false); setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}><Search size={17} /><input autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search the edit" /><button type="submit">Search</button></form>}
+      {searchOpen && (
+        <form
+          ref={searchPopoverRef}
+          id="site-search"
+          className="search-popover"
+          style={{ top: `${searchTop}px` }}
+          role="search"
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSearchOpen(false);
+            setPage("shop");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
+          <Search size={17} />
+          <input
+            autoFocus
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Search the edit"
+          />
+          <button type="submit">Search</button>
+        </form>
+      )}
       {page === "admin" ? (
-        <AdminDashboard back={() => { setPage("home"); window.history.replaceState(null, "", "#top"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
+        <AdminDashboard
+          back={() => {
+            setPage("home");
+            window.history.replaceState(null, "", "#top");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        />
       ) : page === "home" ? (
         <main>
           <section className="hero reveal is-visible">
@@ -1131,7 +1656,13 @@ export default function App() {
                 Made for <em>your</em> becoming.
               </h1>
               <p>Modern pieces, softly tailored for every version of you.</p>
-              <button className="cta" onClick={() => { setPage("shop"); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
+              <button
+                className="cta"
+                onClick={() => {
+                  setPage("shop");
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
                 Shop new arrivals <ArrowRight size={17} />
               </button>
               <button
@@ -1144,9 +1675,16 @@ export default function App() {
                 Join the prelaunch list <ArrowRight size={15} />
               </button>
             </div>
-            <div className="hero-art hero-photo" aria-label="THEXIAS PLACE hero fashion photograph" />
+            <div
+              className="hero-art hero-photo"
+              aria-label="THEXIAS PLACE hero fashion photograph"
+            />
           </section>
-          <section className="editorial-categories reveal" id="edit" aria-label="Explore THEXIAS PLACE">
+          <section
+            className="editorial-categories reveal"
+            id="edit"
+            aria-label="Explore THEXIAS PLACE"
+          >
             <div className="editorial-category-grid">
               {homeEditCards.map((card) => (
                 <button
@@ -1159,7 +1697,8 @@ export default function App() {
                     setQ("");
                     if (card.destination === "outfits") setPage("outfits");
                     else if (card.destination === "shopper") setPage("shopper");
-                    else if (card.destination === "services") setPage("services");
+                    else if (card.destination === "services")
+                      setPage("services");
                     else {
                       setCat("All");
                       setPage("shop");
@@ -1194,7 +1733,10 @@ export default function App() {
               ))}
             </div>
           </section>
-          <section className="travel-edit-section reveal" aria-labelledby="travel-edit-title">
+          <section
+            className="travel-edit-section reveal"
+            aria-labelledby="travel-edit-title"
+          >
             <div className="travel-edit-photo">
               <picture>
                 <source
@@ -1233,7 +1775,10 @@ export default function App() {
                   Curate my trip <ArrowRight size={16} />
                 </a>
               </div>
-              <ul className="travel-edit-options" aria-label="Travel Edit collections">
+              <ul
+                className="travel-edit-options"
+                aria-label="Travel Edit collections"
+              >
                 {travelEditOptions.map(({ title, description, Icon }) => (
                   <li className="travel-edit-option" key={title}>
                     <Icon size={20} strokeWidth={1.4} aria-hidden="true" />
@@ -1265,7 +1810,19 @@ export default function App() {
           </section>
         </main>
       ) : page === "shop" ? (
-        <ShopPage list={list} cat={cat} setCat={setCat} setSubcategory={setSubcategory} setQ={setQ} sort={sort} setSort={setSort} setSelected={setSelected} add={add} wishlist={wishlist} toggleWishlist={toggleWishlist} />
+        <ShopPage
+          list={list}
+          cat={cat}
+          setCat={setCat}
+          setSubcategory={setSubcategory}
+          setQ={setQ}
+          sort={sort}
+          setSort={setSort}
+          setSelected={setSelected}
+          add={add}
+          wishlist={wishlist}
+          toggleWishlist={toggleWishlist}
+        />
       ) : page === "outfits" ? (
         <StyledOutfitsPage
           add={add}
@@ -1282,9 +1839,23 @@ export default function App() {
           }}
         />
       ) : page === "about" ? (
-        <AboutPage back={() => { setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
+        <AboutPage
+          back={() => {
+            setPage("home");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        />
       ) : (
-        <ServicesPage back={() => { setPage("home"); window.scrollTo({ top: 0, behavior: "smooth" }); }} openShopper={() => { setPage("shopper"); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
+        <ServicesPage
+          back={() => {
+            setPage("home");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          openShopper={() => {
+            setPage("shopper");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        />
       )}
       <footer>
         <Logo
@@ -1298,14 +1869,32 @@ export default function App() {
         <section className="newsletter" aria-labelledby="newsletter-title">
           <small>THE PRIVATE EDIT</small>
           <h3 id="newsletter-title">A little closer to what’s next.</h3>
-          <p>Receive first access to new arrivals, private edits and considered styling notes — only when there is something worth opening.</p>
+          <p>
+            Receive first access to new arrivals, private edits and considered
+            styling notes — only when there is something worth opening.
+          </p>
           {!newsletterSubscribed ? (
             <form onSubmit={subscribeNewsletter}>
-              <input type="email" required value={newsletterEmail} onChange={(e) => setNewsletterEmail(e.target.value)} placeholder="Your email address" aria-label="Email address" />
-              <button type="submit" aria-label="Subscribe to the private edit"><ArrowRight size={17} /></button>
+              <input
+                type="email"
+                required
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                placeholder="Your email address"
+                aria-label="Email address"
+              />
+              <button type="submit" aria-label="Subscribe to the private edit">
+                <ArrowRight size={17} />
+              </button>
             </form>
-          ) : <span className="newsletter-confirmed">You’re on the list. Welcome to the private edit.</span>}
-          <small className="newsletter-note">No noise. Just the pieces and stories we think you’ll love.</small>
+          ) : (
+            <span className="newsletter-confirmed">
+              You’re on the list. Welcome to the private edit.
+            </span>
+          )}
+          <small className="newsletter-note">
+            No noise. Just the pieces and stories we think you’ll love.
+          </small>
         </section>
         <a href="https://wa.me/2347048969953">
           Chat with us on WhatsApp <ArrowRight size={15} />
