@@ -15,3 +15,18 @@ VITE_WAITLIST_ENDPOINT=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exe
 5. Redeploy the storefront.
 
 The endpoint writes to the private `Dashboard Data` tab and validates name, contact, interests, and exact item. It never exposes the spreadsheet to the browser. Keep the spreadsheet itself private and do not place OAuth credentials in frontend environment variables.
+
+
+## End-to-end smoke tests
+
+The Playwright suite covers utility-search dismissal, desktop category navigation, the mobile category accordion, and the product-to-bag checkout handoff. The checkout test checks the WhatsApp recipient and generated item/total message; it does not open WhatsApp or place an order.
+
+Run locally with:
+
+```bash
+npm ci
+npx playwright install chromium
+npm run test:e2e
+```
+
+The command starts a local Vite server automatically. GitHub Actions runs the same suite for pull requests and pushes to `main`.
