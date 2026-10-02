@@ -5,7 +5,9 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
 
-    const openSearch = page.getByRole("button", { name: "Open search" });
+    const utilitySearch = page.locator(".utility-bar .search-icon-button--round");
+    await expect(utilitySearch).toHaveCount(1);
+    const openSearch = utilitySearch;
     await expect(openSearch).toBeVisible();
     await openSearch.click();
 
@@ -15,10 +17,7 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
     await page.getByRole("main").click({ position: { x: 12, y: 12 } });
 
     await expect(searchForm).toBeHidden();
-    await expect(page.getByRole("button", { name: "Open search" })).toHaveAttribute(
-      "aria-expanded",
-      "false",
-    );
+    await expect(utilitySearch).toHaveAttribute("aria-expanded", "false");
   });
 
   test("desktop category mega-menu opens a selected collection", async ({ page }) => {
