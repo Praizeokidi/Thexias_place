@@ -7,6 +7,7 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
 
     const utilitySearch = page.locator(".utility-bar .search-icon-button--round");
     await expect(utilitySearch).toHaveCount(1);
+    await expect(page.locator(".primary-nav .search-icon-button--nav")).toHaveCount(0);
     const openSearch = utilitySearch;
     await expect(openSearch).toBeVisible();
     await openSearch.click();
@@ -18,6 +19,22 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
 
     await expect(searchForm).toBeHidden();
     await expect(utilitySearch).toHaveAttribute("aria-expanded", "false");
+  });
+
+  test("Shop Now precedes wishlist across mobile, tablet, and desktop widths", async ({ page }) => {
+    await page.goto("/");
+
+    const actions = page.locator(".primary-nav-actions > button");
+    for (const width of [320, 390, 768, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      await expect(actions).toHaveCount(3);
+      await expect(actions.nth(0)).toHaveClass(/primary-shop-cta/);
+      await expect(actions.nth(1)).toHaveClass(/wishlist-button/);
+      await expect(actions.nth(2)).toHaveClass(/\bbag\b/);
+
+      const pageWidth = await page.evaluate(() => document.documentElement.scrollWidth);
+      expect(pageWidth).toBeLessThanOrEqual(width);
+    }
   });
 
   test("desktop category mega-menu opens a selected collection", async ({ page }) => {
