@@ -56,11 +56,11 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
     await page.goto("/");
 
     const menu = page.getByRole("button", { name: "Open menu" });
+    await expect(page.locator(".mobile-menu-button small")).toHaveCount(0);
     await menu.click();
-    await expect(page.getByRole("button", { name: "Close menu" })).toHaveAttribute(
-      "aria-expanded",
-      "true",
-    );
+    const closeMenu = page.getByRole("button", { name: "Close menu" });
+    await expect(closeMenu).toHaveAttribute("aria-expanded", "true");
+    await expect(page.locator(".mobile-menu-button small")).toHaveCount(0);
     await page.getByRole("button", { name: "Categories" }).click();
     await expect(page.locator("#mobile-category-list")).toBeVisible();
     await page.getByRole("button", { name: /^Denim/ }).click();

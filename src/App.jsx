@@ -1341,7 +1341,6 @@ export default function App() {
             <span />
             <span />
             <span />
-            <small>{mobileMenuOpen ? "Close" : "Menu"}</small>
           </button>
           <div className="primary-links">
             <a
