@@ -225,44 +225,48 @@ const servicesCardSizes =
   "(max-width: 850px) calc(100vw - 36px), (max-width: 1050px) calc((100vw - 74px) / 3), (max-width: 1240px) calc((100vw - 98px) / 5), 228px";
 const homeEditCards = [
   {
-    title: "THE EDIT",
-    description: "Curated pieces for every occasion.",
-    action: "EXPLORE THE EDIT",
-    image: "/category-cards/the_edit",
-    width: 1632,
-    height: 2592,
+    title: "SHOP WOMEN",
+    description: "The Edit for Her.",
+    action: "EXPLORE",
+    image: "/category-cards/shop_women.jpg",
+    width: 973,
+    height: 1616,
     sizes: categoryCardSizes,
+    responsive: false,
     destination: "shop",
   },
   {
-    title: "STYLED OUTFITS",
-    description: "Effortless looks, curated for you.",
-    action: "SHOP THE LOOKS",
-    image: "/category-cards/styled_outfits",
-    width: 1600,
-    height: 2656,
+    title: "SHOP MEN",
+    description: "The Edit for Him.",
+    action: "EXPLORE",
+    image: "/category-cards/shop_men.jpg",
+    width: 1536,
+    height: 2304,
     sizes: categoryCardSizes,
-    destination: "outfits",
-  },
-  {
-    title: "PERSONAL SHOPPER",
-    description: "Tell us what you need. We’ll find it for you.",
-    action: "REQUEST A PRIVATE EDIT",
-    image: "/category-cards/personal_shopper",
-    width: 1632,
-    height: 2592,
-    sizes: categoryCardSizes,
-    destination: "shopper",
+    responsive: false,
+    destination: "shop",
   },
   {
     title: "THE TRAVEL EDIT",
-    description: "Considered looks for wherever you’re going.",
+    description: "Curated for wherever you’re going.",
     action: "EXPLORE",
-    image: "/category-cards/the_travel_edit",
-    width: 1504,
-    height: 2848,
+    image: "/category-cards/travel_edit_approved.jpg",
+    width: 1536,
+    height: 2304,
     sizes: categoryCardSizes,
+    responsive: false,
     destination: "shop",
+  },
+  {
+    title: "PERSONAL SHOPPER",
+    description: "Your wardrobe. Our eye.",
+    action: "REQUEST A PRIVATE EDIT",
+    image: "/category-cards/personal_shopper_approved.jpg",
+    width: 995,
+    height: 1580,
+    sizes: categoryCardSizes,
+    responsive: false,
+    destination: "shopper",
   },
   {
     title: "SERVICES",
@@ -1696,13 +1700,19 @@ export default function App() {
                   }}
                 >
                   <picture className="editorial-category-media">
-                    <source
-                      type="image/webp"
-                      srcSet={`${card.image}-480.webp 480w, ${card.image}-960.webp 960w`}
-                      sizes={card.sizes}
-                    />
+                    {card.responsive !== false && (
+                      <source
+                        type="image/webp"
+                        srcSet={`${card.image}-480.webp 480w, ${card.image}-960.webp 960w`}
+                        sizes={card.sizes}
+                      />
+                    )}
                     <img
-                      src={`${card.image}.jpg`}
+                      src={
+                        card.responsive === false
+                          ? card.image
+                          : `${card.image}.jpg`
+                      }
                       alt=""
                       width={card.width}
                       height={card.height}
