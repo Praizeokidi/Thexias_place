@@ -272,7 +272,7 @@ const homeEditCards = [
     title: "SERVICES",
     description: "Styling, sourcing and more.",
     action: "LEARN MORE",
-    image: "/category-cards/services",
+    image: "/category-cards/services.jpg",
     width: 1504,
     height: 2848,
     sizes: servicesCardSizes,
