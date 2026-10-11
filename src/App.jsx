@@ -514,6 +514,137 @@ function InvitationApproachSection({ invite, story }) {
   );
 }
 
+const privateListDetails = [
+  ["01", "Personal Style Profile", "Your sizes, silhouettes, colours, occasions and budget become part of our brief."],
+  ["02", "Early Access", "See new arrivals, limited pieces, restocks and special collections 24–48 hours early."],
+  ["03", "Complimentary Styling", "One 30-minute virtual styling consultation, normally valued at ₦15,000."],
+  ["04", "Private Sourcing", "One considered sourcing request each year, from occasion looks to hard-to-find pieces."],
+  ["05", "Travel Edit Access", "Have a wardrobe curated around your destination, itinerary and the way you want to feel."],
+  ["06", "Birthday Privilege", "Receive ₦10,000 birthday credit on orders above ₦75,000."],
+  ["07", "Private Member Drops", "Be considered first for limited edits and member-only releases."],
+];
+
+function PrivateListPage({ back, submitRequest }) {
+  const [form, setForm] = useState({
+    name: "",
+    contact: "",
+    style: "",
+    budget: "",
+  });
+  const [sent, setSent] = useState(false);
+  const update = (key) => (event) =>
+    setForm((old) => ({ ...old, [key]: event.target.value }));
+  const submit = (event) => {
+    event.preventDefault();
+    if (!form.name.trim() || !form.contact.trim() || !form.style.trim()) return;
+    submitRequest(form);
+    setSent(true);
+  };
+
+  return (
+    <section className="private-list-page">
+      <button className="private-list-back" type="button" onClick={back}>
+        <ArrowRight size={15} /> Back to the collection
+      </button>
+      <div className="private-list-hero">
+        <div className="private-list-hero-photo">
+          <img
+            src="/iv-section/invitation-envelope-hq.png"
+            alt="A THEXIAS PLACE invitation card resting in a warm envelope"
+            width={1619}
+            height={971}
+          />
+        </div>
+        <div className="private-list-hero-copy">
+          <small>THE PRIVATE LIST</small>
+          <h1>
+            More than access.<br />
+            <em>A more personal way to shop.</em>
+          </h1>
+          <p>
+            For those who prefer to be considered first. Early access, personal
+            sourcing, thoughtful styling and private edits, gathered into one
+            considered relationship with THEXIAS PLACE.
+          </p>
+          <strong className="private-list-price">₦30,000 <span>/ YEAR</span></strong>
+          <button
+            className="cta"
+            type="button"
+            onClick={() => document.querySelector("#private-list-request")?.scrollIntoView({ behavior: "smooth" })}
+          >
+            Request your invitation <ArrowRight size={16} />
+          </button>
+        </div>
+      </div>
+      <div className="private-list-intro">
+        <small>WHAT MEMBERS RECEIVE</small>
+        <h2>Considered support, <em>throughout the year.</em></h2>
+        <p>
+          The Private List is not a blanket discount. It is priority access to
+          our eye, sourcing network and styling service.
+        </p>
+      </div>
+      <div className="private-list-benefit-grid">
+        {privateListDetails.map(([number, title, copy]) => (
+          <article key={number}>
+            <b>{number}</b>
+            <h3>{title}</h3>
+            <p>{copy}</p>
+          </article>
+        ))}
+      </div>
+      <div className="private-list-path">
+        <div className="private-list-path-photo">
+          <img
+            src="/iv-section/wardrobe-portrait-hq.png"
+            alt="Woman in an elegant black draped look"
+            width={1551}
+            height={1014}
+            loading="lazy"
+          />
+        </div>
+        <div>
+          <small>A QUIETER WAY TO SHOP</small>
+          <h2>Shopper <em>→</em> Private List <em>→</em> Private Client</h2>
+          <p>
+            Begin with the level of consideration that feels right for you.
+            As your wardrobe grows, your relationship with THEXIAS PLACE can
+            grow with it.
+          </p>
+        </div>
+      </div>
+      <div className="private-list-request" id="private-list-request">
+        <div>
+          <small>REQUEST YOUR INVITATION</small>
+          <h2>Tell us a little about <em>your style.</em></h2>
+          <p>
+            This is not a payment page. Share your details and we’ll continue
+            the conversation personally on WhatsApp.
+          </p>
+        </div>
+        {sent ? (
+          <div className="private-list-success">
+            <span>✓</span>
+            <h3>Your invitation request is with us.</h3>
+            <p>We’ll be in touch personally with the next steps.</p>
+            <button className="prelaunch-link" type="button" onClick={back}>
+              Return to THEXIAS PLACE <ArrowRight size={15} />
+            </button>
+          </div>
+        ) : (
+          <form className="private-list-form" onSubmit={submit}>
+            <label>Name<input value={form.name} onChange={update("name")} required /></label>
+            <label>WhatsApp number<input type="tel" value={form.contact} onChange={update("contact")} required /></label>
+            <label>How would you describe your style?<textarea value={form.style} onChange={update("style")} placeholder="For example: refined, feminine, minimal..." required /></label>
+            <label>Usual wardrobe budget <input value={form.budget} onChange={update("budget")} placeholder="Optional" /></label>
+            <button className="cta" type="submit">Send my request <ArrowRight size={16} /></button>
+          </form>
+        )}
+      </div>
+    </section>
+  );
+}
+
 function StyledOutfitsPage({ add, back }) {
   return (
     <section className="service-page outfits-page">
@@ -1320,6 +1451,23 @@ export default function App() {
     setToast("You’re on the prelaunch list");
     window.setTimeout(() => setToast(""), 2800);
   };
+  const submitPrivateList = (form) => {
+    localStorage.setItem(
+      "thexias-private-list-requests",
+      JSON.stringify([
+        ...readStoredList("thexias-private-list-requests"),
+        { ...form, createdAt: new Date().toISOString() },
+      ]),
+    );
+    const message = `Hi THEXIAS PLACE, I’d like to request an invitation to THE PRIVATE LIST.\n\nName: ${form.name}\nWhatsApp: ${form.contact}\nStyle: ${form.style}\nUsual wardrobe budget: ${form.budget || "Not specified"}`;
+    window.open(
+      `https://wa.me/2347048969953?text=${encodeURIComponent(message)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+    setToast("Your invitation request is ready");
+    window.setTimeout(() => setToast(""), 2800);
+  };
   const subscribeNewsletter = (event) => {
     event.preventDefault();
     if (!newsletterEmail.trim()) return;
@@ -1912,8 +2060,8 @@ export default function App() {
           />
           <InvitationApproachSection
             invite={() => {
-              setWaitlistOpen(true);
-              setWaitlistSent(false);
+              setPage("private-list");
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
             story={() => {
               setPage("about");
@@ -1996,6 +2144,14 @@ export default function App() {
             </div>
           </section>
         </main>
+      ) : page === "private-list" ? (
+        <PrivateListPage
+          back={() => {
+            setPage("home");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          submitRequest={submitPrivateList}
+        />
       ) : page === "shop" ? (
         <ShopPage
           list={list}
