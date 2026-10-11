@@ -4,12 +4,15 @@ import {
   Building2,
   BriefcaseBusiness,
   ChevronDown,
+  Gem,
+  Gift,
   Heart,
   Minus,
   Palmtree,
   Plane,
   Plus,
   Search,
+  Shirt,
   ShoppingBag,
   Utensils,
   X,
@@ -424,6 +427,88 @@ function KeepingEditSection({ openAll }) {
             </div>
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+const privateListBenefits = [
+  { label: "Early access", Icon: Gift },
+  { label: "Private edits", Icon: Shirt },
+  { label: "Styling support", Icon: Plane },
+  { label: "Exclusive offers", Icon: Gem },
+];
+
+function InvitationApproachSection({ invite, story }) {
+  return (
+    <section className="invitation-approach-section reveal" aria-label="The THEXIAS_PLACE invitation and approach">
+      <div className="invitation-band">
+        <div className="invitation-band-photo">
+          <img
+            src="/iv-section/invitation-envelope.jpg"
+            alt="THEXIAS_PLACE invitation card resting in a warm envelope"
+            width={350}
+            height={210}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div className="invitation-band-copy">
+          <div>
+            <small>THE PRIVATE LIST</small>
+            <h2>
+              More than access.<br />
+              A more personal way to shop.
+            </h2>
+          </div>
+          <button className="invitation-button" type="button" onClick={invite}>
+            Request your invitation <ArrowRight size={14} aria-hidden="true" />
+          </button>
+          <div className="invitation-benefits" aria-label="Private list benefits">
+            {privateListBenefits.map(({ label, Icon }) => (
+              <span key={label}>
+                <Icon size={20} strokeWidth={1.35} aria-hidden="true" />
+                {label}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="approach-band">
+        <div className="approach-photo approach-photo--portrait">
+          <img
+            src="/iv-section/wardrobe-portrait.jpg"
+            alt="Woman in an elegant black draped look"
+            width={375}
+            height={245}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div className="approach-copy">
+          <small>OUR APPROACH</small>
+          <h2>
+            Beautiful things, <em>thoughtfully chosen.</em>
+          </h2>
+          <p>
+            We search beyond borders to bring you pieces that fit your life —
+            from everyday essentials to special occasions and unforgettable
+            trips.
+          </p>
+          <button className="approach-story-button" type="button" onClick={story}>
+            Our story <ArrowRight size={14} aria-hidden="true" />
+          </button>
+        </div>
+        <div className="approach-photo approach-photo--closet">
+          <img
+            src="/iv-section/curated-closet.jpg"
+            alt="A considered wardrobe of neutral pieces on a clothing rail"
+            width={324}
+            height={245}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
       </div>
     </section>
   );
@@ -1822,6 +1907,16 @@ export default function App() {
               setSubcategory("");
               setQ("");
               setPage("shop");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          />
+          <InvitationApproachSection
+            invite={() => {
+              setWaitlistOpen(true);
+              setWaitlistSent(false);
+            }}
+            story={() => {
+              setPage("about");
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           />
