@@ -445,10 +445,10 @@ function InvitationApproachSection({ invite, story }) {
       <div className="invitation-band">
         <div className="invitation-band-photo">
           <img
-            src="/iv-section/invitation-envelope.jpg"
+            src="/iv-section/invitation-envelope-hq.png"
             alt="THEXIAS_PLACE invitation card resting in a warm envelope"
-            width={350}
-            height={210}
+            width={1619}
+            height={971}
             loading="lazy"
             decoding="async"
           />
@@ -477,10 +477,10 @@ function InvitationApproachSection({ invite, story }) {
       <div className="approach-band">
         <div className="approach-photo approach-photo--portrait">
           <img
-            src="/iv-section/wardrobe-portrait.jpg"
+            src="/iv-section/wardrobe-portrait-hq.png"
             alt="Woman in an elegant black draped look"
-            width={375}
-            height={245}
+            width={1551}
+            height={1014}
             loading="lazy"
             decoding="async"
           />
@@ -501,10 +501,10 @@ function InvitationApproachSection({ invite, story }) {
         </div>
         <div className="approach-photo approach-photo--closet">
           <img
-            src="/iv-section/curated-closet.jpg"
+            src="/iv-section/curated-closet-hq.png"
             alt="A considered wardrobe of neutral pieces on a clothing rail"
-            width={324}
-            height={245}
+            width={1442}
+            height={1091}
             loading="lazy"
             decoding="async"
           />
