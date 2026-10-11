@@ -280,6 +280,36 @@ const homeEditCards = [
     destination: "services",
   },
 ];
+const keepingEditItems = [
+  {
+    name: "The Amelia Dress",
+    edit: "The Occasion Edit",
+    price: "₦52,000",
+    image: "/edit-section/amelia-dress.png",
+    alt: "Model wearing a dark chocolate off-shoulder dress",
+  },
+  {
+    name: "The Sienna Trouser",
+    edit: "The Tailored Edit",
+    price: "₦36,500",
+    image: "/edit-section/sienna-trouser.png",
+    alt: "Model wearing an ivory tailored waistcoat and wide-leg trousers",
+  },
+  {
+    name: "The Lagos Set",
+    edit: "The Resort Edit",
+    price: "₦48,000",
+    image: "/edit-section/lagos-set.png",
+    alt: "Model wearing a cream linen resort set with a straw hat and bag",
+  },
+  {
+    name: "The Zara Shirt",
+    edit: "The Men’s Edit",
+    price: "₦42,000",
+    image: "/edit-section/zara-shirt.png",
+    alt: "Model wearing an olive-green button-up shirt",
+  },
+];
 const travelEditOptions = [
   {
     title: "AIRPORT EDIT",
@@ -344,6 +374,59 @@ const readStoredList = (key) => {
 };
 function findProduct(name) {
   return products.find((p) => p.name === name) || products[0];
+}
+
+function KeepingEditSection({ openAll }) {
+  return (
+    <section
+      className="keeping-edit-section reveal"
+      aria-labelledby="keeping-edit-title"
+    >
+      <div className="keeping-edit-intro">
+        <small>THE CONSIDERED EDIT</small>
+        <h2 id="keeping-edit-title">
+          Pieces <em>worth keeping.</em>
+        </h2>
+        <p>
+          A thoughtful selection of pieces we love right now — for your
+          wardrobe, your plans, and everything in between.
+        </p>
+        <button className="keeping-edit-all" type="button" onClick={openAll}>
+          View all <ArrowRight size={15} aria-hidden="true" />
+        </button>
+      </div>
+      <div className="keeping-edit-grid">
+        {keepingEditItems.map((item) => (
+          <article className="keeping-edit-card" key={item.name}>
+            <button
+              className="keeping-edit-image-button"
+              type="button"
+              onClick={openAll}
+              aria-label={`View ${item.name}`}
+            >
+              <img
+                src={item.image}
+                alt={item.alt}
+                width={1536}
+                height={2304}
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
+              />
+            </button>
+            <div className="keeping-edit-copy">
+              <h3>{item.name}</h3>
+              <p>{item.edit}</p>
+              <strong>{item.price}</strong>
+              <button type="button" onClick={openAll}>
+                View piece <ArrowRight size={14} aria-hidden="true" />
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 function StyledOutfitsPage({ add, back }) {
@@ -1733,6 +1816,15 @@ export default function App() {
               ))}
             </div>
           </section>
+          <KeepingEditSection
+            openAll={() => {
+              setCat("All");
+              setSubcategory("");
+              setQ("");
+              setPage("shop");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          />
           <section
             className="travel-edit-section reveal"
             aria-labelledby="travel-edit-title"
