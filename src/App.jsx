@@ -261,11 +261,12 @@ const homeEditCards = [
     title: "PERSONAL SHOPPER",
     description: "Your wardrobe. Our eye.",
     action: "REQUEST A PRIVATE EDIT",
-    image: "/category-cards/personal_shopper_approved.jpg",
-    width: 995,
-    height: 1580,
+    image: "/category-cards/personal_shopper_reference.jpg",
+    width: 235,
+    height: 235,
     sizes: categoryCardSizes,
     responsive: false,
+    hideCopy: true,
     destination: "shopper",
   },
   {
@@ -1682,7 +1683,7 @@ export default function App() {
               {homeEditCards.map((card) => (
                 <button
                   type="button"
-                  className="editorial-category-card"
+                  className={`editorial-category-card${card.hideCopy ? " editorial-category-card--image-only" : ""}`}
                   key={card.title}
                   aria-label={`${card.title}: ${card.description} ${card.action}`}
                   onClick={() => {
@@ -1721,13 +1722,15 @@ export default function App() {
                       fetchPriority="low"
                     />
                   </picture>
-                  <span className="editorial-category-copy">
-                    <small>{card.title}</small>
-                    <strong>{card.description}</strong>
-                    <span className="editorial-category-cta">
-                      {card.action} <ArrowRight size={13} />
+                  {!card.hideCopy && (
+                    <span className="editorial-category-copy">
+                      <small>{card.title}</small>
+                      <strong>{card.description}</strong>
+                      <span className="editorial-category-cta">
+                        {card.action} <ArrowRight size={13} />
+                      </span>
                     </span>
-                  </span>
+                  )}
                 </button>
               ))}
             </div>
