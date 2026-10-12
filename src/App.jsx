@@ -515,13 +515,33 @@ function InvitationApproachSection({ invite, story }) {
 }
 
 const privateListDetails = [
-  ["01", "Personal Style Profile", "Your sizes, silhouettes, colours, occasions and budget become part of our brief."],
-  ["02", "Early Access", "See new arrivals, limited pieces, restocks and special collections 24–48 hours early."],
-  ["03", "Complimentary Styling", "One 30-minute virtual styling consultation, normally valued at ₦15,000."],
-  ["04", "Private Sourcing", "One considered sourcing request each year, from occasion looks to hard-to-find pieces."],
-  ["05", "Travel Edit Access", "Have a wardrobe curated around your destination, itinerary and the way you want to feel."],
-  ["06", "Birthday Privilege", "Receive ₦10,000 birthday credit on orders above ₦75,000."],
-  ["07", "Private Member Drops", "Be considered first for limited edits and member-only releases."],
+  ["01", "Personal Style Profile", "Your size, silhouettes, colours, occasions, style personality and budget become part of our brief."],
+  ["02", "Early Access", "See new arrivals, limited pieces, restocks and special collections 24–48 hours before everyone else."],
+  ["03", "One Complimentary Style Consultation", "A 30-minute virtual styling session, normally valued at ₦15,000."],
+  ["04", "One Private Sourcing Request", "Tell us what you need for an occasion, destination or wardrobe gap and we’ll present considered options."],
+  ["05", "Travel Edit Priority", "Have an itinerary-based wardrobe curated around where you’re going and how you want to feel."],
+  ["06", "Birthday Shopping Credit", "Receive ₦10,000 credit on orders above ₦75,000 — a privilege designed to encourage a real purchase."],
+  ["07", "Private Member Drops", "Be considered first for 5–10 piece private edits before they are released publicly."],
+  ["08", "Member-Only Events & Offers", "Occasional invitations and offers created for the private community."],
+];
+
+const privateListTiers = [
+  {
+    key: "private-list",
+    eyebrow: "THE ENTRY POINT",
+    name: "THE PRIVATE LIST",
+    price: "₦30,000",
+    description: "For the woman who wants THEXIAS PLACE to do more of the searching.",
+    items: ["Personal Style Profile", "1 complimentary styling consultation", "Early access to new arrivals", "Private member edits", "1 complimentary sourcing request", "Birthday shopping credit", "Priority access to Travel Edit", "Member-only events and offers"],
+  },
+  {
+    key: "private-client",
+    eyebrow: "THE HIGHER TIER",
+    name: "THEXIAS PRIVATE CLIENT",
+    price: "₦75,000",
+    description: "For high-spending customers who want a more personal relationship with the brand.",
+    items: ["Everything in Private List", "3 styling consultations", "3 sourcing requests", "Priority personal shopping", "Travel wardrobe planning", "Priority reservations for limited pieces", "Complimentary styling for one special occasion", "Private shopping appointments"],
+  },
 ];
 
 function PrivateListPage({ back, submitRequest }) {
@@ -530,6 +550,7 @@ function PrivateListPage({ back, submitRequest }) {
     contact: "",
     style: "",
     budget: "",
+    tier: "private-list",
   });
   const [sent, setSent] = useState(false);
   const update = (key) => (event) =>
@@ -577,12 +598,40 @@ function PrivateListPage({ back, submitRequest }) {
         </div>
       </div>
       <div className="private-list-intro">
-        <small>WHAT MEMBERS RECEIVE</small>
-        <h2>Considered support, <em>throughout the year.</em></h2>
+        <small>ACCESS, CONVENIENCE & CURATION</small>
+        <h2>Not a discount card. <em>A relationship.</em></h2>
         <p>
-          The Private List is not a blanket discount. It is priority access to
-          our eye, sourcing network and styling service.
+          You are not paying for a piece of plastic. You are paying for priority
+          access to our eye, sourcing network and styling service — a quieter way
+          to shop with more of the searching done for you.
         </p>
+      </div>
+      <div className="private-list-tier-grid">
+        {privateListTiers.map((tier) => (
+          <article className={`private-list-tier private-list-tier--${tier.key}`} key={tier.key}>
+            <small>{tier.eyebrow}</small>
+            <h2>{tier.name}</h2>
+            <strong>{tier.price} <span>/ YEAR</span></strong>
+            <p>{tier.description}</p>
+            <ul>
+              {tier.items.map((item) => <li key={item}>✓ {item}</li>)}
+            </ul>
+            <button
+              type="button"
+              className={tier.key === "private-client" ? "tier-outline-button" : "cta"}
+              onClick={() => {
+                setForm((old) => ({ ...old, tier: tier.key }));
+                document.querySelector("#private-list-request")?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Request your invitation <ArrowRight size={15} />
+            </button>
+          </article>
+        ))}
+      </div>
+      <div className="private-list-section-heading">
+        <small>THE PRIVATE LIST INCLUDES</small>
+        <h2>Considered support, <em>throughout the year.</em></h2>
       </div>
       <div className="private-list-benefit-grid">
         {privateListDetails.map(([number, title, copy]) => (
@@ -607,9 +656,9 @@ function PrivateListPage({ back, submitRequest }) {
           <small>A QUIETER WAY TO SHOP</small>
           <h2>Shopper <em>→</em> Private List <em>→</em> Private Client</h2>
           <p>
-            Begin with the level of consideration that feels right for you.
-            As your wardrobe grows, your relationship with THEXIAS PLACE can
-            grow with it.
+            Begin with the level of consideration that feels right for you. As
+            your wardrobe grows, your relationship with THEXIAS PLACE can grow
+            with it.
           </p>
         </div>
       </div>
@@ -618,8 +667,8 @@ function PrivateListPage({ back, submitRequest }) {
           <small>REQUEST YOUR INVITATION</small>
           <h2>Tell us a little about <em>your style.</em></h2>
           <p>
-            This is not a payment page. Share your details and we’ll continue
-            the conversation personally on WhatsApp.
+            Select the level that feels right, then share your details. We’ll
+            continue the conversation personally on WhatsApp.
           </p>
         </div>
         {sent ? (
@@ -633,6 +682,11 @@ function PrivateListPage({ back, submitRequest }) {
           </div>
         ) : (
           <form className="private-list-form" onSubmit={submit}>
+            <div className="private-list-selected-tier">
+              <span>YOUR REQUEST</span>
+              <strong>{privateListTiers.find((tier) => tier.key === form.tier)?.name}</strong>
+              <small>{privateListTiers.find((tier) => tier.key === form.tier)?.price} / year</small>
+            </div>
             <label>Name<input value={form.name} onChange={update("name")} required /></label>
             <label>WhatsApp number<input type="tel" value={form.contact} onChange={update("contact")} required /></label>
             <label>How would you describe your style?<textarea value={form.style} onChange={update("style")} placeholder="For example: refined, feminine, minimal..." required /></label>
@@ -1459,7 +1513,8 @@ export default function App() {
         { ...form, createdAt: new Date().toISOString() },
       ]),
     );
-    const message = `Hi THEXIAS PLACE, I’d like to request an invitation to THE PRIVATE LIST.\n\nName: ${form.name}\nWhatsApp: ${form.contact}\nStyle: ${form.style}\nUsual wardrobe budget: ${form.budget || "Not specified"}`;
+    const requestedTier = form.tier === "private-client" ? "THEXIAS PRIVATE CLIENT (₦75,000/year)" : "THE PRIVATE LIST (₦30,000/year)";
+    const message = `Hi THEXIAS PLACE, I’d like to request an invitation.\n\nRequested tier: ${requestedTier}\nName: ${form.name}\nWhatsApp: ${form.contact}\nStyle: ${form.style}\nUsual wardrobe budget: ${form.budget || "Not specified"}`;
     window.open(
       `https://wa.me/2347048969953?text=${encodeURIComponent(message)}`,
       "_blank",
