@@ -445,10 +445,10 @@ function InvitationApproachSection({ invite, story }) {
       <div className="invitation-band">
         <div className="invitation-band-photo">
           <img
-            src="/iv-section/invitation-envelope-hq.png"
-            alt="THEXIAS_PLACE invitation card resting in a warm envelope"
-            width={1619}
-            height={971}
+            src="/iv-section/membership-card-hq.jpg"
+            alt="THEXIAS_PLACE rich brown membership card"
+            width={1597}
+            height={985}
             loading="lazy"
             decoding="async"
           />
@@ -549,10 +549,10 @@ function PrivateListPage({ back, submitRequest }) {
       <div className="private-list-hero">
         <div className="private-list-hero-photo">
           <img
-            src="/iv-section/invitation-envelope-hq.png"
-            alt="A THEXIAS PLACE invitation card resting in a warm envelope"
-            width={1619}
-            height={971}
+            src="/iv-section/membership-card-hq.jpg"
+            alt="THEXIAS_PLACE rich brown membership card"
+            width={1597}
+            height={985}
           />
         </div>
         <div className="private-list-hero-copy">
