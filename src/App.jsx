@@ -441,7 +441,10 @@ const privateListBenefits = [
 
 function InvitationApproachSection({ invite, story }) {
   return (
-    <section className="invitation-approach-section reveal" aria-label="The THEXIAS_PLACE invitation and approach">
+    <section
+      className="invitation-approach-section reveal"
+      aria-label="The THEXIAS_PLACE invitation and approach"
+    >
       <div className="invitation-band">
         <div className="invitation-band-photo">
           <img
@@ -457,14 +460,17 @@ function InvitationApproachSection({ invite, story }) {
           <div>
             <small>THE PRIVATE LIST</small>
             <h2>
-              More than access.<br />
-              A more personal way to shop.
+              More than access.
+              <br />A more personal way to shop.
             </h2>
           </div>
           <button className="invitation-button" type="button" onClick={invite}>
             Request your invitation <ArrowRight size={14} aria-hidden="true" />
           </button>
-          <div className="invitation-benefits" aria-label="Private list benefits">
+          <div
+            className="invitation-benefits"
+            aria-label="Private list benefits"
+          >
             {privateListBenefits.map(({ label, Icon }) => (
               <span key={label}>
                 <Icon size={20} strokeWidth={1.35} aria-hidden="true" />
@@ -495,7 +501,11 @@ function InvitationApproachSection({ invite, story }) {
             from everyday essentials to special occasions and unforgettable
             trips.
           </p>
-          <button className="approach-story-button" type="button" onClick={story}>
+          <button
+            className="approach-story-button"
+            type="button"
+            onClick={story}
+          >
             Our story <ArrowRight size={14} aria-hidden="true" />
           </button>
         </div>
@@ -515,14 +525,46 @@ function InvitationApproachSection({ invite, story }) {
 }
 
 const privateListDetails = [
-  ["01", "Personal Style Profile", "Your size, silhouettes, colours, occasions, style personality and budget become part of our brief."],
-  ["02", "Early Access", "See new arrivals, limited pieces, restocks and special collections 24–48 hours before everyone else."],
-  ["03", "One Complimentary Style Consultation", "A 30-minute virtual styling session, normally valued at ₦15,000."],
-  ["04", "One Private Sourcing Request", "Tell us what you need for an occasion, destination or wardrobe gap and we’ll present considered options."],
-  ["05", "Travel Edit Priority", "Have an itinerary-based wardrobe curated around where you’re going and how you want to feel."],
-  ["06", "Birthday Shopping Credit", "Receive ₦10,000 credit on orders above ₦75,000 — a privilege designed to encourage a real purchase."],
-  ["07", "Private Member Drops", "Be considered first for 5–10 piece private edits before they are released publicly."],
-  ["08", "Member-Only Events & Offers", "Occasional invitations and offers created for the private community."],
+  [
+    "01",
+    "Personal Style Profile",
+    "Your size, silhouettes, colours, occasions, style personality and budget become part of our brief.",
+  ],
+  [
+    "02",
+    "Early Access",
+    "See new arrivals, limited pieces, restocks and special collections 24–48 hours before everyone else.",
+  ],
+  [
+    "03",
+    "One Complimentary Style Consultation",
+    "A 30-minute virtual styling session, normally valued at ₦15,000.",
+  ],
+  [
+    "04",
+    "One Private Sourcing Request",
+    "Tell us what you need for an occasion, destination or wardrobe gap and we’ll present considered options.",
+  ],
+  [
+    "05",
+    "Travel Edit Priority",
+    "Have an itinerary-based wardrobe curated around where you’re going and how you want to feel.",
+  ],
+  [
+    "06",
+    "Birthday Shopping Credit",
+    "Receive ₦10,000 credit on orders above ₦75,000 — a privilege designed to encourage a real purchase.",
+  ],
+  [
+    "07",
+    "Private Member Drops",
+    "Be considered first for 5–10 piece private edits before they are released publicly.",
+  ],
+  [
+    "08",
+    "Member-Only Events & Offers",
+    "Occasional invitations and offers created for the private community.",
+  ],
 ];
 
 const privateListTiers = [
@@ -531,16 +573,36 @@ const privateListTiers = [
     eyebrow: "THE ENTRY POINT",
     name: "THE PRIVATE LIST",
     price: "₦30,000",
-    description: "For the woman who wants THEXIAS PLACE to do more of the searching.",
-    items: ["Personal Style Profile", "1 complimentary styling consultation", "Early access to new arrivals", "Private member edits", "1 complimentary sourcing request", "Birthday shopping credit", "Priority access to Travel Edit", "Member-only events and offers"],
+    description:
+      "For the woman who wants THEXIAS PLACE to do more of the searching.",
+    items: [
+      "Personal Style Profile",
+      "1 complimentary styling consultation",
+      "Early access to new arrivals",
+      "Private member edits",
+      "1 complimentary sourcing request",
+      "Birthday shopping credit",
+      "Priority access to Travel Edit",
+      "Member-only events and offers",
+    ],
   },
   {
     key: "private-client",
     eyebrow: "THE HIGHER TIER",
     name: "THEXIAS PRIVATE CLIENT",
     price: "₦75,000",
-    description: "For high-spending customers who want a more personal relationship with the brand.",
-    items: ["Everything in Private List", "3 styling consultations", "3 sourcing requests", "Priority personal shopping", "Travel wardrobe planning", "Priority reservations for limited pieces", "Complimentary styling for one special occasion", "Private shopping appointments"],
+    description:
+      "For high-spending customers who want a more personal relationship with the brand.",
+    items: [
+      "Everything in Private List",
+      "3 styling consultations",
+      "3 sourcing requests",
+      "Priority personal shopping",
+      "Travel wardrobe planning",
+      "Priority reservations for limited pieces",
+      "Complimentary styling for one special occasion",
+      "Private shopping appointments",
+    ],
   },
 ];
 
@@ -579,7 +641,8 @@ function PrivateListPage({ back, submitRequest }) {
         <div className="private-list-hero-copy">
           <small>THE PRIVATE LIST</small>
           <h1>
-            More than access.<br />
+            More than access.
+            <br />
             <em>A more personal way to shop.</em>
           </h1>
           <p>
@@ -587,11 +650,17 @@ function PrivateListPage({ back, submitRequest }) {
             sourcing, thoughtful styling and private edits, gathered into one
             considered relationship with THEXIAS PLACE.
           </p>
-          <strong className="private-list-price">₦30,000 <span>/ YEAR</span></strong>
+          <strong className="private-list-price">
+            ₦30,000 <span>/ YEAR</span>
+          </strong>
           <button
             className="cta"
             type="button"
-            onClick={() => document.querySelector("#private-list-request")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() =>
+              document
+                .querySelector("#private-list-request")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
           >
             Request your invitation <ArrowRight size={16} />
           </button>
@@ -599,29 +668,42 @@ function PrivateListPage({ back, submitRequest }) {
       </div>
       <div className="private-list-intro">
         <small>ACCESS, CONVENIENCE & CURATION</small>
-        <h2>Not a discount card. <em>A relationship.</em></h2>
+        <h2>
+          Not a discount card. <em>A relationship.</em>
+        </h2>
         <p>
           You are not paying for a piece of plastic. You are paying for priority
-          access to our eye, sourcing network and styling service — a quieter way
-          to shop with more of the searching done for you.
+          access to our eye, sourcing network and styling service — a quieter
+          way to shop with more of the searching done for you.
         </p>
       </div>
       <div className="private-list-tier-grid">
         {privateListTiers.map((tier) => (
-          <article className={`private-list-tier private-list-tier--${tier.key}`} key={tier.key}>
+          <article
+            className={`private-list-tier private-list-tier--${tier.key}`}
+            key={tier.key}
+          >
             <small>{tier.eyebrow}</small>
             <h2>{tier.name}</h2>
-            <strong>{tier.price} <span>/ YEAR</span></strong>
+            <strong>
+              {tier.price} <span>/ YEAR</span>
+            </strong>
             <p>{tier.description}</p>
             <ul>
-              {tier.items.map((item) => <li key={item}>✓ {item}</li>)}
+              {tier.items.map((item) => (
+                <li key={item}>✓ {item}</li>
+              ))}
             </ul>
             <button
               type="button"
-              className={tier.key === "private-client" ? "tier-outline-button" : "cta"}
+              className={
+                tier.key === "private-client" ? "tier-outline-button" : "cta"
+              }
               onClick={() => {
                 setForm((old) => ({ ...old, tier: tier.key }));
-                document.querySelector("#private-list-request")?.scrollIntoView({ behavior: "smooth" });
+                document
+                  .querySelector("#private-list-request")
+                  ?.scrollIntoView({ behavior: "smooth" });
               }}
             >
               Request your invitation <ArrowRight size={15} />
@@ -631,7 +713,9 @@ function PrivateListPage({ back, submitRequest }) {
       </div>
       <div className="private-list-section-heading">
         <small>THE PRIVATE LIST INCLUDES</small>
-        <h2>Considered support, <em>throughout the year.</em></h2>
+        <h2>
+          Considered support, <em>throughout the year.</em>
+        </h2>
       </div>
       <div className="private-list-benefit-grid">
         {privateListDetails.map(([number, title, copy]) => (
@@ -654,7 +738,9 @@ function PrivateListPage({ back, submitRequest }) {
         </div>
         <div>
           <small>A QUIETER WAY TO SHOP</small>
-          <h2>Shopper <em>→</em> Private List <em>→</em> Private Client</h2>
+          <h2>
+            Shopper <em>→</em> Private List <em>→</em> Private Client
+          </h2>
           <p>
             Begin with the level of consideration that feels right for you. As
             your wardrobe grows, your relationship with THEXIAS PLACE can grow
@@ -665,7 +751,9 @@ function PrivateListPage({ back, submitRequest }) {
       <div className="private-list-request" id="private-list-request">
         <div>
           <small>REQUEST YOUR INVITATION</small>
-          <h2>Tell us a little about <em>your style.</em></h2>
+          <h2>
+            Tell us a little about <em>your style.</em>
+          </h2>
           <p>
             Select the level that feels right, then share your details. We’ll
             continue the conversation personally on WhatsApp.
@@ -684,14 +772,47 @@ function PrivateListPage({ back, submitRequest }) {
           <form className="private-list-form" onSubmit={submit}>
             <div className="private-list-selected-tier">
               <span>YOUR REQUEST</span>
-              <strong>{privateListTiers.find((tier) => tier.key === form.tier)?.name}</strong>
-              <small>{privateListTiers.find((tier) => tier.key === form.tier)?.price} / year</small>
+              <strong>
+                {privateListTiers.find((tier) => tier.key === form.tier)?.name}
+              </strong>
+              <small>
+                {privateListTiers.find((tier) => tier.key === form.tier)?.price}{" "}
+                / year
+              </small>
             </div>
-            <label>Name<input value={form.name} onChange={update("name")} required /></label>
-            <label>WhatsApp number<input type="tel" value={form.contact} onChange={update("contact")} required /></label>
-            <label>How would you describe your style?<textarea value={form.style} onChange={update("style")} placeholder="For example: refined, feminine, minimal..." required /></label>
-            <label>Usual wardrobe budget <input value={form.budget} onChange={update("budget")} placeholder="Optional" /></label>
-            <button className="cta" type="submit">Send my request <ArrowRight size={16} /></button>
+            <label>
+              Name
+              <input value={form.name} onChange={update("name")} required />
+            </label>
+            <label>
+              WhatsApp number
+              <input
+                type="tel"
+                value={form.contact}
+                onChange={update("contact")}
+                required
+              />
+            </label>
+            <label>
+              How would you describe your style?
+              <textarea
+                value={form.style}
+                onChange={update("style")}
+                placeholder="For example: refined, feminine, minimal..."
+                required
+              />
+            </label>
+            <label>
+              Usual wardrobe budget{" "}
+              <input
+                value={form.budget}
+                onChange={update("budget")}
+                placeholder="Optional"
+              />
+            </label>
+            <button className="cta" type="submit">
+              Send my request <ArrowRight size={16} />
+            </button>
           </form>
         )}
       </div>
@@ -1312,11 +1433,25 @@ function ShopPage({
   );
 }
 
-function CategorySubmenu({ label, id, items, open, setOpen, onSelect, mobile = false }) {
+function CategorySubmenu({
+  label,
+  id,
+  items,
+  open,
+  setOpen,
+  onSelect,
+  mobile = false,
+}) {
   return (
-    <div className={`category-submenu${mobile ? " category-submenu--mobile" : ""}`}>
+    <div
+      className={`category-submenu${mobile ? " category-submenu--mobile" : ""}`}
+    >
       <button
-        className={mobile ? "mobile-category-item mobile-category-item--trigger" : "mega-menu-item"}
+        className={
+          mobile
+            ? "mobile-category-item mobile-category-item--trigger"
+            : "mega-menu-item"
+        }
         type="button"
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
@@ -1326,13 +1461,21 @@ function CategorySubmenu({ label, id, items, open, setOpen, onSelect, mobile = f
           <strong>{label}</strong>
           <small>{mobile ? "Browse the edit" : "Browse by collection"}</small>
         </span>
-        <ChevronDown className="category-submenu-chevron" size={15} aria-hidden="true" />
+        <ChevronDown
+          className="category-submenu-chevron"
+          size={15}
+          aria-hidden="true"
+        />
       </button>
       {open && (
         <div className="category-submenu-list" id={id}>
           {items.map((item) => (
             <button
-              className={mobile ? "mobile-category-item mobile-category-item--nested" : "mega-menu-item mega-menu-item--nested"}
+              className={
+                mobile
+                  ? "mobile-category-item mobile-category-item--nested"
+                  : "mega-menu-item mega-menu-item--nested"
+              }
               type="button"
               key={item.label}
               onClick={() => onSelect(item.category, item.subcategory)}
@@ -1555,7 +1698,10 @@ export default function App() {
         { ...form, createdAt: new Date().toISOString() },
       ]),
     );
-    const requestedTier = form.tier === "private-client" ? "THEXIAS PRIVATE CLIENT (₦75,000/year)" : "THE PRIVATE LIST (₦30,000/year)";
+    const requestedTier =
+      form.tier === "private-client"
+        ? "THEXIAS PRIVATE CLIENT (₦75,000/year)"
+        : "THE PRIVATE LIST (₦30,000/year)";
     const message = `Hi THEXIAS PLACE, I’d like to request an invitation.\n\nRequested tier: ${requestedTier}\nName: ${form.name}\nWhatsApp: ${form.contact}\nStyle: ${form.style}\nUsual wardrobe budget: ${form.budget || "Not specified"}`;
     window.open(
       `https://wa.me/2347048969953?text=${encodeURIComponent(message)}`,
@@ -1622,16 +1768,48 @@ export default function App() {
     },
   ];
   const denimNavItems = [
-    { label: "Jeans", subcategory: "Pants", description: "Everyday denim silhouettes" },
-    { label: "Jorts", subcategory: "Jorts", description: "Relaxed denim shorts" },
-    { label: "Skirts", subcategory: "Skirts", description: "Mini and midi denim skirts" },
-    { label: "Pants", subcategory: "Pants", description: "Tailored and utility fits" },
+    {
+      label: "Jeans",
+      subcategory: "Pants",
+      description: "Everyday denim silhouettes",
+    },
+    {
+      label: "Jorts",
+      subcategory: "Jorts",
+      description: "Relaxed denim shorts",
+    },
+    {
+      label: "Skirts",
+      subcategory: "Skirts",
+      description: "Mini and midi denim skirts",
+    },
+    {
+      label: "Pants",
+      subcategory: "Pants",
+      description: "Tailored and utility fits",
+    },
   ].map((item) => ({ ...item, category: "Denim" }));
   const gownNavItems = [
-    { label: "Casual Gowns", subcategory: "Casual", description: "Easy day-to-evening dressing" },
-    { label: "Date Night Gowns", subcategory: "Dinner", description: "Satin, sparkle and occasion looks" },
-    { label: "Corporate Gowns", subcategory: "Curated", description: "Polished statement dressing" },
-    { label: "Curated Gowns", subcategory: "Curated", description: "Special pieces for your edit" },
+    {
+      label: "Casual Gowns",
+      subcategory: "Casual",
+      description: "Easy day-to-evening dressing",
+    },
+    {
+      label: "Date Night Gowns",
+      subcategory: "Dinner",
+      description: "Satin, sparkle and occasion looks",
+    },
+    {
+      label: "Corporate Gowns",
+      subcategory: "Curated",
+      description: "Polished statement dressing",
+    },
+    {
+      label: "Curated Gowns",
+      subcategory: "Curated",
+      description: "Special pieces for your edit",
+    },
   ].map((item) => ({ ...item, category: "Gowns" }));
   const whatsappUrl = "https://wa.me/2347048969953";
   const contactUrl = `${whatsappUrl}?text=${encodeURIComponent("Hi THEXIAS_PLACE, I have a question about the edit.")}`;
@@ -1845,7 +2023,7 @@ export default function App() {
                       ) : item.category === "Gowns" ? (
                         <CategorySubmenu
                           key={item.category}
-                          label="GOWN"
+                          label="Gowns"
                           id="desktop-category-gown-list"
                           items={gownNavItems}
                           open={categoryGownOpen}
