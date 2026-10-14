@@ -1312,6 +1312,92 @@ function ShopPage({
   );
 }
 
+function NavSubmenu({ label, id, items, open, setOpen, onSelect }) {
+  return (
+    <div
+      className={`primary-nav-item primary-nav-item--dropdown${open ? " is-open" : ""}`}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocusCapture={() => setOpen(true)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+      }}
+    >
+      <button
+        className="primary-nav-link primary-nav-link--trigger"
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        aria-haspopup="true"
+        aria-expanded={open}
+        aria-controls={id}
+      >
+        {label} <ChevronDown size={14} aria-hidden="true" />
+      </button>
+      <div
+        className="mega-menu mega-menu--compact"
+        id={id}
+        aria-label={`${label} collections`}
+        aria-hidden={!open}
+      >
+        <span className="mega-menu-eyebrow">Shop {label.toLowerCase()}</span>
+        {items.map((item) => (
+          <button
+            className="mega-menu-item"
+            type="button"
+            key={item.label}
+            onClick={() => onSelect(item.category, item.subcategory)}
+          >
+            <span>
+              <strong>{item.label}</strong>
+              <small>{item.description}</small>
+            </span>
+            <ArrowRight size={15} aria-hidden="true" />
+          </button>
+        ))}
+        <div className="mega-menu-footer mega-menu-footer--compact">
+          <button type="button" onClick={() => onSelect(items[0].category, "")}>
+            View all {label.toLowerCase()} <ArrowRight size={14} aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MobileNavSubmenu({ label, id, items, open, setOpen, onSelect }) {
+  return (
+    <div className="mobile-nav-submenu">
+      <button
+        className="mobile-nav-link mobile-nav-accordion"
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        aria-expanded={open}
+        aria-controls={id}
+      >
+        <span>{label}</span>
+        <ChevronDown size={15} aria-hidden="true" />
+      </button>
+      {open && (
+        <div className="mobile-category-panel mobile-category-panel--nested" id={id}>
+          <div className="mobile-category-grid">
+            {items.map((item) => (
+              <button
+                className="mobile-category-item"
+                type="button"
+                key={item.label}
+                onClick={() => onSelect(item.category, item.subcategory)}
+              >
+                <strong>{item.label}</strong>
+                <small>{item.description}</small>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function App() {
   const [cat, setCat] = useState("All"),
     [subcategory, setSubcategory] = useState(""),
@@ -1345,7 +1431,11 @@ export default function App() {
     [searchTop, setSearchTop] = useState(144),
     [mobileMenuOpen, setMobileMenuOpen] = useState(false),
     [categoriesOpen, setCategoriesOpen] = useState(false),
-    [mobileCategoriesOpen, setMobileCategoriesOpen] = useState(false);
+    [mobileCategoriesOpen, setMobileCategoriesOpen] = useState(false),
+    [denimsOpen, setDenimsOpen] = useState(false),
+    [gownOpen, setGownOpen] = useState(false),
+    [mobileDenimsOpen, setMobileDenimsOpen] = useState(false),
+    [mobileGownOpen, setMobileGownOpen] = useState(false);
   const searchPopoverRef = useRef(null);
   const categoriesMenuRef = useRef(null);
   const categoriesTriggerRef = useRef(null);
@@ -1579,13 +1669,29 @@ export default function App() {
       description: "From everyday to occasion",
     },
   ];
+  const denimNavItems = [
+    { label: "Jeans", subcategory: "Pants", description: "Everyday denim silhouettes" },
+    { label: "Jorts", subcategory: "Jorts", description: "Relaxed denim shorts" },
+    { label: "Skirts", subcategory: "Skirts", description: "Mini and midi denim skirts" },
+    { label: "Pants", subcategory: "Pants", description: "Tailored and utility fits" },
+  ].map((item) => ({ ...item, category: "Denim" }));
+  const gownNavItems = [
+    { label: "Casual Gowns", subcategory: "Casual", description: "Easy day-to-evening dressing" },
+    { label: "Date Night Gowns", subcategory: "Dinner", description: "Satin, sparkle and occasion looks" },
+    { label: "Corporate Gowns", subcategory: "Curated", description: "Polished statement dressing" },
+    { label: "Curated Gowns", subcategory: "Curated", description: "Special pieces for your edit" },
+  ].map((item) => ({ ...item, category: "Gowns" }));
   const whatsappUrl = "https://wa.me/2347048969953";
   const contactUrl = `${whatsappUrl}?text=${encodeURIComponent("Hi THEXIAS_PLACE, I have a question about the edit.")}`;
   const styleSessionUrl = `${whatsappUrl}?text=${encodeURIComponent("Hi THEXIAS_PLACE, I’d like to enquire about booking a style session.")}`;
   const closeNavigation = () => {
     setCategoriesOpen(false);
+    setDenimsOpen(false);
+    setGownOpen(false);
     setMobileMenuOpen(false);
     setMobileCategoriesOpen(false);
+    setMobileDenimsOpen(false);
+    setMobileGownOpen(false);
   };
   const goHomeTop = () => {
     closeNavigation();
@@ -1607,6 +1713,14 @@ export default function App() {
     closeNavigation();
     setCat(category);
     setSubcategory("");
+    setQ("");
+    setPage("shop");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const openSubcategory = (category, selectedSubcategory) => {
+    closeNavigation();
+    setCat(category);
+    setSubcategory(selectedSubcategory);
     setQ("");
     setPage("shop");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1729,6 +1843,22 @@ export default function App() {
             >
               Home
             </a>
+            <NavSubmenu
+              label="Denims"
+              id="desktop-denims-menu"
+              items={denimNavItems}
+              open={denimsOpen}
+              setOpen={setDenimsOpen}
+              onSelect={openSubcategory}
+            />
+            <NavSubmenu
+              label="GOWN"
+              id="desktop-gown-menu"
+              items={gownNavItems}
+              open={gownOpen}
+              setOpen={setGownOpen}
+              onSelect={openSubcategory}
+            />
             <div
               className={`primary-nav-item primary-nav-item--dropdown${categoriesOpen ? " is-open" : ""}`}
               ref={categoriesMenuRef}
@@ -1891,6 +2021,22 @@ export default function App() {
             >
               Home
             </button>
+            <MobileNavSubmenu
+              label="Denims"
+              id="mobile-denims-list"
+              items={denimNavItems}
+              open={mobileDenimsOpen}
+              setOpen={setMobileDenimsOpen}
+              onSelect={openSubcategory}
+            />
+            <MobileNavSubmenu
+              label="GOWN"
+              id="mobile-gown-list"
+              items={gownNavItems}
+              open={mobileGownOpen}
+              setOpen={setMobileGownOpen}
+              onSelect={openSubcategory}
+            />
             <button
               className="mobile-nav-link mobile-nav-accordion"
               type="button"
