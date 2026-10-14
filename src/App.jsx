@@ -1312,86 +1312,38 @@ function ShopPage({
   );
 }
 
-function NavSubmenu({ label, id, items, open, setOpen, onSelect }) {
+function CategorySubmenu({ label, id, items, open, setOpen, onSelect, mobile = false }) {
   return (
-    <div
-      className={`primary-nav-item primary-nav-item--dropdown${open ? " is-open" : ""}`}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-      onFocusCapture={() => setOpen(true)}
-      onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
-      }}
-    >
+    <div className={`category-submenu${mobile ? " category-submenu--mobile" : ""}`}>
       <button
-        className="primary-nav-link primary-nav-link--trigger"
-        type="button"
-        onClick={() => setOpen((value) => !value)}
-        aria-haspopup="true"
-        aria-expanded={open}
-        aria-controls={id}
-      >
-        {label} <ChevronDown size={14} aria-hidden="true" />
-      </button>
-      <div
-        className="mega-menu mega-menu--compact"
-        id={id}
-        aria-label={`${label} collections`}
-        aria-hidden={!open}
-      >
-        <span className="mega-menu-eyebrow">Shop {label.toLowerCase()}</span>
-        {items.map((item) => (
-          <button
-            className="mega-menu-item"
-            type="button"
-            key={item.label}
-            onClick={() => onSelect(item.category, item.subcategory)}
-          >
-            <span>
-              <strong>{item.label}</strong>
-              <small>{item.description}</small>
-            </span>
-            <ArrowRight size={15} aria-hidden="true" />
-          </button>
-        ))}
-        <div className="mega-menu-footer mega-menu-footer--compact">
-          <button type="button" onClick={() => onSelect(items[0].category, "")}>
-            View all {label.toLowerCase()} <ArrowRight size={14} aria-hidden="true" />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function MobileNavSubmenu({ label, id, items, open, setOpen, onSelect }) {
-  return (
-    <div className="mobile-nav-submenu">
-      <button
-        className="mobile-nav-link mobile-nav-accordion"
+        className={mobile ? "mobile-category-item mobile-category-item--trigger" : "mega-menu-item"}
         type="button"
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         aria-controls={id}
       >
-        <span>{label}</span>
-        <ChevronDown size={15} aria-hidden="true" />
+        <span>
+          <strong>{label}</strong>
+          <small>{mobile ? "Browse the edit" : "Browse by collection"}</small>
+        </span>
+        <ChevronDown className="category-submenu-chevron" size={15} aria-hidden="true" />
       </button>
       {open && (
-        <div className="mobile-category-panel mobile-category-panel--nested" id={id}>
-          <div className="mobile-category-grid">
-            {items.map((item) => (
-              <button
-                className="mobile-category-item"
-                type="button"
-                key={item.label}
-                onClick={() => onSelect(item.category, item.subcategory)}
-              >
+        <div className="category-submenu-list" id={id}>
+          {items.map((item) => (
+            <button
+              className={mobile ? "mobile-category-item mobile-category-item--nested" : "mega-menu-item mega-menu-item--nested"}
+              type="button"
+              key={item.label}
+              onClick={() => onSelect(item.category, item.subcategory)}
+            >
+              <span>
                 <strong>{item.label}</strong>
                 <small>{item.description}</small>
-              </button>
-            ))}
-          </div>
+              </span>
+              <ArrowRight size={14} aria-hidden="true" />
+            </button>
+          ))}
         </div>
       )}
     </div>
@@ -1432,10 +1384,10 @@ export default function App() {
     [mobileMenuOpen, setMobileMenuOpen] = useState(false),
     [categoriesOpen, setCategoriesOpen] = useState(false),
     [mobileCategoriesOpen, setMobileCategoriesOpen] = useState(false),
-    [denimsOpen, setDenimsOpen] = useState(false),
-    [gownOpen, setGownOpen] = useState(false),
-    [mobileDenimsOpen, setMobileDenimsOpen] = useState(false),
-    [mobileGownOpen, setMobileGownOpen] = useState(false);
+    [categoryDenimOpen, setCategoryDenimOpen] = useState(false),
+    [categoryGownOpen, setCategoryGownOpen] = useState(false),
+    [mobileCategoryDenimOpen, setMobileCategoryDenimOpen] = useState(false),
+    [mobileCategoryGownOpen, setMobileCategoryGownOpen] = useState(false);
   const searchPopoverRef = useRef(null);
   const categoriesMenuRef = useRef(null);
   const categoriesTriggerRef = useRef(null);
@@ -1686,12 +1638,12 @@ export default function App() {
   const styleSessionUrl = `${whatsappUrl}?text=${encodeURIComponent("Hi THEXIAS_PLACE, I’d like to enquire about booking a style session.")}`;
   const closeNavigation = () => {
     setCategoriesOpen(false);
-    setDenimsOpen(false);
-    setGownOpen(false);
+    setCategoryDenimOpen(false);
+    setCategoryGownOpen(false);
     setMobileMenuOpen(false);
     setMobileCategoriesOpen(false);
-    setMobileDenimsOpen(false);
-    setMobileGownOpen(false);
+    setMobileCategoryDenimOpen(false);
+    setMobileCategoryGownOpen(false);
   };
   const goHomeTop = () => {
     closeNavigation();
@@ -1843,22 +1795,6 @@ export default function App() {
             >
               Home
             </a>
-            <NavSubmenu
-              label="Denims"
-              id="desktop-denims-menu"
-              items={denimNavItems}
-              open={denimsOpen}
-              setOpen={setDenimsOpen}
-              onSelect={openSubcategory}
-            />
-            <NavSubmenu
-              label="GOWN"
-              id="desktop-gown-menu"
-              items={gownNavItems}
-              open={gownOpen}
-              setOpen={setGownOpen}
-              onSelect={openSubcategory}
-            />
             <div
               className={`primary-nav-item primary-nav-item--dropdown${categoriesOpen ? " is-open" : ""}`}
               ref={categoriesMenuRef}
@@ -1895,20 +1831,42 @@ export default function App() {
                 <div className="mega-menu-columns">
                   <div className="mega-menu-column">
                     <span className="mega-menu-eyebrow">Shop by category</span>
-                    {navCategories.slice(0, 3).map((item) => (
-                      <button
-                        className="mega-menu-item"
-                        type="button"
-                        key={item.category}
-                        onClick={() => openShop(item.category)}
-                      >
-                        <span>
-                          <strong>{item.label}</strong>
-                          <small>{item.description}</small>
-                        </span>
-                        <ArrowRight size={15} aria-hidden="true" />
-                      </button>
-                    ))}
+                    {navCategories.slice(0, 3).map((item) =>
+                      item.category === "Denim" ? (
+                        <CategorySubmenu
+                          key={item.category}
+                          label="Denims"
+                          id="desktop-category-denims-list"
+                          items={denimNavItems}
+                          open={categoryDenimOpen}
+                          setOpen={setCategoryDenimOpen}
+                          onSelect={openSubcategory}
+                        />
+                      ) : item.category === "Gowns" ? (
+                        <CategorySubmenu
+                          key={item.category}
+                          label="GOWN"
+                          id="desktop-category-gown-list"
+                          items={gownNavItems}
+                          open={categoryGownOpen}
+                          setOpen={setCategoryGownOpen}
+                          onSelect={openSubcategory}
+                        />
+                      ) : (
+                        <button
+                          className="mega-menu-item"
+                          type="button"
+                          key={item.category}
+                          onClick={() => openShop(item.category)}
+                        >
+                          <span>
+                            <strong>{item.label}</strong>
+                            <small>{item.description}</small>
+                          </span>
+                          <ArrowRight size={15} aria-hidden="true" />
+                        </button>
+                      ),
+                    )}
                   </div>
                   <div className="mega-menu-column">
                     <span className="mega-menu-eyebrow">
@@ -2021,22 +1979,6 @@ export default function App() {
             >
               Home
             </button>
-            <MobileNavSubmenu
-              label="Denims"
-              id="mobile-denims-list"
-              items={denimNavItems}
-              open={mobileDenimsOpen}
-              setOpen={setMobileDenimsOpen}
-              onSelect={openSubcategory}
-            />
-            <MobileNavSubmenu
-              label="GOWN"
-              id="mobile-gown-list"
-              items={gownNavItems}
-              open={mobileGownOpen}
-              setOpen={setMobileGownOpen}
-              onSelect={openSubcategory}
-            />
             <button
               className="mobile-nav-link mobile-nav-accordion"
               type="button"
@@ -2050,17 +1992,41 @@ export default function App() {
             {mobileCategoriesOpen && (
               <div className="mobile-category-panel" id="mobile-category-list">
                 <div className="mobile-category-grid">
-                  {navCategories.map((item) => (
-                    <button
-                      className="mobile-category-item"
-                      type="button"
-                      key={item.category}
-                      onClick={() => openShop(item.category)}
-                    >
-                      <strong>{item.label}</strong>
-                      <small>{item.description}</small>
-                    </button>
-                  ))}
+                  {navCategories.map((item) =>
+                    item.category === "Denim" ? (
+                      <CategorySubmenu
+                        key={item.category}
+                        label="Denims"
+                        id="mobile-category-denims-list"
+                        items={denimNavItems}
+                        open={mobileCategoryDenimOpen}
+                        setOpen={setMobileCategoryDenimOpen}
+                        onSelect={openSubcategory}
+                        mobile
+                      />
+                    ) : item.category === "Gowns" ? (
+                      <CategorySubmenu
+                        key={item.category}
+                        label="GOWN"
+                        id="mobile-category-gown-list"
+                        items={gownNavItems}
+                        open={mobileCategoryGownOpen}
+                        setOpen={setMobileCategoryGownOpen}
+                        onSelect={openSubcategory}
+                        mobile
+                      />
+                    ) : (
+                      <button
+                        className="mobile-category-item"
+                        type="button"
+                        key={item.category}
+                        onClick={() => openShop(item.category)}
+                      >
+                        <strong>{item.label}</strong>
+                        <small>{item.description}</small>
+                      </button>
+                    ),
+                  )}
                 </div>
                 <div className="mobile-featured-links">
                   <button type="button" onClick={openOutfits}>

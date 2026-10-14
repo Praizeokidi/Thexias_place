@@ -300,15 +300,13 @@ nav{position:relative}nav>.logo{position:absolute;left:50%;transform:translateX(
 @media(max-width:850px){.private-list-tier-grid{grid-template-columns:1fr}.private-list-tier{padding:29px 24px}.private-list-tier h2{font-size:35px}.private-list-tier>p{min-height:0}.private-list-section-heading{padding:65px 0 25px}}
 @media(max-width:480px){.private-list-tier h2{font-size:31px}.private-list-tier>strong{font-size:22px}.private-list-selected-tier{grid-template-columns:1fr}.private-list-selected-tier small{grid-column:1}}
 
-/* Dedicated collection menus for legacy Denims and GOWN navigation */
-.mega-menu--compact{width:min(330px,calc(100vw - 48px));padding:22px 22px 0}
-.mega-menu--compact .mega-menu-item{min-height:48px}
-.mega-menu-footer--compact{margin-top:12px}
-.mega-menu-footer--compact button{padding-bottom:14px}
-.mobile-nav-submenu>.mobile-nav-link{width:100%}
-.mobile-category-panel--nested{margin:0 0 6px;padding-top:4px;border-top:1px solid var(--line)}
-@media(max-width:850px){
-  .mega-menu--compact{display:none}
-  .mobile-nav-submenu .mobile-nav-link svg{transition:transform .22s ease}
-  .mobile-nav-submenu:has(.mobile-category-panel--nested) .mobile-nav-link svg{transform:rotate(180deg)}
-}
+/* Collection submenus stay inside the Categories menu */
+.category-submenu{display:grid;gap:2px}
+.category-submenu-chevron{flex:none;transition:transform .22s ease}
+.category-submenu .mega-menu-item[aria-expanded="true"] .category-submenu-chevron,
+.category-submenu .mobile-category-item[aria-expanded="true"] .category-submenu-chevron{transform:rotate(180deg)}
+.category-submenu-list{display:grid;gap:2px;padding:0 0 4px 12px;border-left:1px solid var(--line)}
+.mega-menu-item--nested{min-height:42px;padding-top:8px;padding-bottom:8px}
+.category-submenu--mobile{grid-column:1/-1}
+.mobile-category-item--trigger{width:100%;text-align:left}
+.mobile-category-item--nested{padding-left:18px;background:var(--bg)}

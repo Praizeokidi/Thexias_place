@@ -45,7 +45,9 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
     await navigation.getByRole("button", { name: /Categories/ }).click();
     const megaMenu = page.locator("#desktop-category-menu");
     await expect(megaMenu).toHaveAttribute("aria-hidden", "false");
-    await megaMenu.getByRole("button", { name: /^Denim/ }).click();
+    await megaMenu.getByRole("button", { name: "Denims" }).click();
+    await expect(megaMenu.locator("#desktop-category-denims-list")).toBeVisible();
+    await megaMenu.getByRole("button", { name: /^Jeans/ }).click();
 
     await expect(page.getByRole("heading", { name: "Shop the edit." })).toBeVisible();
     await expect(page.locator(".filters button.on")).toHaveText("Denim");
@@ -63,11 +65,62 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
     await expect(page.locator(".mobile-menu-button small")).toHaveCount(0);
     await page.getByRole("button", { name: "Categories" }).click();
     await expect(page.locator("#mobile-category-list")).toBeVisible();
-    await page.getByRole("button", { name: /^Denim/ }).click();
+    await page.getByRole("button", { name: "Denims" }).click();
+    await page.locator("#mobile-category-denims-list").getByRole("button", { name: /^Jeans/ }).click();
 
     await expect(page.getByRole("heading", { name: "Shop the edit." })).toBeVisible();
     await expect(page.locator(".filters button.on")).toHaveText("Denim");
     await expect(page.locator(".mobile-menu-button")).toHaveAttribute("aria-expanded", "false");
+  });
+
+  test("mobile Denims accordion exposes denim subcategories without horizontal overflow", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+
+    await page.getByRole("button", { name: "Open menu" }).click();
+    const denimsToggle = page.getByRole("button", { name: "Denims" });
+    await page.getByRole("button", { name: "Categories" }).click();
+    await denimsToggle.click();
+
+    await expect(denimsToggle).toHaveAttribute("aria-expanded", "true");
+    const denimsList = page.locator("#mobile-category-denims-list");
+    await expect(denimsList).toBeVisible();
+    await expect(denimsList.getByRole("button", { name: /^Jeans/ })).toBeVisible();
+    await expect(denimsList.getByRole("button", { name: /^Jorts/ })).toBeVisible();
+    await expect(denimsList.getByRole("button", { name: /^Skirts/ })).toBeVisible();
+
+    const pageWidth = await page.evaluate(() => document.documentElement.scrollWidth);
+    expect(pageWidth).toBeLessThanOrEqual(390);
+
+    await denimsList.getByRole("button", { name: /^Jorts/ }).click();
+    await expect(page.getByRole("heading", { name: "Shop the edit." })).toBeVisible();
+    await expect(page.locator(".card")).toHaveCount(2);
+    await expect(page.locator(".card").first()).toContainText("Jorts");
+  });
+
+  test("mobile GOWN accordion opens and routes Date Night Gowns to dinner pieces", async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto("/");
+
+    await page.getByRole("button", { name: "Open menu" }).click();
+    await page.getByRole("button", { name: "Categories" }).click();
+    const gownToggle = page.getByRole("button", { name: "GOWN" });
+    await gownToggle.click();
+
+    await expect(gownToggle).toHaveAttribute("aria-expanded", "true");
+    const gownList = page.locator("#mobile-category-gown-list");
+    await expect(gownList).toBeVisible();
+    await expect(gownList.getByRole("button", { name: /^Casual Gowns/ })).toBeVisible();
+    await expect(gownList.getByRole("button", { name: /^Date Night Gowns/ })).toBeVisible();
+    await expect(gownList.getByRole("button", { name: /^Corporate Gowns/ })).toBeVisible();
+
+    const pageWidth = await page.evaluate(() => document.documentElement.scrollWidth);
+    expect(pageWidth).toBeLessThanOrEqual(320);
+
+    await gownList.getByRole("button", { name: /^Date Night Gowns/ }).click();
+    await expect(page.getByRole("heading", { name: "Shop the edit." })).toBeVisible();
+    await expect(page.locator(".card")).toHaveCount(6);
+    await expect(page.locator(".card").first()).toContainText("Gown");
   });
 
   test("bag checkout link carries the selected item and total to WhatsApp", async ({ page }) => {
