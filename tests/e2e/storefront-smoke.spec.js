@@ -45,7 +45,7 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
     await navigation.getByRole("button", { name: /Categories/ }).click();
     const megaMenu = page.locator("#desktop-category-menu");
     await expect(megaMenu).toHaveAttribute("aria-hidden", "false");
-    await megaMenu.getByRole("button", { name: "Denims" }).click();
+    await megaMenu.getByRole("button", { name: "Denim" }).click();
     await expect(megaMenu.locator("#desktop-category-denims-list")).toBeVisible();
     await megaMenu.getByRole("button", { name: /^Jeans/ }).click();
 
@@ -65,7 +65,7 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
     await expect(page.locator(".mobile-menu-button small")).toHaveCount(0);
     await page.getByRole("button", { name: "Categories" }).click();
     await expect(page.locator("#mobile-category-list")).toBeVisible();
-    await page.getByRole("button", { name: "Denims" }).click();
+    await page.getByRole("button", { name: "Denim" }).click();
     await page.locator("#mobile-category-denims-list").getByRole("button", { name: /^Jeans/ }).click();
 
     await expect(page.getByRole("heading", { name: "Shop the edit." })).toBeVisible();
@@ -73,12 +73,12 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
     await expect(page.locator(".mobile-menu-button")).toHaveAttribute("aria-expanded", "false");
   });
 
-  test("mobile Denims accordion exposes denim subcategories without horizontal overflow", async ({ page }) => {
+  test("mobile Denim accordion exposes denim subcategories without horizontal overflow", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
 
     await page.getByRole("button", { name: "Open menu" }).click();
-    const denimsToggle = page.getByRole("button", { name: "Denims" });
+    const denimsToggle = page.getByRole("button", { name: "Denim", exact: true });
     await page.getByRole("button", { name: "Categories" }).click();
     await denimsToggle.click();
 
@@ -98,13 +98,13 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
     await expect(page.locator(".card").first()).toContainText("Jorts");
   });
 
-  test("mobile GOWN accordion opens and routes Date Night Gowns to dinner pieces", async ({ page }) => {
+  test("mobile Gowns accordion opens and routes Date Night Gowns to dinner pieces", async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 844 });
     await page.goto("/");
 
     await page.getByRole("button", { name: "Open menu" }).click();
     await page.getByRole("button", { name: "Categories" }).click();
-    const gownToggle = page.getByRole("button", { name: "GOWN" });
+    const gownToggle = page.getByRole("button", { name: "Gowns", exact: true });
     await gownToggle.click();
 
     await expect(gownToggle).toHaveAttribute("aria-expanded", "true");
