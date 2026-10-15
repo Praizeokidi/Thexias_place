@@ -88,6 +88,7 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
     await expect(denimsList.getByRole("button", { name: /^Jeans/ })).toBeVisible();
     await expect(denimsList.getByRole("button", { name: /^Jorts/ })).toBeVisible();
     await expect(denimsList.getByRole("button", { name: /^Skirts/ })).toBeVisible();
+    await expect(denimsList.getByRole("button", { name: "Pants", exact: true })).toHaveCount(0);
 
     const pageWidth = await page.evaluate(() => document.documentElement.scrollWidth);
     expect(pageWidth).toBeLessThanOrEqual(390);
@@ -110,7 +111,7 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
     await expect(gownToggle).toHaveAttribute("aria-expanded", "true");
     const gownList = page.locator("#mobile-category-gown-list");
     await expect(gownList).toBeVisible();
-    await expect(gownList.getByRole("button", { name: /^Casual Gowns/ })).toBeVisible();
+    await expect(gownList.getByRole("button", { name: "Casual Gowns", exact: true })).toHaveCount(0);
     await expect(gownList.getByRole("button", { name: /^Date Night Gowns/ })).toBeVisible();
     await expect(gownList.getByRole("button", { name: /^Corporate Gowns/ })).toBeVisible();
 

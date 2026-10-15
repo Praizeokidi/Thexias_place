@@ -1443,6 +1443,7 @@ function CategorySubmenu({
   mobile = false,
 }) {
   const showCollectionHint = label !== "Denim" && label !== "Gowns";
+  const showNestedDescriptions = label !== "Denim" && label !== "Gowns";
 
   return (
     <div
@@ -1486,7 +1487,7 @@ function CategorySubmenu({
             >
               <span>
                 <strong>{item.label}</strong>
-                <small>{item.description}</small>
+                {showNestedDescriptions && <small>{item.description}</small>}
               </span>
               <ArrowRight size={14} aria-hidden="true" />
             </button>
@@ -1787,18 +1788,8 @@ export default function App() {
       subcategory: "Skirts",
       description: "Mini and midi denim skirts",
     },
-    {
-      label: "Pants",
-      subcategory: "Pants",
-      description: "Tailored and utility fits",
-    },
   ].map((item) => ({ ...item, category: "Denim" }));
   const gownNavItems = [
-    {
-      label: "Casual Gowns",
-      subcategory: "Casual",
-      description: "Easy day-to-evening dressing",
-    },
     {
       label: "Date Night Gowns",
       subcategory: "Dinner",
