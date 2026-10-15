@@ -1442,6 +1442,8 @@ function CategorySubmenu({
   onSelect,
   mobile = false,
 }) {
+  const showCollectionHint = label !== "Denim" && label !== "Gowns";
+
   return (
     <div
       className={`category-submenu${mobile ? " category-submenu--mobile" : ""}`}
@@ -1459,7 +1461,9 @@ function CategorySubmenu({
       >
         <span>
           <strong>{label}</strong>
-          <small>{mobile ? "Browse the edit" : "Browse by collection"}</small>
+          {showCollectionHint && (
+            <small>{mobile ? "Browse the edit" : "Browse by collection"}</small>
+          )}
         </span>
         <ChevronDown
           className="category-submenu-chevron"
@@ -2013,7 +2017,7 @@ export default function App() {
                       item.category === "Denim" ? (
                         <CategorySubmenu
                           key={item.category}
-                          label="Denims"
+                          label="Denim"
                           id="desktop-category-denims-list"
                           items={denimNavItems}
                           open={categoryDenimOpen}
@@ -2174,7 +2178,7 @@ export default function App() {
                     item.category === "Denim" ? (
                       <CategorySubmenu
                         key={item.category}
-                        label="Denims"
+                        label="Denim"
                         id="mobile-category-denims-list"
                         items={denimNavItems}
                         open={mobileCategoryDenimOpen}
@@ -2185,7 +2189,7 @@ export default function App() {
                     ) : item.category === "Gowns" ? (
                       <CategorySubmenu
                         key={item.category}
-                        label="GOWN"
+                        label="Gowns"
                         id="mobile-category-gown-list"
                         items={gownNavItems}
                         open={mobileCategoryGownOpen}
