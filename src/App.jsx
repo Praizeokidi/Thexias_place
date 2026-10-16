@@ -1601,7 +1601,9 @@ export default function App() {
       readStoredList("thexias-cart").filter((item) => item.category !== "Bags"),
     ),
     [wishlist, setWishlist] = useState(() =>
-      readStoredList("thexias-wishlist"),
+      readStoredList("thexias-wishlist").filter((id) =>
+        products.some((product) => product.id === id),
+      ),
     ),
     [selected, setSelected] = useState(null),
     [page, setPage] = useState(() =>
@@ -2220,7 +2222,7 @@ export default function App() {
               aria-label="Open wishlist"
             >
               <Heart size={19} />
-              <i>{wishlist.length}</i>
+              {wishlist.length > 0 && <i>{wishlist.length}</i>}
             </button>
             <button
               className={`bag ${cartBump ? "bump" : ""}`}
