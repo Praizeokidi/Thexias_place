@@ -109,43 +109,43 @@ groups.Gowns.push(
 );
 const jortProductDetails = {
   "Leopard Print Bermuda Jorts": {
-    images: ["/images/products/jorts/jorts-01-front.jpg", "/images/products/jorts/jorts-01-back.jpg", "/images/products/jorts/jorts-01-detail1.jpg"],
+    images: ["/images/products/jorts/jorts-01-front.png", "/images/products/jorts/jorts-01-back.png", "/images/products/jorts/jorts-01-detail1.png"],
     description: "A longer bermuda silhouette in a warm brown and black animal print, finished with classic five-pocket denim details. Style it with a clean tank and heeled sandals for an easy statement.",
   },
   "Cherry Graphic Bermuda Jorts": {
-    images: ["/images/products/jorts/jorts-02-front.jpg", "/images/products/jorts/jorts-02-back.jpg", "/images/products/jorts/jorts-02-detail1.jpg", "/images/products/jorts/jorts-02-detail2.jpg"],
+    images: ["/images/products/jorts/jorts-02-front.png", "/images/products/jorts/jorts-02-back.png", "/images/products/jorts/jorts-02-detail1.png", "/images/products/jorts/jorts-02-detail2.png"],
     description: "Cream denim bermudas scattered with cherry and chain-inspired artwork for a playful, considered finish. Keep the rest of the look quiet with a crisp shirt or simple knit.",
   },
   "Utility Pocket Asymmetric Denim Culottes": {
-    images: ["/images/products/jorts/jorts-03-front.jpg", "/images/products/jorts/jorts-03-back.jpg"],
+    images: ["/images/products/jorts/jorts-03-front.png", "/images/products/jorts/jorts-03-back.png"],
     description: "Light-wash denim culottes with oversized utility pockets and an asymmetric longer hem. The sculptural shape brings a directional edge to fitted tops and minimal heels.",
   },
   "Pink Frayed Bermuda Jorts": {
-    images: ["/images/products/jorts/jorts-04-front.jpg", "/images/products/jorts/jorts-04-back.jpg", "/images/products/jorts/jorts-04-detail1.jpg"],
+    images: ["/images/products/jorts/jorts-04-front.png", "/images/products/jorts/jorts-04-back.png", "/images/products/jorts/jorts-04-detail1.png"],
     description: "Soft pink bermuda denim with subtle horizontal fading and a frayed hem. Pair it with tonal separates or a white blouse for a polished warm-weather edit.",
   },
   "White Eyelet Embroidered Bermuda Jorts": {
-    images: ["/images/products/jorts/jorts-05-front.jpg", "/images/products/jorts/jorts-05-back.jpg", "/images/products/jorts/jorts-05-detail1.jpg", "/images/products/jorts/jorts-05-detail2.jpg"],
+    images: ["/images/products/jorts/jorts-05-front.png", "/images/products/jorts/jorts-05-back.png", "/images/products/jorts/jorts-05-detail1.png", "/images/products/jorts/jorts-05-detail2.png"],
     description: "White bermuda shorts patterned with delicate floral eyelet cut-outs and a clean tailored waistband. Wear them with a fitted cami and barely-there sandals for a light, refined look.",
   },
   "Pinstripe Denim Bermuda Jorts": {
-    images: ["/images/products/jorts/jorts-06-front.jpg", "/images/products/jorts/jorts-06-back.jpg"],
+    images: ["/images/products/jorts/jorts-06-front.png", "/images/products/jorts/jorts-06-back.png"],
     description: "Charcoal denim bermudas traced with fine pinstripes and finished with a relaxed longer cut. They bring a subtle tailored note to sneakers, cropped knits, or an oversized blazer.",
   },
   "Asymmetric Drape Denim Midi Skirt": {
-    images: ["/images/products/jorts/jorts-07-front.jpg", "/images/products/jorts/jorts-07-back.jpg", "/images/products/jorts/jorts-07-detail1.jpg"],
+    images: ["/images/products/jorts/jorts-07-front.png", "/images/products/jorts/jorts-07-back.png", "/images/products/jorts/jorts-07-detail1.png"],
     description: "Dark grey denim shaped into a midi skirt with dramatic asymmetric draped panels. Balance its movement with a simple fitted top and understated heels.",
   },
   "Floral Belted Cargo Bermuda Jorts": {
-    images: ["/images/products/jorts/jorts-08-front.jpg", "/images/products/jorts/jorts-08-back.jpg", "/images/products/jorts/jorts-08-detail1.jpg"],
+    images: ["/images/products/jorts/jorts-08-front.png", "/images/products/jorts/jorts-08-back.png", "/images/products/jorts/jorts-08-detail1.png"],
     description: "Cream floral-print bermudas with a matching belt, cargo pockets, and long side ties. Style them with a pared-back top to let the print and utility detailing lead.",
   },
   "Lace-Panel Wide-Leg Denim Culottes": {
-    images: ["/images/products/jorts/jorts-09-front.jpg", "/images/products/jorts/jorts-09-back.jpg", "/images/products/jorts/jorts-09-detail1.jpg"],
+    images: ["/images/products/jorts/jorts-09-front.png", "/images/products/jorts/jorts-09-back.png", "/images/products/jorts/jorts-09-detail1.png"],
     description: "Light-wash wide-leg denim framed with white lace panels and an extended lace hem. A crisp blouse and delicate sandals keep the contrast elegant.",
   },
   "Rhinestone Studded Bermuda Jorts": {
-    images: ["/images/products/jorts/jorts-10-front.jpg", "/images/products/jorts/jorts-10-back.jpg", "/images/products/jorts/jorts-10-detail1.jpg"],
+    images: ["/images/products/jorts/jorts-10-front.png", "/images/products/jorts/jorts-10-back.png", "/images/products/jorts/jorts-10-detail1.png"],
     description: "Light-wash bermuda denim covered in small rhinestone embellishments that catch the light across the front and back. Let them anchor an evening look with a sleek black jacket and heels.",
   },
 };
