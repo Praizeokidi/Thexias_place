@@ -95,7 +95,7 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
 
     await denimsList.getByRole("button", { name: /^Jorts/ }).click();
     await expect(page.getByRole("heading", { name: "Shop the edit." })).toBeVisible();
-    await expect(page.locator(".card")).toHaveCount(2);
+    await expect(page.locator(".card")).toHaveCount(12);
     await expect(page.locator(".card").first()).toContainText("Jorts");
   });
 
