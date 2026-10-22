@@ -221,12 +221,12 @@ const newProductDetails = {
   },
   "Charcoal Washed Wide-Leg Jeans": {
     images: [
-      "/new products/Wide_leg_jeans/IMG_6182.jpeg",
-      "/new products/Wide_leg_jeans/IMG_6183.jpeg",
-      "/new products/Wide_leg_jeans/IMG_6184.jpeg",
-      "/new products/Wide_leg_jeans/IMG_6185.jpeg",
-      "/new products/Wide_leg_jeans/IMG_6186.jpeg",
-      "/new products/Wide_leg_jeans/IMG_6187.jpeg",
+      "/new products/Wide_leg_jeans/wide_a_1.jpeg",
+      "/new products/Wide_leg_jeans/wide_a_2.jpeg",
+      "/new products/Wide_leg_jeans/wide_a_3.jpeg",
+      "/new products/Wide_leg_jeans/wide_b_1.jpeg",
+      "/new products/Wide_leg_jeans/wide_b_2.jpeg",
+      "/new products/Wide_leg_jeans/wide_b_3.jpeg",
     ],
   },
   "Crocodile-Texture Cape Top": {
