@@ -1887,12 +1887,12 @@ export default function App() {
   ].map((item) => ({ ...item, category: "Denim" }));
   const gownNavItems = [
     {
-      label: "Date Night Gowns",
+      label: "Mini Dress",
       subcategory: "Dinner",
       description: "Satin, sparkle and occasion looks",
     },
     {
-      label: "Corporate Gowns",
+      label: "Maxi Dress",
       subcategory: "Curated",
       description: "Polished statement dressing",
     },

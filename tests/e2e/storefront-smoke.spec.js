@@ -99,7 +99,7 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
     await expect(page.locator(".card").first()).toContainText("Jorts");
   });
 
-  test("mobile Gowns accordion opens and routes Date Night Gowns to dinner pieces", async ({ page }) => {
+  test("mobile Gowns accordion opens and routes Mini Dress to dinner pieces", async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 844 });
     await page.goto("/");
 
@@ -112,13 +112,13 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
     const gownList = page.locator("#mobile-category-gown-list");
     await expect(gownList).toBeVisible();
     await expect(gownList.getByRole("button", { name: "Casual Gowns", exact: true })).toHaveCount(0);
-    await expect(gownList.getByRole("button", { name: /^Date Night Gowns/ })).toBeVisible();
-    await expect(gownList.getByRole("button", { name: /^Corporate Gowns/ })).toBeVisible();
+    await expect(gownList.getByRole("button", { name: /^Mini Dress/ })).toBeVisible();
+    await expect(gownList.getByRole("button", { name: /^Maxi Dress/ })).toBeVisible();
 
     const pageWidth = await page.evaluate(() => document.documentElement.scrollWidth);
     expect(pageWidth).toBeLessThanOrEqual(320);
 
-    await gownList.getByRole("button", { name: /^Date Night Gowns/ }).click();
+    await gownList.getByRole("button", { name: /^Mini Dress/ }).click();
     await expect(page.getByRole("heading", { name: "Shop the edit." })).toBeVisible();
     await expect(page.locator(".card")).toHaveCount(6);
     await expect(page.locator(".card").first()).toContainText("Gown");
