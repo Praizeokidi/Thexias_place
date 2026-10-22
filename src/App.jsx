@@ -94,6 +94,8 @@ groups.Denim.push(
   ["Rhinestone Studded Bermuda Jorts", 23500, "Jorts"],
 );
 groups.Denim.unshift(
+  ["Chocolate Lace-Up Low-Rise Flare Jeans", 26000, "Pants"],
+  ["Charcoal Washed Wide-Leg Jeans", 24500, "Pants"],
   ["Cargo Lace-Up Bermuda Jorts", 24500, "Jorts"],
   ["White Lace-Up Bermuda Jorts", 22000, "Jorts"],
   ["Classic Blue Bermuda Jorts", 18500, "Jorts"],
@@ -206,6 +208,25 @@ const newProductDetails = {
       "/new products/Capri/Capri_a_1.jpeg",
       "/new products/Capri/Capri_a_2.jpeg",
       "/new products/Capri/Capri_a_3.jpeg",
+    ],
+  },
+  "Chocolate Lace-Up Low-Rise Flare Jeans": {
+    images: [
+      "/new products/Low_rise_jeans/Jeans_a_1.jpeg",
+      "/new products/Low_rise_jeans/Jeans_a_2.jpeg",
+      "/new products/Low_rise_jeans/Jeans_a_3.jpeg",
+      "/new products/Low_rise_jeans/Jeans_a_4.jpeg",
+      "/new products/Low_rise_jeans/Jeans_a_5.jpeg",
+    ],
+  },
+  "Charcoal Washed Wide-Leg Jeans": {
+    images: [
+      "/new products/Wide_leg_jeans/IMG_6182.jpeg",
+      "/new products/Wide_leg_jeans/IMG_6183.jpeg",
+      "/new products/Wide_leg_jeans/IMG_6184.jpeg",
+      "/new products/Wide_leg_jeans/IMG_6185.jpeg",
+      "/new products/Wide_leg_jeans/IMG_6186.jpeg",
+      "/new products/Wide_leg_jeans/IMG_6187.jpeg",
     ],
   },
   "Crocodile-Texture Cape Top": {
