@@ -93,6 +93,13 @@ groups.Denim.push(
   ["Lace-Panel Wide-Leg Denim Culottes", 24500, "Jorts"],
   ["Rhinestone Studded Bermuda Jorts", 23500, "Jorts"],
 );
+groups.Denim.unshift(
+  ["Cargo Lace-Up Bermuda Jorts", 24500, "Jorts"],
+  ["White Lace-Up Bermuda Jorts", 22000, "Jorts"],
+  ["Classic Blue Bermuda Jorts", 18500, "Jorts"],
+  ["White Wrap Bermuda Jorts", 21000, "Jorts"],
+  ["Fur-Trim Dark Denim Capri", 24000, "Pants"],
+);
 groups.Shoes.push(
   ["Crystal Strap Heel Sandals", 18500, "Heel"],
   ["Sculptural Kitten Heel Pumps", 20500, "Heel"],
@@ -106,6 +113,23 @@ groups.Gowns.push(
   ["Casual Tiered Day Gown", 28500, "Casual"],
   ["Dinner Satin Cowl Gown", 43000, "Dinner"],
   ["Dinner Embellished Gown", 51000, "Dinner"],
+);
+groups.Gowns.unshift(
+  ["Black Mesh Wrap Mini Dress", 28000, "Dinner"],
+  ["Chocolate Mesh Ruched Mini Dress", 28000, "Dinner"],
+  ["Powder Blue Mesh Mini Dress", 30000, "Dinner"],
+  ["Brown Plaid Lace-Trim Maxi Dress", 38000, "Curated"],
+);
+groups.Tops.unshift(
+  ["Crocodile-Texture Cape Top", 18000],
+  ["Ivory One-Shoulder Top", 12500],
+  ["Burgundy Lace-Trim Cami", 11500],
+  ["Zebra Ruched Long-Sleeve Top", 14000],
+  ["Black Floral Mesh Mock-Neck Top", 13500],
+  ["White Fitted Button-Up Top", 12000],
+  ["J'adore Embellished Tank", 10500],
+  ["Contrast-Trim Polo Top", 11000],
+  ["Ruched Ivory Zip Top", 12500],
 );
 const jortProductDetails = {
   "Leopard Print Bermuda Jorts": {
@@ -149,6 +173,131 @@ const jortProductDetails = {
     description: "Light-wash bermuda denim covered in small rhinestone embellishments that catch the light across the front and back. Let them anchor an evening look with a sleek black jacket and heels.",
   },
 };
+const newProductDetails = {
+  "Cargo Lace-Up Bermuda Jorts": {
+    images: [
+      "/new products/Jorts/Jort_l_1.jpeg",
+      "/new products/Jorts/Jort_l_2.jpeg",
+    ],
+  },
+  "White Lace-Up Bermuda Jorts": {
+    images: [
+      "/new products/Jorts/Jort_m_1.jpeg",
+      "/new products/Jorts/Jort_m_2.jpeg",
+      "/new products/Jorts/Jort_m_3.jpeg",
+    ],
+  },
+  "Classic Blue Bermuda Jorts": {
+    images: [
+      "/new products/Jorts/Jort_n_1.jpeg",
+      "/new products/Jorts/Jort_n_2.jpeg",
+      "/new products/Jorts/Jort_n_3.jpeg",
+      "/new products/Jorts/Jort_n_4.jpeg",
+    ],
+  },
+  "White Wrap Bermuda Jorts": {
+    images: [
+      "/new products/Jorts/Jort_o_1.jpeg",
+      "/new products/Jorts/Jort_o_2.jpeg",
+    ],
+  },
+  "Fur-Trim Dark Denim Capri": {
+    images: [
+      "/new products/Capri/Capri_a_1.jpeg",
+      "/new products/Capri/Capri_a_2.jpeg",
+      "/new products/Capri/Capri_a_3.jpeg",
+    ],
+  },
+  "Crocodile-Texture Cape Top": {
+    images: [
+      "/new products/Tops/Top_a_1.jpeg",
+      "/new products/Tops/Top_a_2.jpeg",
+      "/new products/Tops/Top_a_3.jpeg",
+      "/new products/Tops/Top_a_4.jpeg",
+    ],
+  },
+  "Ivory One-Shoulder Top": {
+    images: [
+      "/new products/Tops/Top_b_1.jpeg",
+      "/new products/Tops/Top_b_2.jpeg",
+      "/new products/Tops/Top_b_3.jpeg",
+    ],
+  },
+  "Burgundy Lace-Trim Cami": {
+    images: [
+      "/new products/Tops/Top_c_1.jpeg",
+      "/new products/Tops/Top_c_2.jpeg",
+      "/new products/Tops/Top_c_3.jpeg",
+    ],
+  },
+  "Zebra Ruched Long-Sleeve Top": {
+    images: [
+      "/new products/Tops/Top_d_1.jpeg",
+      "/new products/Tops/Top_d_2.jpeg",
+    ],
+  },
+  "Black Floral Mesh Mock-Neck Top": {
+    images: [
+      "/new products/Tops/Top_e_1.jpeg",
+      "/new products/Tops/Top_e_2.jpeg",
+    ],
+  },
+  "White Fitted Button-Up Top": {
+    images: [
+      "/new products/Tops/Top_f_1.jpeg",
+      "/new products/Tops/Top_f_2.jpeg",
+      "/new products/Tops/Top_f_3.jpeg",
+    ],
+  },
+  "J'adore Embellished Tank": {
+    images: [
+      "/new products/Tops/Top_g_1.jpeg",
+      "/new products/Tops/Top_g_2.jpeg",
+      "/new products/Tops/Top_g_3.jpeg",
+      "/new products/Tops/Top_g_4.jpeg",
+    ],
+  },
+  "Contrast-Trim Polo Top": {
+    images: [
+      "/new products/Tops/Top_h_1.jpeg",
+      "/new products/Tops/Top_h_2.jpeg",
+    ],
+  },
+  "Ruched Ivory Zip Top": {
+    images: [
+      "/new products/Tops/Top_i_1.jpeg",
+      "/new products/Tops/Top_i_2.jpeg",
+      "/new products/Tops/Top_i_3.jpeg",
+    ],
+  },
+  "Black Mesh Wrap Mini Dress": {
+    images: [
+      "/new products/Mini Dress/Mini_b_1.jpeg",
+      "/new products/Mini Dress/Mini_b_2.jpeg",
+      "/new products/Mini Dress/Mini_b_3.jpeg",
+    ],
+  },
+  "Chocolate Mesh Ruched Mini Dress": {
+    images: [
+      "/new products/Mini Dress/Mini_c_1.jpeg",
+      "/new products/Mini Dress/Mini_c_2.jpeg",
+      "/new products/Mini Dress/Mini_c_3.jpeg",
+    ],
+  },
+  "Powder Blue Mesh Mini Dress": {
+    images: ["/new products/Mini Dress/Mini_d_1.jpeg"],
+  },
+  "Brown Plaid Lace-Trim Maxi Dress": {
+    images: [
+      "/new products/Maxi Dress/maxi_a_1.jpeg",
+      "/new products/Maxi Dress/maxi_a_2.jpeg",
+      "/new products/Maxi Dress/maxi_a_3.jpeg",
+      "/new products/Maxi Dress/maxi_a_4.jpeg",
+      "/new products/Maxi Dress/maxi_a_5.jpeg",
+    ],
+  },
+};
+const productDetails = { ...jortProductDetails, ...newProductDetails };
 const subcategoryMap = {
   Denim: {
     "High-Waist Skinny Denim": "Pants",
@@ -191,7 +340,7 @@ const categoryOrder = ["Denim", "Shoes", "Tops", "Gowns", "Lingerie"],
   cats = ["All", ...categoryOrder],
   products = Object.entries(groups).flatMap(([category, items]) =>
     items.map(([name, price, subcategory], i) => {
-      const detail = jortProductDetails[name];
+      const detail = productDetails[name];
       const primaryImage = detail?.images?.[0] || `placeholder-${category.toLowerCase()}-${i + 1}`;
       return {
         id: category + i,

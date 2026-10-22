@@ -95,7 +95,7 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
 
     await denimsList.getByRole("button", { name: /^Jorts/ }).click();
     await expect(page.getByRole("heading", { name: "Shop the edit." })).toBeVisible();
-    await expect(page.locator(".card")).toHaveCount(12);
+    await expect(page.locator(".card")).toHaveCount(16);
     await expect(page.locator(".card").first()).toContainText("Jorts");
   });
 
@@ -120,8 +120,8 @@ test.describe("THEXIAS_PLACE storefront smoke", () => {
 
     await gownList.getByRole("button", { name: /^Mini Dress/ }).click();
     await expect(page.getByRole("heading", { name: "Shop the edit." })).toBeVisible();
-    await expect(page.locator(".card")).toHaveCount(6);
-    await expect(page.locator(".card").first()).toContainText("Gown");
+    await expect(page.locator(".card")).toHaveCount(9);
+    await expect(page.locator(".card").first()).toContainText("Mini Dress");
   });
 
   test("bag checkout link carries the selected item and total to WhatsApp", async ({ page }) => {
