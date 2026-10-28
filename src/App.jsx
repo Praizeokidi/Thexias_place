@@ -603,6 +603,7 @@ const readStoredList = (key) => {
     return [];
   }
 };
+const getCartSize = (item) => item.size || item.sizes?.[1] || "S";
 function findProduct(name) {
   return products.find((p) => p.name === name) || products[0];
 }
@@ -1515,7 +1516,7 @@ function Modal({ p, close, add }) {
 }
 function Cart({ cart, close, qty, remove }) {
   let total = cart.reduce((a, x) => a + x.price * x.quantity, 0),
-    msg = `Hi THEXIAS PLACE! I'd like to order:\n\n${cart.map((x) => `- ${x.name} x${x.quantity} — ${money(x.price * x.quantity)} — Size: ${x.size || "Not specified"}`).join("\n")}\n\nTotal: ${money(total)}`;
+    msg = `Hi THEXIAS PLACE! I'd like to order:\n\n${cart.map((x) => `- ${x.name} x${x.quantity} — ${money(x.price * x.quantity)} — Size: ${getCartSize(x)}`).join("\n")}\n\nTotal: ${money(total)}`;
   return (
     <div
       className="overlay cart-overlay"
@@ -1768,7 +1769,9 @@ export default function App() {
     [q, setQ] = useState(""),
     [sort, setSort] = useState("featured"),
     [cart, setCart] = useState(() =>
-      readStoredList("thexias-cart").filter((item) => item.category !== "Bags"),
+      readStoredList("thexias-cart")
+        .filter((item) => item.category !== "Bags")
+        .map((item) => ({ ...item, size: getCartSize(item) })),
     ),
     [wishlist, setWishlist] = useState(() =>
       readStoredList("thexias-wishlist").filter((id) =>
