@@ -103,10 +103,10 @@ groups.Denim.unshift(
   ["Fur-Trim Dark Denim Capri", 24000, "Pants"],
 );
 groups.Shoes.push(
-  ["Crystal Strap Heel Sandals", 18500, "Club"],
-  ["Sculptural Kitten Heel Pumps", 20500, "Date Night"],
-  ["Retro Court Sneakers", 17500, "Sneakers"],
-  ["Minimal Leather Sneakers", 19000, "Sneakers"],
+  ["Crystal Strap Heel Sandals", 18500, "Club & Date Night"],
+  ["Sculptural Kitten Heel Pumps", 20500, "Club & Date Night"],
+  ["Retro Court Sneakers", 17500, "Casual & Sneakers"],
+  ["Minimal Leather Sneakers", 19000, "Casual & Sneakers"],
 );
 groups.Gowns.push(
   ["Curated Draped Silk Gown", 47000, "Curated"],
@@ -333,16 +333,16 @@ const subcategoryMap = {
     "Black Stretch Skinny Denim": "Pants",
   },
   Shoes: {
-    "Strappy Stiletto Heels": "Club",
+    "Strappy Stiletto Heels": "Club & Date Night",
     "Pointed-Toe Ankle Boots": "Boots",
-    "Block Heel Sandals": "Date Night",
-    "Slip-On Mule Flats": "Casual",
+    "Block Heel Sandals": "Club & Date Night",
+    "Slip-On Mule Flats": "Casual & Sneakers",
     "Knee-High Suede Boots": "Boots",
-    "Espadrille Wedge Sandals": "Casual",
-    "Square-Toe Heeled Loafers": "Date Night",
-    "Strappy Gladiator Sandals": "Club",
-    "Chunky Platform Sneakers": "Sneakers",
-    "Classic White Sneakers": "Sneakers",
+    "Espadrille Wedge Sandals": "Casual & Sneakers",
+    "Square-Toe Heeled Loafers": "Club & Date Night",
+    "Strappy Gladiator Sandals": "Club & Date Night",
+    "Chunky Platform Sneakers": "Casual & Sneakers",
+    "Classic White Sneakers": "Casual & Sneakers",
   },
   Gowns: {
     "Satin Evening Gown": "Dinner",
@@ -2079,29 +2079,19 @@ export default function App() {
   ].map((item) => ({ ...item, category: "Gowns" }));
   const shoesNavItems = [
     {
-      label: "Club",
-      subcategory: "Club",
-      description: "Statement heels for after-dark plans",
+      label: "Club & Date Night",
+      subcategory: "Club & Date Night",
+      description: "Statement pairs for after-dark plans",
     },
     {
-      label: "Date Night",
-      subcategory: "Date Night",
-      description: "Polished pairs for evenings out",
-    },
-    {
-      label: "Casual",
-      subcategory: "Casual",
-      description: "Easy shoes for everyday styling",
+      label: "Casual & Sneakers",
+      subcategory: "Casual & Sneakers",
+      description: "Easy pairs for everyday styling",
     },
     {
       label: "Boots",
       subcategory: "Boots",
       description: "Strong silhouettes for every season",
-    },
-    {
-      label: "Sneakers",
-      subcategory: "Sneakers",
-      description: "Clean, comfortable everyday pairs",
     },
   ].map((item) => ({ ...item, category: "Shoes" }));
   const whatsappUrl = "https://wa.me/2347076535621";
