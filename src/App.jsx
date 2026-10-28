@@ -103,8 +103,8 @@ groups.Denim.unshift(
   ["Fur-Trim Dark Denim Capri", 24000, "Pants"],
 );
 groups.Shoes.push(
-  ["Crystal Strap Heel Sandals", 18500, "Heel"],
-  ["Sculptural Kitten Heel Pumps", 20500, "Heel"],
+  ["Crystal Strap Heel Sandals", 18500, "Club"],
+  ["Sculptural Kitten Heel Pumps", 20500, "Date Night"],
   ["Retro Court Sneakers", 17500, "Sneakers"],
   ["Minimal Leather Sneakers", 19000, "Sneakers"],
 );
@@ -333,14 +333,14 @@ const subcategoryMap = {
     "Black Stretch Skinny Denim": "Pants",
   },
   Shoes: {
-    "Strappy Stiletto Heels": "Heel",
-    "Pointed-Toe Ankle Boots": "Heel",
-    "Block Heel Sandals": "Heel",
-    "Slip-On Mule Flats": "Heel",
-    "Knee-High Suede Boots": "Heel",
-    "Espadrille Wedge Sandals": "Heel",
-    "Square-Toe Heeled Loafers": "Heel",
-    "Strappy Gladiator Sandals": "Heel",
+    "Strappy Stiletto Heels": "Club",
+    "Pointed-Toe Ankle Boots": "Boots",
+    "Block Heel Sandals": "Date Night",
+    "Slip-On Mule Flats": "Casual",
+    "Knee-High Suede Boots": "Boots",
+    "Espadrille Wedge Sandals": "Casual",
+    "Square-Toe Heeled Loafers": "Date Night",
+    "Strappy Gladiator Sandals": "Club",
     "Chunky Platform Sneakers": "Sneakers",
     "Classic White Sneakers": "Sneakers",
   },
@@ -1515,7 +1515,7 @@ function Modal({ p, close, add }) {
 }
 function Cart({ cart, close, qty, remove }) {
   let total = cart.reduce((a, x) => a + x.price * x.quantity, 0),
-    msg = `Hi THEXIAS PLACE! I'd like to order:\n\n${cart.map((x) => `- ${x.name} x${x.quantity} — ${money(x.price * x.quantity)}`).join("\n")}\n\nTotal: ${money(total)}`;
+    msg = `Hi THEXIAS PLACE! I'd like to order:\n\n${cart.map((x) => `- ${x.name} x${x.quantity} — ${money(x.price * x.quantity)} — Size: ${x.size || "Not specified"}`).join("\n")}\n\nTotal: ${money(total)}`;
   return (
     <div
       className="overlay cart-overlay"
@@ -1800,8 +1800,10 @@ export default function App() {
     [mobileCategoriesOpen, setMobileCategoriesOpen] = useState(false),
     [categoryDenimOpen, setCategoryDenimOpen] = useState(false),
     [categoryGownOpen, setCategoryGownOpen] = useState(false),
+    [categoryShoesOpen, setCategoryShoesOpen] = useState(false),
     [mobileCategoryDenimOpen, setMobileCategoryDenimOpen] = useState(false),
-    [mobileCategoryGownOpen, setMobileCategoryGownOpen] = useState(false);
+    [mobileCategoryGownOpen, setMobileCategoryGownOpen] = useState(false),
+    [mobileCategoryShoesOpen, setMobileCategoryShoesOpen] = useState(false);
   const searchPopoverRef = useRef(null);
   const categoriesMenuRef = useRef(null);
   const categoriesTriggerRef = useRef(null);
@@ -2072,6 +2074,33 @@ export default function App() {
       description: "Special pieces for your edit",
     },
   ].map((item) => ({ ...item, category: "Gowns" }));
+  const shoesNavItems = [
+    {
+      label: "Club",
+      subcategory: "Club",
+      description: "Statement heels for after-dark plans",
+    },
+    {
+      label: "Date Night",
+      subcategory: "Date Night",
+      description: "Polished pairs for evenings out",
+    },
+    {
+      label: "Casual",
+      subcategory: "Casual",
+      description: "Easy shoes for everyday styling",
+    },
+    {
+      label: "Boots",
+      subcategory: "Boots",
+      description: "Strong silhouettes for every season",
+    },
+    {
+      label: "Sneakers",
+      subcategory: "Sneakers",
+      description: "Clean, comfortable everyday pairs",
+    },
+  ].map((item) => ({ ...item, category: "Shoes" }));
   const whatsappUrl = "https://wa.me/2347076535621";
   const contactUrl = `${whatsappUrl}?text=${encodeURIComponent("Hi THEXIAS_PLACE, I have a question about the edit.")}`;
   const styleSessionUrl = `${whatsappUrl}?text=${encodeURIComponent("Hi THEXIAS_PLACE, I’d like to enquire about booking a style session.")}`;
@@ -2079,10 +2108,12 @@ export default function App() {
     setCategoriesOpen(false);
     setCategoryDenimOpen(false);
     setCategoryGownOpen(false);
+    setCategoryShoesOpen(false);
     setMobileMenuOpen(false);
     setMobileCategoriesOpen(false);
     setMobileCategoryDenimOpen(false);
     setMobileCategoryGownOpen(false);
+    setMobileCategoryShoesOpen(false);
   };
   const goHomeTop = () => {
     closeNavigation();
@@ -2311,7 +2342,18 @@ export default function App() {
                     <span className="mega-menu-eyebrow">
                       The finishing touches
                     </span>
-                    {navCategories.slice(3).map((item) => (
+                    {navCategories.slice(3).map((item) =>
+                      item.category === "Shoes" ? (
+                        <CategorySubmenu
+                          key={item.category}
+                          label="Shoes"
+                          id="desktop-category-shoes-list"
+                          items={shoesNavItems}
+                          open={categoryShoesOpen}
+                          setOpen={setCategoryShoesOpen}
+                          onSelect={openSubcategory}
+                        />
+                      ) : (
                       <button
                         className="mega-menu-item"
                         type="button"
@@ -2324,7 +2366,8 @@ export default function App() {
                         </span>
                         <ArrowRight size={15} aria-hidden="true" />
                       </button>
-                    ))}
+                      ),
+                    )}
                     <div className="mega-menu-featured">
                       <button type="button" onClick={openOutfits}>
                         <span>
@@ -2451,6 +2494,17 @@ export default function App() {
                         items={gownNavItems}
                         open={mobileCategoryGownOpen}
                         setOpen={setMobileCategoryGownOpen}
+                        onSelect={openSubcategory}
+                        mobile
+                      />
+                    ) : item.category === "Shoes" ? (
+                      <CategorySubmenu
+                        key={item.category}
+                        label="Shoes"
+                        id="mobile-category-shoes-list"
+                        items={shoesNavItems}
+                        open={mobileCategoryShoesOpen}
+                        setOpen={setMobileCategoryShoesOpen}
                         onSelect={openSubcategory}
                         mobile
                       />
