@@ -115,16 +115,16 @@ groups.Gowns.push(
   ["Casual Tiered Day Gown", 28500, "Casual"],
   ["Dinner Satin Cowl Gown", 43000, "Dinner"],
   ["Dinner Embellished Gown", 51000, "Dinner"],
-  ["Black Halter Mini Dress", 28000, "Dinner"],
-  ["Leopard Lace Midi Dress", 42000, "Dinner"],
-  ["Printed Cut-Out Mini Dress", 32000, "Dinner"],
-  ["Sage Draped Cut-Out Dress", 38000, "Dinner"],
-  ["Mocha Draped Mesh Maxi Dress", 40000, "Dinner"],
 );
 groups.Gowns.unshift(
   ["Black Mesh Wrap Mini Dress", 28000, "Dinner"],
   ["Chocolate Mesh Ruched Mini Dress", 28000, "Dinner"],
   ["Powder Blue Mesh Mini Dress", 30000, "Dinner"],
+  ["Black Halter Mini Dress", 28000, "Dinner"],
+  ["Leopard Lace Midi Dress", 42000, "Dinner"],
+  ["Printed Cut-Out Mini Dress", 32000, "Dinner"],
+  ["Sage Draped Cut-Out Dress", 38000, "Dinner"],
+  ["Mocha Draped Mesh Maxi Dress", 40000, "Dinner"],
   ["Brown Plaid Lace-Trim Maxi Dress", 38000, "Curated"],
 );
 groups.Tops.unshift(
