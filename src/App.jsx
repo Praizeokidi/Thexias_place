@@ -115,6 +115,11 @@ groups.Gowns.push(
   ["Casual Tiered Day Gown", 28500, "Casual"],
   ["Dinner Satin Cowl Gown", 43000, "Dinner"],
   ["Dinner Embellished Gown", 51000, "Dinner"],
+  ["Black Halter Mini Dress", 28000, "Dinner"],
+  ["Leopard Lace Midi Dress", 42000, "Dinner"],
+  ["Printed Cut-Out Mini Dress", 32000, "Dinner"],
+  ["Sage Draped Cut-Out Dress", 38000, "Dinner"],
+  ["Mocha Draped Mesh Maxi Dress", 40000, "Dinner"],
 );
 groups.Gowns.unshift(
   ["Black Mesh Wrap Mini Dress", 28000, "Dinner"],
@@ -135,44 +140,94 @@ groups.Tops.unshift(
 );
 const jortProductDetails = {
   "Leopard Print Bermuda Jorts": {
-    images: ["/images/products/jorts/jorts-01-front.webp", "/images/products/jorts/jorts-01-back.webp", "/images/products/jorts/jorts-01-detail1.webp"],
-    description: "A longer bermuda silhouette in a warm brown and black animal print, finished with classic five-pocket denim details. Style it with a clean tank and heeled sandals for an easy statement.",
+    images: [
+      "/images/products/jorts/jorts-01-front.webp",
+      "/images/products/jorts/jorts-01-back.webp",
+      "/images/products/jorts/jorts-01-detail1.webp",
+    ],
+    description:
+      "A longer bermuda silhouette in a warm brown and black animal print, finished with classic five-pocket denim details. Style it with a clean tank and heeled sandals for an easy statement.",
   },
-	  "Cherry Graphic Bermuda Jorts": {
-	    images: ["/items/jort-b-1.jpeg", "/items/jort-b-2.jpeg", "/items/jort-b-3.jpeg", "/items/jort-b-4.jpeg"],
-	    description: "Cream denim bermudas scattered with cherry and chain-inspired artwork for a playful, considered finish. Keep the rest of the look quiet with a crisp shirt or simple knit.",
-	  },
+  "Cherry Graphic Bermuda Jorts": {
+    images: [
+      "/items/jort-b-1.jpeg",
+      "/items/jort-b-2.jpeg",
+      "/items/jort-b-3.jpeg",
+      "/items/jort-b-4.jpeg",
+    ],
+    description:
+      "Cream denim bermudas scattered with cherry and chain-inspired artwork for a playful, considered finish. Keep the rest of the look quiet with a crisp shirt or simple knit.",
+  },
   "Utility Pocket Asymmetric Denim Culottes": {
-    images: ["/images/products/jorts/jorts-03-front.webp", "/images/products/jorts/jorts-03-back.webp"],
-    description: "Light-wash denim culottes with oversized utility pockets and an asymmetric longer hem. The sculptural shape brings a directional edge to fitted tops and minimal heels.",
+    images: [
+      "/images/products/jorts/jorts-03-front.webp",
+      "/images/products/jorts/jorts-03-back.webp",
+    ],
+    description:
+      "Light-wash denim culottes with oversized utility pockets and an asymmetric longer hem. The sculptural shape brings a directional edge to fitted tops and minimal heels.",
   },
   "Pink Frayed Bermuda Jorts": {
-    images: ["/images/products/jorts/jorts-04-front.webp", "/images/products/jorts/jorts-04-back.webp", "/images/products/jorts/jorts-04-detail1.webp"],
-    description: "Soft pink bermuda denim with subtle horizontal fading and a frayed hem. Pair it with tonal separates or a white blouse for a polished warm-weather edit.",
+    images: [
+      "/images/products/jorts/jorts-04-front.webp",
+      "/images/products/jorts/jorts-04-back.webp",
+      "/images/products/jorts/jorts-04-detail1.webp",
+    ],
+    description:
+      "Soft pink bermuda denim with subtle horizontal fading and a frayed hem. Pair it with tonal separates or a white blouse for a polished warm-weather edit.",
   },
-	  "White Eyelet Embroidered Bermuda Jorts": {
-	    images: ["/items/jort-e-1.jpeg", "/items/jort-e-2.jpeg", "/items/jort-e-3.jpeg", "/items/jort-e-4.jpeg"],
-	    description: "White bermuda shorts patterned with delicate floral eyelet cut-outs and a clean tailored waistband. Wear them with a fitted cami and barely-there sandals for a light, refined look.",
-	  },
+  "White Eyelet Embroidered Bermuda Jorts": {
+    images: [
+      "/items/jort-e-1.jpeg",
+      "/items/jort-e-2.jpeg",
+      "/items/jort-e-3.jpeg",
+      "/items/jort-e-4.jpeg",
+    ],
+    description:
+      "White bermuda shorts patterned with delicate floral eyelet cut-outs and a clean tailored waistband. Wear them with a fitted cami and barely-there sandals for a light, refined look.",
+  },
   "Pinstripe Denim Bermuda Jorts": {
-    images: ["/images/products/jorts/jorts-06-front.webp", "/images/products/jorts/jorts-06-back.webp"],
-    description: "Charcoal denim bermudas traced with fine pinstripes and finished with a relaxed longer cut. They bring a subtle tailored note to sneakers, cropped knits, or an oversized blazer.",
+    images: [
+      "/images/products/jorts/jorts-06-front.webp",
+      "/images/products/jorts/jorts-06-back.webp",
+    ],
+    description:
+      "Charcoal denim bermudas traced with fine pinstripes and finished with a relaxed longer cut. They bring a subtle tailored note to sneakers, cropped knits, or an oversized blazer.",
   },
   "Asymmetric Drape Denim Midi Skirt": {
-    images: ["/images/products/jorts/jorts-07-front.webp", "/images/products/jorts/jorts-07-back.webp", "/images/products/jorts/jorts-07-detail1.webp"],
-    description: "Dark grey denim shaped into a midi skirt with dramatic asymmetric draped panels. Balance its movement with a simple fitted top and understated heels.",
+    images: [
+      "/images/products/jorts/jorts-07-front.webp",
+      "/images/products/jorts/jorts-07-back.webp",
+      "/images/products/jorts/jorts-07-detail1.webp",
+    ],
+    description:
+      "Dark grey denim shaped into a midi skirt with dramatic asymmetric draped panels. Balance its movement with a simple fitted top and understated heels.",
   },
   "Floral Belted Cargo Bermuda Jorts": {
-    images: ["/images/products/jorts/jorts-08-front.webp", "/images/products/jorts/jorts-08-back.webp", "/images/products/jorts/jorts-08-detail1.webp"],
-    description: "Cream floral-print bermudas with a matching belt, cargo pockets, and long side ties. Style them with a pared-back top to let the print and utility detailing lead.",
+    images: [
+      "/images/products/jorts/jorts-08-front.webp",
+      "/images/products/jorts/jorts-08-back.webp",
+      "/images/products/jorts/jorts-08-detail1.webp",
+    ],
+    description:
+      "Cream floral-print bermudas with a matching belt, cargo pockets, and long side ties. Style them with a pared-back top to let the print and utility detailing lead.",
   },
-	  "Lace-Panel Wide-Leg Denim Culottes": {
-	    images: ["/items/jort-i-1.jpeg", "/items/jort-i-2.jpeg", "/items/jort-i-3.jpeg"],
-	    description: "Light-wash wide-leg denim framed with white lace panels and an extended lace hem. A crisp blouse and delicate sandals keep the contrast elegant.",
+  "Lace-Panel Wide-Leg Denim Culottes": {
+    images: [
+      "/items/jort-i-1.jpeg",
+      "/items/jort-i-2.jpeg",
+      "/items/jort-i-3.jpeg",
+    ],
+    description:
+      "Light-wash wide-leg denim framed with white lace panels and an extended lace hem. A crisp blouse and delicate sandals keep the contrast elegant.",
   },
   "Rhinestone Studded Bermuda Jorts": {
-    images: ["/images/products/jorts/jorts-10-front.webp", "/images/products/jorts/jorts-10-back.webp", "/images/products/jorts/jorts-10-detail1.webp"],
-    description: "Light-wash bermuda denim covered in small rhinestone embellishments that catch the light across the front and back. Let them anchor an evening look with a sleek black jacket and heels.",
+    images: [
+      "/images/products/jorts/jorts-10-front.webp",
+      "/images/products/jorts/jorts-10-back.webp",
+      "/images/products/jorts/jorts-10-detail1.webp",
+    ],
+    description:
+      "Light-wash bermuda denim covered in small rhinestone embellishments that catch the light across the front and back. Let them anchor an evening look with a sleek black jacket and heels.",
   },
 };
 const newProductDetails = {
@@ -317,6 +372,33 @@ const newProductDetails = {
       "/new products/Maxi Dress/maxi_a_5.jpeg",
     ],
   },
+  "Black Halter Mini Dress": {
+    images: [
+      "/Date night/Gown_i_1.jpeg",
+      "/Date night/Gown_i_2.jpeg",
+      "/Date night/Gown_i_3.jpeg",
+    ],
+  },
+  "Leopard Lace Midi Dress": {
+    images: [
+      "/Date night/Gown_ii_1.jpeg",
+      "/Date night/Gown_ii_2.jpeg",
+      "/Date night/Gown_ii_3.jpeg",
+    ],
+  },
+  "Printed Cut-Out Mini Dress": {
+    images: [
+      "/Date night/Gown_iii_1.jpeg",
+      "/Date night/Gown_iii_2.jpeg",
+      "/Date night/Gown_iii_3.jpeg",
+    ],
+  },
+  "Sage Draped Cut-Out Dress": {
+    images: ["/Date night/Gown_iv_1.jpeg", "/Date night/Gown_iv_2.jpeg"],
+  },
+  "Mocha Draped Mesh Maxi Dress": {
+    images: ["/Date night/Gown_v_1.jpeg", "/Date night/Gown_v_2.jpeg"],
+  },
 };
 const productDetails = { ...jortProductDetails, ...newProductDetails };
 const subcategoryMap = {
@@ -362,7 +444,8 @@ const categoryOrder = ["Denim", "Shoes", "Tops", "Gowns", "Lingerie"],
   products = Object.entries(groups).flatMap(([category, items]) =>
     items.map(([name, price, subcategory], i) => {
       const detail = productDetails[name];
-      const primaryImage = detail?.images?.[0] || `placeholder-${category.toLowerCase()}-${i + 1}`;
+      const primaryImage =
+        detail?.images?.[0] || `placeholder-${category.toLowerCase()}-${i + 1}`;
       return {
         id: category + i,
         name,
@@ -392,7 +475,84 @@ const categoryOrder = ["Denim", "Shoes", "Tops", "Gowns", "Lingerie"],
     Gowns: "#cdb2ad,#694d4d",
     Lingerie: "#d8c0c0,#805c66",
     "Styled Outfit": "#d6c1af,#594139",
+    "Men's Apparel": "#c7b9aa,#67584e",
+    "Men's Shoes": "#b9a392,#55443a",
   };
+
+const mensProducts = [
+  {
+    id: "mens-apparel-sienna-trouser",
+    name: "The Sienna Trouser",
+    price: 36000,
+    category: "Men's Apparel",
+    subcategory: "Apparel",
+    image: "",
+    images: [],
+    description:
+      "A softly tailored trouser with a clean, confident line for workdays and evenings.",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+  },
+  {
+    id: "mens-apparel-zara-shirt",
+    name: "The Zara Shirt",
+    price: 42000,
+    category: "Men's Apparel",
+    subcategory: "Apparel",
+    image: "/edit-section/zara-shirt.png",
+    images: ["/edit-section/zara-shirt.png"],
+    description:
+      "An easy olive button-up with enough structure for the city and enough ease for the weekend.",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+  },
+  {
+    id: "mens-apparel-studio-overshirt",
+    name: "Studio Overshirt",
+    price: 39500,
+    category: "Men's Apparel",
+    subcategory: "Apparel",
+    image: "placeholder-mens-apparel-3",
+    images: ["placeholder-mens-apparel-3"],
+    description:
+      "A considered layer for tonal dressing, finished with a relaxed fit and quiet utility.",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+  },
+  {
+    id: "mens-shoes-city-loafer",
+    name: "City Leather Loafer",
+    price: 38000,
+    category: "Men's Shoes",
+    subcategory: "Shoes",
+    image: "placeholder-mens-shoes-1",
+    images: ["placeholder-mens-shoes-1"],
+    description:
+      "A polished leather loafer for tailored days, dinner reservations and everything between.",
+    sizes: ["40", "41", "42", "43", "44"],
+  },
+  {
+    id: "mens-shoes-court-sneaker",
+    name: "Court Everyday Sneaker",
+    price: 32000,
+    category: "Men's Shoes",
+    subcategory: "Shoes",
+    image: "placeholder-mens-shoes-2",
+    images: ["placeholder-mens-shoes-2"],
+    description:
+      "A clean low-top sneaker designed to anchor denim, tailoring and relaxed separates.",
+    sizes: ["40", "41", "42", "43", "44"],
+  },
+  {
+    id: "mens-shoes-suede-derby",
+    name: "Suede Derby",
+    price: 44500,
+    category: "Men's Shoes",
+    subcategory: "Shoes",
+    image: "placeholder-mens-shoes-3",
+    images: ["placeholder-mens-shoes-3"],
+    description:
+      "A warm suede derby with a grounded profile for modern occasion dressing.",
+    sizes: ["40", "41", "42", "43", "44"],
+  },
+];
 
 const outfits = [
   {
@@ -475,7 +635,7 @@ const homeEditCards = [
     height: 2304,
     sizes: categoryCardSizes,
     responsive: false,
-    destination: "shop",
+    destination: "men",
   },
   {
     title: "THE TRAVEL EDIT",
@@ -1373,7 +1533,10 @@ function Logo({ onHome }) {
 function Art({ p, src = p.image, altSuffix = "" }) {
   const isPhoto = typeof src === "string" && src.startsWith("/");
   return (
-    <div className={`art ${isPhoto ? "art-photo" : ""}`} style={{ "--tone": tones[p.category] }}>
+    <div
+      className={`art ${isPhoto ? "art-photo" : ""}`}
+      style={{ "--tone": tones[p.category] }}
+    >
       {isPhoto ? (
         <img
           src={src}
@@ -1397,9 +1560,14 @@ function Card({ p, open, add, wishlisted, toggleWishlist, index }) {
       className="card reveal"
       style={{ "--delay": `${Math.min(index, 7) * 55}ms` }}
     >
-      <button className={`pic ${p.images?.length > 1 ? "has-gallery" : ""}`} onClick={() => open(p)}>
+      <button
+        className={`pic ${p.images?.length > 1 ? "has-gallery" : ""}`}
+        onClick={() => open(p)}
+      >
         <Art p={p} />
-        {p.images?.[1] && <Art p={p} src={p.images[1]} altSuffix="alternate view" />}
+        {p.images?.[1] && (
+          <Art p={p} src={p.images[1]} altSuffix="alternate view" />
+        )}
         <span>
           Quick view <ArrowRight size={14} />
         </span>
@@ -1447,10 +1615,17 @@ function Modal({ p, close, add }) {
         </button>
         <div className="modal-gallery">
           <div className="modal-image-frame">
-            <Art p={p} src={p.images?.[activeImage] || p.image} altSuffix={activeImage ? "alternate view" : "front view"} />
+            <Art
+              p={p}
+              src={p.images?.[activeImage] || p.image}
+              altSuffix={activeImage ? "alternate view" : "front view"}
+            />
           </div>
           {p.images?.length > 1 && (
-            <div className="modal-thumbs" aria-label={`${p.name} image gallery`}>
+            <div
+              className="modal-thumbs"
+              aria-label={`${p.name} image gallery`}
+            >
               {p.images.map((image, index) => (
                 <button
                   type="button"
@@ -1459,7 +1634,11 @@ function Modal({ p, close, add }) {
                   key={image}
                   aria-label={`View ${p.name} image ${index + 1}`}
                 >
-                  <img src={image} alt={`${p.name}, view ${index + 1}`} loading="lazy" />
+                  <img
+                    src={image}
+                    alt={`${p.name}, view ${index + 1}`}
+                    loading="lazy"
+                  />
                 </button>
               ))}
             </div>
@@ -1690,6 +1869,106 @@ function ShopPage({
               wishlisted={wishlist.includes(p.id)}
               toggleWishlist={toggleWishlist}
               key={p.id}
+            />
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function MensCard({ p, open, add, index }) {
+  return (
+    <article
+      className="card reveal"
+      style={{ "--delay": `${Math.min(index, 7) * 55}ms` }}
+    >
+      <button
+        className="pic"
+        onClick={() => open(p)}
+        aria-label={`View ${p.name}`}
+      >
+        <Art p={p} />
+        <span>
+          View piece <ArrowRight size={14} />
+        </span>
+      </button>
+      <div className="card-top">
+        <div>
+          <small>{p.subcategory}</small>
+          <h3>{p.name}</h3>
+        </div>
+      </div>
+      <div className="price">
+        <b>{money(p.price)}</b>
+        <button onClick={() => add(p)}>
+          Add <Plus size={14} />
+        </button>
+      </div>
+    </article>
+  );
+}
+
+function MensPage({ back, open, add }) {
+  const apparel = mensProducts.filter(
+    (item) => item.category === "Men's Apparel",
+  );
+  const shoes = mensProducts.filter((item) => item.category === "Men's Shoes");
+  return (
+    <main className="mens-page">
+      <section className="mens-hero">
+        <div className="mens-hero-copy">
+          <small>THE MEN'S EDIT</small>
+          <h1>
+            The Edit <em>for Him.</em>
+          </h1>
+          <p>Quietly confident apparel and shoes for the man in motion.</p>
+          <button className="prelaunch-link" onClick={back}>
+            Back to the collection <ArrowRight size={15} />
+          </button>
+        </div>
+        <div
+          className="mens-hero-image"
+          role="img"
+          aria-label="The men's edit"
+        />
+      </section>
+      <section className="mens-section">
+        <div className="mens-section-heading">
+          <div>
+            <small>01 / APPAREL</small>
+            <h2>Everyday, considered.</h2>
+          </div>
+          <p>Tailored layers and relaxed essentials with room to move.</p>
+        </div>
+        <div className="grid mens-grid">
+          {apparel.map((item, index) => (
+            <MensCard
+              key={item.id}
+              p={item}
+              index={index}
+              open={open}
+              add={add}
+            />
+          ))}
+        </div>
+      </section>
+      <section className="mens-section mens-section--shoes">
+        <div className="mens-section-heading">
+          <div>
+            <small>02 / SHOES</small>
+            <h2>Grounded in style.</h2>
+          </div>
+          <p>Polished loafers and easy sneakers to finish the look.</p>
+        </div>
+        <div className="grid mens-grid">
+          {shoes.map((item, index) => (
+            <MensCard
+              key={item.id}
+              p={item}
+              index={index}
+              open={open}
+              add={add}
             />
           ))}
         </div>
@@ -2347,18 +2626,18 @@ export default function App() {
                           onSelect={openSubcategory}
                         />
                       ) : (
-                      <button
-                        className="mega-menu-item"
-                        type="button"
-                        key={item.category}
-                        onClick={() => openShop(item.category)}
-                      >
-                        <span>
-                          <strong>{item.label}</strong>
-                          <small>{item.description}</small>
-                        </span>
-                        <ArrowRight size={15} aria-hidden="true" />
-                      </button>
+                        <button
+                          className="mega-menu-item"
+                          type="button"
+                          key={item.category}
+                          onClick={() => openShop(item.category)}
+                        >
+                          <span>
+                            <strong>{item.label}</strong>
+                            <small>{item.description}</small>
+                          </span>
+                          <ArrowRight size={15} aria-hidden="true" />
+                        </button>
                       ),
                     )}
                     <div className="mega-menu-featured">
@@ -2660,6 +2939,7 @@ export default function App() {
                     setQ("");
                     if (card.destination === "outfits") setPage("outfits");
                     else if (card.destination === "shopper") setPage("shopper");
+                    else if (card.destination === "men") setPage("men");
                     else if (card.destination === "services")
                       setPage("services");
                     else {
@@ -2818,6 +3098,15 @@ export default function App() {
           add={add}
           wishlist={wishlist}
           toggleWishlist={toggleWishlist}
+        />
+      ) : page === "men" ? (
+        <MensPage
+          open={setSelected}
+          add={add}
+          back={() => {
+            setPage("home");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
         />
       ) : page === "outfits" ? (
         <StyledOutfitsPage
