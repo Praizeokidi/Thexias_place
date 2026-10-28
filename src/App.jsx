@@ -1124,7 +1124,7 @@ function PersonalShopperPage({ back }) {
     event.preventDefault();
     const msg = `Hi THEXIAS PLACE! I'm interested in personal shopping/sourcing:\nName: ${form.name}\nWhatsApp: ${form.phone}\nItem/Brand requested: ${form.request}\nBudget: ${form.budget || "Not specified"}\nPlease assist me in sourcing this.`;
     window.open(
-      `https://wa.me/2347048969953?text=${encodeURIComponent(msg)}`,
+      `https://wa.me/2347076535621?text=${encodeURIComponent(msg)}`,
       "_blank",
       "noopener,noreferrer",
     );
@@ -1571,7 +1571,7 @@ function Cart({ cart, close, qty, remove }) {
               <p>Complete your order securely in WhatsApp.</p>
               <a
                 className="cta"
-                href={`https://wa.me/2347048969953?text=${encodeURIComponent(msg)}`}
+                href={`https://wa.me/2347076535621?text=${encodeURIComponent(msg)}`}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -1975,7 +1975,7 @@ export default function App() {
         : "THE PRIVATE LIST (₦30,000/year)";
     const message = `Hi THEXIAS PLACE, I’d like to request an invitation.\n\nRequested tier: ${requestedTier}\nName: ${form.name}\nWhatsApp: ${form.contact}\nStyle: ${form.style}\nUsual wardrobe budget: ${form.budget || "Not specified"}`;
     window.open(
-      `https://wa.me/2347048969953?text=${encodeURIComponent(message)}`,
+      `https://wa.me/2347076535621?text=${encodeURIComponent(message)}`,
       "_blank",
       "noopener,noreferrer",
     );
@@ -2057,14 +2057,14 @@ export default function App() {
   ].map((item) => ({ ...item, category: "Denim" }));
   const gownNavItems = [
     {
-      label: "Mini Dress",
+      label: "Date Night Dress",
       subcategory: "Dinner",
       description: "Satin, sparkle and occasion looks",
     },
     {
-      label: "Maxi Dress",
+      label: "Corporate Dress",
       subcategory: "Curated",
-      description: "Polished statement dressing",
+      description: "Polished, work-ready statement dressing",
     },
     {
       label: "Curated Gowns",
@@ -2072,7 +2072,7 @@ export default function App() {
       description: "Special pieces for your edit",
     },
   ].map((item) => ({ ...item, category: "Gowns" }));
-  const whatsappUrl = "https://wa.me/2347048969953";
+  const whatsappUrl = "https://wa.me/2347076535621";
   const contactUrl = `${whatsappUrl}?text=${encodeURIComponent("Hi THEXIAS_PLACE, I have a question about the edit.")}`;
   const styleSessionUrl = `${whatsappUrl}?text=${encodeURIComponent("Hi THEXIAS_PLACE, I’d like to enquire about booking a style session.")}`;
   const closeNavigation = () => {
@@ -2709,7 +2709,7 @@ export default function App() {
                 </p>
                 <a
                   className="cta travel-edit-cta"
-                  href={`https://wa.me/2347048969953?text=${encodeURIComponent("Hi THEXIAS_PLACE, I’d love help curating a travel wardrobe for my trip.")}`}
+                  href={`https://wa.me/2347076535621?text=${encodeURIComponent("Hi THEXIAS_PLACE, I’d love help curating a travel wardrobe for my trip.")}`}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -2845,7 +2845,7 @@ export default function App() {
             No noise. Just the pieces and stories we think you’ll love.
           </small>
         </section>
-        <a href="https://wa.me/2347048969953">
+        <a href="https://wa.me/2347076535621">
           Chat with us on WhatsApp <ArrowRight size={15} />
         </a>
         <small>© 2024 THEXIAS PLACE · Made for the becoming.</small>
