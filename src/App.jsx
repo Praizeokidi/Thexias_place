@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
+  ArrowLeft,
   ArrowRight,
   Building2,
   BriefcaseBusiness,
@@ -125,7 +126,22 @@ groups.Gowns.unshift(
   ["Printed Cut-Out Mini Dress", 32000, "Dinner"],
   ["Sage Draped Cut-Out Dress", 38000, "Dinner"],
   ["Mocha Draped Mesh Maxi Dress", 40000, "Dinner"],
-  ["Brown Plaid Lace-Trim Maxi Dress", 38000, "Curated"],
+  ["Brown Plaid Lace-Trim Maxi Dress", 38000, "Dinner"],
+);
+groups.Gowns.push(
+  ["Aqua Halter Gown", 52000, "Curated"],
+  ["Turquoise Fringe Gown", 56000, "Curated"],
+  ["Multicolour Crochet Gown", 48000, "Curated"],
+);
+groups.Denim.push(
+  ["Black Scallop Mini Skirt", 22000, "Skirts"],
+  ["Ivory Sequin Mini Skirt", 26000, "Skirts"],
+  ["Black Lace Handkerchief Skirt", 24000, "Skirts"],
+  ["White Lace Panel Mini Skirt", 23000, "Skirts"],
+  ["Leopard Lace-Trim Ruched Skirt", 25000, "Skirts"],
+  ["Black Satin Flare Skirt", 22000, "Skirts"],
+  ["Cow Print Mini Skirt", 21000, "Skirts"],
+  ["Light-Wash Denim Mini Skirt", 21000, "Skirts"],
 );
 groups.Tops.unshift(
   ["Crocodile-Texture Cape Top", 18000],
@@ -137,6 +153,11 @@ groups.Tops.unshift(
   ["J'adore Embellished Tank", 10500],
   ["Contrast-Trim Polo Top", 11000],
   ["Ruched Ivory Zip Top", 12500],
+);
+groups.Tops.push(
+  ["White Lace Long-Sleeve Top", 16000],
+  ["White Lace-Up Corset Shirt", 22000],
+  ["Silver Chainmail Halter Top", 26000],
 );
 const jortProductDetails = {
   "Leopard Print Bermuda Jorts": {
@@ -398,6 +419,133 @@ const newProductDetails = {
   },
   "Mocha Draped Mesh Maxi Dress": {
     images: ["/Date night/Gown_v_1.jpeg", "/Date night/Gown_v_2.jpeg"],
+  },
+  "Aqua Halter Gown": {
+    images: [
+      "/new products/additional/Gown/Gown_a_1.jpeg",
+      "/new products/additional/Gown/Gown_a_2.jpeg",
+      "/new products/additional/Gown/Gown_a_3.jpeg",
+      "/new products/additional/Gown/Gown_a_4.jpeg",
+      "/new products/additional/Gown/Gown_a_5.jpeg",
+      "/new products/additional/Gown/Gown_a_6.jpeg",
+      "/new products/additional/Gown/Gown_a_7.jpeg",
+      "/new products/additional/Gown/Gown_a_8.jpeg",
+    ],
+  },
+  "Turquoise Fringe Gown": {
+    images: [
+      "/new products/additional/Gown/Gown_b_1.jpeg",
+      "/new products/additional/Gown/Gown_b_2.jpeg",
+      "/new products/additional/Gown/Gown_b_3.jpeg",
+    ],
+  },
+  "Multicolour Crochet Gown": {
+    images: [
+      "/new products/additional/Gown/Gown_c_1.jpeg",
+      "/new products/additional/Gown/Gown_c_2.jpeg",
+      "/new products/additional/Gown/Gown_c_3.jpeg",
+    ],
+  },
+  "Black Scallop Mini Skirt": {
+    images: [
+      "/new products/additional/Skirt/Skirt_a_1.jpeg",
+      "/new products/additional/Skirt/Skirt_a_2.jpeg",
+    ],
+  },
+  "Ivory Sequin Mini Skirt": {
+    images: [
+      "/new products/additional/Skirt/Skirt_b_1.jpeg",
+      "/new products/additional/Skirt/Skirt_b_2.jpeg",
+      "/new products/additional/Skirt/Skirt_b_3.jpeg",
+      "/new products/additional/Skirt/Skirt_b_4.jpeg",
+    ],
+  },
+  "Black Lace Handkerchief Skirt": {
+    images: [
+      "/new products/additional/Skirt/Skirt_c_1.jpeg",
+      "/new products/additional/Skirt/Skirt_c_2.jpeg",
+      "/new products/additional/Skirt/Skirt_c_3.jpeg",
+      "/new products/additional/Skirt/Skirt_c_4.jpeg",
+      "/new products/additional/Skirt/Skirt_c_5.jpeg",
+      "/new products/additional/Skirt/Skirt_c_6.jpeg",
+      "/new products/additional/Skirt/Skirt_c_7.jpeg",
+    ],
+  },
+  "White Lace Panel Mini Skirt": {
+    images: [
+      "/new products/additional/Skirt/Skirt_d_1.jpeg",
+      "/new products/additional/Skirt/Skirt_d_2.jpeg",
+      "/new products/additional/Skirt/Skirt_d_3.jpeg",
+      "/new products/additional/Skirt/Skirt_d_4.jpeg",
+      "/new products/additional/Skirt/Skirt_d_5.jpeg",
+    ],
+  },
+  "Leopard Lace-Trim Ruched Skirt": {
+    images: [
+      "/new products/additional/Skirt/Skirt_e_1.jpeg",
+      "/new products/additional/Skirt/Skirt_e_2.jpeg",
+      "/new products/additional/Skirt/Skirt_e_3.jpeg",
+      "/new products/additional/Skirt/Skirt_e_4.jpeg",
+      "/new products/additional/Skirt/Skirt_e_5.jpeg",
+    ],
+  },
+  "Black Satin Flare Skirt": {
+    images: [
+      "/new products/additional/Skirt/Skirt_f_1.jpeg",
+      "/new products/additional/Skirt/Skirt_f_2.jpeg",
+      "/new products/additional/Skirt/Skirt_f_3.jpeg",
+      "/new products/additional/Skirt/Skirt_f_4.jpeg",
+      "/new products/additional/Skirt/Skirt_f_5.jpeg",
+      "/new products/additional/Skirt/Skirt_f_6.jpeg",
+    ],
+  },
+  "Cow Print Mini Skirt": {
+    images: [
+      "/new products/additional/Skirt/Skirt_g_1.jpeg",
+      "/new products/additional/Skirt/Skirt_g_2.jpeg",
+      "/new products/additional/Skirt/Skirt_g_3.jpeg",
+      "/new products/additional/Skirt/Skirt_g_4.jpeg",
+      "/new products/additional/Skirt/Skirt_g_5.jpeg",
+    ],
+  },
+  "Light-Wash Denim Mini Skirt": {
+    images: [
+      "/new products/additional/Skirt/Skirt_h_1.jpeg",
+      "/new products/additional/Skirt/Skirt_h_2.jpeg",
+      "/new products/additional/Skirt/Skirt_h_3.jpeg",
+    ],
+  },
+  "White Lace Long-Sleeve Top": {
+    images: [
+      "/new products/additional/Tops/Top_a_1.jpeg",
+      "/new products/additional/Tops/Top_a_2.jpeg",
+      "/new products/additional/Tops/Top_a_3.jpeg",
+      "/new products/additional/Tops/Top_a_4.jpeg",
+      "/new products/additional/Tops/Top_a_5.jpeg",
+    ],
+  },
+  "White Lace-Up Corset Shirt": {
+    images: [
+      "/new products/additional/Tops/Top_b_1.jpeg",
+      "/new products/additional/Tops/Top_b_2.jpeg",
+      "/new products/additional/Tops/Top_b_3.jpeg",
+      "/new products/additional/Tops/Top_b_4.jpeg",
+      "/new products/additional/Tops/Top_b_5.jpeg",
+      "/new products/additional/Tops/Top_b_6.jpeg",
+    ],
+  },
+  "Silver Chainmail Halter Top": {
+    images: [
+      "/new products/additional/Tops/Top_c_1.jpeg",
+      "/new products/additional/Tops/Top_c_2.jpeg",
+      "/new products/additional/Tops/Top_c_3.jpeg",
+      "/new products/additional/Tops/Top_c_4.jpeg",
+      "/new products/additional/Tops/Top_c_5.jpeg",
+      "/new products/additional/Tops/Top_c_6.jpeg",
+      "/new products/additional/Tops/Top_c_7.jpeg",
+      "/new products/additional/Tops/Top_c_8.jpeg",
+      "/new products/additional/Tops/Top_c_9.jpeg",
+    ],
   },
 };
 const productDetails = { ...jortProductDetails, ...newProductDetails };
