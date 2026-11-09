@@ -159,6 +159,41 @@ groups.Tops.push(
   ["White Lace-Up Corset Shirt", 22000],
   ["Silver Chainmail Halter Top", 26000],
 );
+// Provisional names and prices for the latest merchandise drop.
+groups.Gowns.push(
+  ["Burgundy Sequin Mini Dress", 38000, "Dinner"],
+  ["Striped Collared A-Line Dress", 32000, "Dinner"],
+  ["Floral Tie-Front Mini Dress", 34000, "Dinner"],
+  ["Multicolour Striped Halter Maxi Dress", 38000, "Dinner"],
+  ["Striped Strapless Knit Mini Dress", 32000, "Dinner"],
+  ["Ivory Pleated Halter Mini Dress", 30000, "Dinner"],
+  ["Chocolate Draped Cowl Mini Dress", 28000, "Dinner"],
+);
+groups.Denim.push(
+  ["Wide-Cuff Ivory Tailored Pants", 24000, "Pants"],
+  ["Taupe Plaid Wide-Leg Pants", 23500, "Pants"],
+  ["Chocolate Satin Mini Skirt", 22000, "Skirts"],
+);
+groups.Shoes.push(
+  ["Midnight Croc Wrap Stiletto Boots", 26000, "Boots"],
+  ["Black Pointed Ankle Boots", 23500, "Boots"],
+  ["Patent Croc Platform Sandals", 19500, "Club & Date Night"],
+  ["Gold Detail Strappy Heels", 18500, "Club & Date Night"],
+  ["Crystal Mesh Slingback Heels", 20500, "Club & Date Night"],
+  ["Black Sculptural Strap Heels", 19000, "Club & Date Night"],
+  ["Silver Bow Slingback Heels", 20000, "Club & Date Night"],
+  ["Black Patent Peep-Toe Heels", 18000, "Club & Date Night"],
+  ["Metallic Strap Stiletto Heels", 21000, "Club & Date Night"],
+);
+groups.Tops.push(
+  ["Black Lace Tie-Neck Top", 14500],
+  ["Ivory Off-Shoulder Knit Top", 12000],
+  ["Chocolate Draped Halter Top", 13500],
+  ["Sheer Black Ruched Top", 14000],
+  ["Burgundy Satin Cowl Top", 12500],
+  ["Black Mesh Rose Top", 13500],
+  ["Chocolate Ribbed Bandeau Top", 11000],
+);
 const jortProductDetails = {
   "Leopard Print Bermuda Jorts": {
     images: [
@@ -517,8 +552,8 @@ const newProductDetails = {
   },
   "White Lace Long-Sleeve Top": {
     images: [
-      "/new products/additional/Tops/Top_a_1.jpeg",
       "/new products/additional/Tops/Top_a_2.jpeg",
+      "/new products/additional/Tops/Top_a_1.jpeg",
       "/new products/additional/Tops/Top_a_3.jpeg",
       "/new products/additional/Tops/Top_a_4.jpeg",
       "/new products/additional/Tops/Top_a_5.jpeg",
@@ -545,6 +580,179 @@ const newProductDetails = {
       "/new products/additional/Tops/Top_c_7.jpeg",
       "/new products/additional/Tops/Top_c_8.jpeg",
       "/new products/additional/Tops/Top_c_9.jpeg",
+    ],
+  },
+  "Burgundy Sequin Mini Dress": {
+    images: [
+      "/new merch/Gowns/Date Night Dress/gown_a_1.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_a_2.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_a_3.jpeg",
+    ],
+  },
+  "Striped Collared A-Line Dress": {
+    images: [
+      "/new merch/Gowns/Date Night Dress/gown_b_1.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_b_2.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_b_3.jpeg",
+    ],
+  },
+  "Floral Tie-Front Mini Dress": {
+    images: [
+      "/new merch/Gowns/Date Night Dress/gown_c_1.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_c_2.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_c_3.jpeg",
+    ],
+  },
+  "Multicolour Striped Halter Maxi Dress": {
+    images: [
+      "/new merch/Gowns/Date Night Dress/gown_d_1.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_d_2.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_d_3.jpeg",
+    ],
+  },
+  "Striped Strapless Knit Mini Dress": {
+    images: [
+      "/new merch/Gowns/Date Night Dress/gown_e_1.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_e_2.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_e_3.jpeg",
+    ],
+  },
+  "Ivory Pleated Halter Mini Dress": {
+    images: [
+      "/new merch/Gowns/Date Night Dress/gown_f_1.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_f_2.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_f_3.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_f_4.jpeg",
+    ],
+  },
+  "Chocolate Draped Cowl Mini Dress": {
+    images: [
+      "/new merch/Gowns/Date Night Dress/gown_g_1.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_g_2.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_g_3.jpeg",
+      "/new merch/Gowns/Date Night Dress/gown_g_4.jpeg",
+    ],
+  },
+  "Wide-Cuff Ivory Tailored Pants": {
+    images: [
+      "/new merch/Pants/Jean_a_1.jpeg",
+      "/new merch/Pants/Jean_a_2.jpeg",
+      "/new merch/Pants/Jean_a_3.jpeg",
+      "/new merch/Pants/Jean_a_4.jpeg",
+    ],
+  },
+  "Taupe Plaid Wide-Leg Pants": {
+    images: [
+      "/new merch/Pants/Jean_b_1.jpeg",
+      "/new merch/Pants/Jean_b_2.jpeg",
+    ],
+  },
+  "Midnight Croc Wrap Stiletto Boots": {
+    images: [
+      "/new merch/shoes/Boots/Shoe_c_1.jpeg",
+      "/new merch/shoes/Boots/Shoe_c_2.jpeg",
+      "/new merch/shoes/Boots/Shoe_c_3.jpeg",
+    ],
+  },
+  "Black Pointed Ankle Boots": {
+    images: [
+      "/new merch/shoes/Boots/Shoe_d_1.jpeg",
+      "/new merch/shoes/Boots/Shoe_d_2.jpeg",
+    ],
+  },
+  "Patent Croc Platform Sandals": {
+    images: [
+      "/new merch/shoes/Club & Date Night/Shoe_a_1.jpeg",
+      "/new merch/shoes/Club & Date Night/Shoe_a_2.jpeg",
+    ],
+  },
+  "Gold Detail Strappy Heels": {
+    images: [
+      "/new merch/shoes/Club & Date Night/Shoe_b_1.jpeg",
+      "/new merch/shoes/Club & Date Night/Shoe_b_2.jpeg",
+    ],
+  },
+  "Crystal Mesh Slingback Heels": {
+    images: [
+      "/new merch/shoes/Club & Date Night/Shoe_e_1.jpeg",
+      "/new merch/shoes/Club & Date Night/Shoe_e_2.jpeg",
+      "/new merch/shoes/Club & Date Night/Shoe_e_3.jpeg",
+    ],
+  },
+  "Black Sculptural Strap Heels": {
+    images: [
+      "/new merch/shoes/Club & Date Night/Shoe_f_1.jpeg",
+      "/new merch/shoes/Club & Date Night/Shoe_f_2.jpeg",
+    ],
+  },
+  "Silver Bow Slingback Heels": {
+    images: [
+      "/new merch/shoes/Club & Date Night/Shoe_g_1.jpeg",
+      "/new merch/shoes/Club & Date Night/Shoe_g_2.jpeg",
+      "/new merch/shoes/Club & Date Night/Shoe_g_3.jpeg",
+    ],
+  },
+  "Black Patent Peep-Toe Heels": {
+    images: [
+      "/new merch/shoes/Club & Date Night/Shoe_h_1.jpeg",
+      "/new merch/shoes/Club & Date Night/Shoe_h_2.jpeg",
+    ],
+  },
+  "Metallic Strap Stiletto Heels": {
+    images: ["/new merch/shoes/Club & Date Night/Shoe_i_1.jpeg"],
+  },
+  "Chocolate Satin Mini Skirt": {
+    images: [
+      "/new merch/skirt/Skirt_a_1.jpeg",
+      "/new merch/skirt/Skirt_a_2.jpeg",
+      "/new merch/skirt/Skirt_a_3.jpeg",
+    ],
+  },
+  "Black Lace Tie-Neck Top": {
+    images: [
+      "/new merch/Tops/Top_a_1.jpeg",
+      "/new merch/Tops/Top_a_2.jpeg",
+      "/new merch/Tops/Top_a_3.jpeg",
+    ],
+  },
+  "Ivory Off-Shoulder Knit Top": {
+    images: [
+      "/new merch/Tops/Top_b_1.jpeg",
+      "/new merch/Tops/Top_b_2.jpeg",
+      "/new merch/Tops/Top_b_3.jpeg",
+      "/new merch/Tops/Top_b4_.jpeg",
+    ],
+  },
+  "Chocolate Draped Halter Top": {
+    images: [
+      "/new merch/Tops/Top_c_1.jpeg",
+      "/new merch/Tops/Top_c_2.jpeg",
+      "/new merch/Tops/Top_c_3.jpeg",
+    ],
+  },
+  "Sheer Black Ruched Top": {
+    images: [
+      "/new merch/Tops/Top_d_1.jpeg",
+      "/new merch/Tops/Top_d_2.jpeg",
+      "/new merch/Tops/Top_d_3.jpeg",
+    ],
+  },
+  "Burgundy Satin Cowl Top": {
+    images: [
+      "/new merch/Tops/Top_e_1.jpeg",
+      "/new merch/Tops/Top_e_2.jpeg",
+    ],
+  },
+  "Black Mesh Rose Top": {
+    images: [
+      "/new merch/Tops/Top_f_1.jpeg",
+      "/new merch/Tops/Top_f_2.jpeg",
+    ],
+  },
+  "Chocolate Ribbed Bandeau Top": {
+    images: [
+      "/new merch/Tops/Top_g_1.jpeg",
+      "/new merch/Tops/Top_g_2.jpeg",
     ],
   },
 };
@@ -1804,14 +2012,6 @@ function Modal({ p, close, add }) {
               `A considered ${p.category.toLowerCase()} essential with a quietly confident finish. Designed for repeat wears.`}
           </p>
           <hr />
-          <b>
-            Color <em>Oat</em>
-          </b>
-          <div className="swatches">
-            <i />
-            <i />
-            <i />
-          </div>
           <div className="size-head">
             <b>Size</b>
             <a>Size guide</a>
@@ -2344,8 +2544,19 @@ export default function App() {
       );
     });
   }, [cat, subcategory, q]);
-  if (sort === "low") list = [...list].sort((a, b) => a.price - b.price);
-  if (sort === "high") list = [...list].sort((a, b) => b.price - a.price);
+  const hasProductImage = (product) =>
+    product.images?.some(
+      (image) => typeof image === "string" && image.startsWith("/"),
+    )
+      ? 1
+      : 0;
+  list = [...list].sort((a, b) => {
+    const imagePriority = hasProductImage(b) - hasProductImage(a);
+    if (imagePriority) return imagePriority;
+    if (sort === "low") return a.price - b.price;
+    if (sort === "high") return b.price - a.price;
+    return 0;
+  });
   useReveal(`${page}-${cat}-${subcategory}-${q}-${sort}`);
   const add = (p, size = p.sizes[1]) => {
     setCart((old) => {
