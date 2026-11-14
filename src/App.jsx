@@ -756,6 +756,64 @@ const newProductDetails = {
     ],
   },
 };
+const latestImageSet = (folder, stem, count, extension = "jpeg") =>
+  Array.from(
+    { length: count },
+    (_, index) => `/latest collection/${folder}/${stem}_${index + 1}.${extension}`,
+  );
+const latestCollectionImageSets = {
+  Gowns: [
+    latestImageSet("Gowns", "Gown_a", 8),
+    latestImageSet("Gowns", "Gown_b", 4),
+    latestImageSet("Gowns", "Gown_c", 6),
+    latestImageSet("Gowns", "Gown_d", 3),
+    latestImageSet("Gowns", "Gown_e", 2),
+    latestImageSet("Gowns", "Gown_f", 3),
+    latestImageSet("Gowns", "Gown_g", 4, "png"),
+    latestImageSet("Gowns", "Gown_h", 5),
+    latestImageSet("Gowns", "Gown_i", 3),
+  ],
+  Lingerie: [
+    latestImageSet("Lingerie", "Lingerie_a", 3),
+    latestImageSet("Lingerie", "Lingerie_b", 4),
+    latestImageSet("Lingerie", "Lingerie_c", 7),
+    latestImageSet("Lingerie", "Lingerie_d", 4),
+    latestImageSet("Lingerie", "Lingerie_e", 5),
+    latestImageSet("Lingerie", "Lingerie_f", 5),
+    latestImageSet("Lingerie", "Lingerie_g", 4),
+    latestImageSet("Lingerie", "Lingerie_h", 5),
+    latestImageSet("Lingerie", "Lingerie_i", 5),
+    latestImageSet("Lingerie", "Lingerie_j", 3),
+  ],
+  Skirt: [latestImageSet("Skirt", "Skirt_a", 4)],
+  Top: [
+    latestImageSet("Top", "Top_a", 3),
+    latestImageSet("Top", "Top_b", 5),
+    latestImageSet("Top", "Top_c", 4),
+    latestImageSet("Top", "Top_d", 5),
+    latestImageSet("Top", "Top_e", 5),
+    latestImageSet("Top", "Top_f", 2),
+    latestImageSet("Top", "Top_g", 6),
+    latestImageSet("Top", "Top_h", 6),
+    latestImageSet("Top", "Top_i", 5),
+    latestImageSet("Top", "Top_j", 3),
+    latestImageSet("Top", "Top_k", 4),
+    latestImageSet("Top", "Top_l", 4),
+    latestImageSet("Top", "Top_m", 4),
+    latestImageSet("Top", "Top_n", 4),
+    latestImageSet("Top", "Top_o", 3),
+    latestImageSet("Top", "Top_p", 5),
+    latestImageSet("Top", "Top_q", 4),
+  ],
+};
+const latestImageCursors = {};
+const getLatestImages = (category, subcategory) => {
+  const bucket = subcategory === "Skirts" ? "Skirt" : category;
+  const sets = latestCollectionImageSets[bucket] || [];
+  const cursor = latestImageCursors[bucket] || 0;
+  latestImageCursors[bucket] = cursor + 1;
+  return sets[cursor] || [];
+};
 const productDetails = { ...jortProductDetails, ...newProductDetails };
 const subcategoryMap = {
   Denim: {
@@ -800,16 +858,21 @@ const categoryOrder = ["Denim", "Shoes", "Tops", "Gowns", "Lingerie"],
   products = Object.entries(groups).flatMap(([category, items]) =>
     items.map(([name, price, subcategory], i) => {
       const detail = productDetails[name];
+      const resolvedSubcategory =
+        subcategory || subcategoryMap[category]?.[name] || "";
+      const images = detail?.images?.length
+        ? detail.images
+        : getLatestImages(category, resolvedSubcategory);
       const primaryImage =
-        detail?.images?.[0] || `placeholder-${category.toLowerCase()}-${i + 1}`;
+        images[0] || `placeholder-${category.toLowerCase()}-${i + 1}`;
       return {
         id: category + i,
         name,
         price,
         category,
-        subcategory: subcategory || subcategoryMap[category]?.[name] || "",
+        subcategory: resolvedSubcategory,
         image: primaryImage,
-        images: detail?.images || [primaryImage],
+        images: images.length ? images : [primaryImage],
         description: detail?.description || "",
         sizes:
           category === "Shoes"
