@@ -1715,7 +1715,6 @@ function PersonalShopperPage({ back }) {
         <small>THE LUXURY SHORTLIST</small>
         <div className="luxury-showcase-grid">
           {[
-            "Designer Handbags",
             "Italian Leather Heels",
             "Signature Silk",
             "Luxury Sneakers",
@@ -1735,8 +1734,8 @@ function PersonalShopperPage({ back }) {
         </h1>
         <p>
           Tell us the designer piece you actually want. We source authentic,
-          high-quality bags, shoes and clothing from Gucci, Prada and similar
-          houses on request.
+          high-quality shoes and clothing from Gucci, Prada and similar houses
+          on request.
         </p>
         <button className="prelaunch-link" onClick={back}>
           Back to the collection <ArrowRight size={15} />
@@ -1770,7 +1769,7 @@ function PersonalShopperPage({ back }) {
               required
               value={form.request}
               onChange={(e) => setForm({ ...form, request: e.target.value })}
-              placeholder="Gucci shoulder bag in black leather..."
+              placeholder="Gucci leather loafers in black..."
             />
           </label>
           <label>
@@ -1793,7 +1792,7 @@ function PersonalShopperPage({ back }) {
         <div className="concierge-cards">
           <div>
             <b>01</b>
-            <strong>Designer handbags</strong>
+            <strong>Luxury heels</strong>
             <p>Quiet icons and statement pieces sourced around your brief.</p>
           </div>
           <div>
@@ -2737,11 +2736,6 @@ export default function App() {
       label: "Lingerie",
       category: "Lingerie",
       description: "Soft layers and intimate essentials",
-    },
-    {
-      label: "Bags",
-      category: "Bags",
-      description: "Considered finishing touches",
     },
     {
       label: "Shoes",
