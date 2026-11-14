@@ -74,6 +74,11 @@ const groups = {
     ["Soft Mesh Bralette Set", 12500],
     ["Lace Trim Bodysuit", 15000],
     ["Everyday Seamless Set", 11000],
+    ["Lingerie Edit 06", 13500],
+    ["Lingerie Edit 07", 16500],
+    ["Lingerie Edit 08", 14500],
+    ["Lingerie Edit 09", 19000],
+    ["Lingerie Edit 10", 12000],
   ],
 };
 groups.Denim.push(
