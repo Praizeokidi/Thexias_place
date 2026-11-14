@@ -2734,6 +2734,11 @@ export default function App() {
       description: "Occasion dressing, thoughtfully chosen",
     },
     {
+      label: "Lingerie",
+      category: "Lingerie",
+      description: "Soft layers and intimate essentials",
+    },
+    {
       label: "Bags",
       category: "Bags",
       description: "Considered finishing touches",
